@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { jsx } from '@emotion/react'
-import homeIcon from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/images/Comm unity table-2.svg"
+import homeIcon from "../../images/Comm unity table-2.svg"
 
 
 
