@@ -15,6 +15,8 @@ class User(db.Model, UserMixin):
     isOrg = db.Column(db.Boolean, default=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    resources = db.relationship('Resource', back_populates='user')
+
     @property
     def password(self):
         return self.hashed_password
@@ -42,3 +44,54 @@ class Location(db.Model):
     city = db.Column(db.String(30), nullable=False)
     latitude = db.Column(db.Numeric(10, 8), nullable=False)
     longitude = db.Column(db.Numeric(11, 8), nullable=False)
+
+    resource = db.relationship('Resource', back_populates='locations')
+
+
+class Resource(db.Model):
+    __tablename__= 'resources'
+
+    id = db.Column(db.Integer, primary_key=True)
+    posterId = db.Column(db.Integer, db.ForeignKey('users.id'))
+    name = db.Column(db.String(40), nullable=False)
+    description = db.Column(db.String(2000), nullable=False)
+    image = db.Column(db.String(2000))
+    quantity = db.Column(db.Integer, nullable=False)
+    catName = db.Column(db.String(50), nullable=False)
+    startsAt = db.Column(db.Date, nullable=False)
+    endsAt = db.Column(db.Date, nullable=False)
+    locationId = db.Column(db.Integer, db.ForeignKey('locations.id'))
+
+    user = db.relationship('User', back_populates='resources')
+    location = db.relationship('Location', back_populates='resources')
+
+# class ClaimStatus(db.Model):
+#     __tablename__='claimStatus'
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     claimUserId = db.Column(db.Integer, db.ForeignKey('users.id'))
+#     resourceId = db.Column(db.Integer, db.ForeignKey('resources.id'))
+#     quantity = db.Column(db.Integer, nullable=False)
+
+
+claimStatus = db.Table(
+  'claimStatus',
+  db.Column(
+    'claimUserId', 
+    db.Integer,
+    db.ForeignKey('users.id'),
+    primary_key=True
+  ),
+  db.Column(
+    'resourceId',
+    db.Integer,
+    db.ForeignKey('resources.id'),
+    primary_key=True
+  ),
+  db.Column(
+    'quantity',
+    db.Integer,
+    nullable=False
+  )
+)
+
