@@ -1,40 +1,45 @@
+/** @jsx jsx */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
-import { css, jsx } from '@emotion/react'
-import { reactComponent as homeIcon } from "../../images/Comm-unity-table.svg"
+import { jsx } from '@emotion/react'
+import homeIcon from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/images/Comm unity table-2.svg"
+
+
+
 const NavBar = ({ setAuthenticated }) => {
   return (
-    <nav className="navBar">
-      <ul>
-        <NavLink exact to="/" className="nav-left">
-          <h2 className="logo" style={{ 
-
-          }}>
-            <homeIcon
-              alt="logoimage"
-            />
-          </h2>
-        </NavLink>
-        <li>
+    <nav className="nav">
+      <div className="nav_flex" css={{ alignSelf: "flex-start", display: 'flex', flexFlow: 'row wrap', alignItems: 'center', justifyContent: 'space-between' }}>
+      <NavLink className="App" exact to="/">
+        <img src={homeIcon} alt="React Logo" css={{ marginLeft: "1rem", marginTop: "0rem", }} />
+      </NavLink>
+        <div className="right__nav__flex" css={{ display: 'flex', alignItems: 'center', marginTop: "-2rem" }}>
+        <div>
           <NavLink to="/login" exact={true} activeClassName="active">
             Login
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
+          <NavLink to="/resources" exact={true} activeClassName="active">
+            All Resources
+          </NavLink>
+        </div>
+        <div>
           <LogoutButton setAuthenticated={setAuthenticated} />
-        </li>
-      </ul>
+        </div>
+      </div>
+    </div>
     </nav>
   );
 }

@@ -7,6 +7,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList/UsersList";
 import User from "./components/User/User";
 import { authenticate } from "./services/auth";
+import Footer from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/components/footer.js"
+
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -49,6 +51,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+      <Footer/>
     </BrowserRouter>
   );
 }
