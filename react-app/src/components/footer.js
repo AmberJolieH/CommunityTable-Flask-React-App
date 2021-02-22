@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import React from "react"
-import amber from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/images/Amber_profile_footer_img.svg"
-import dan from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/images/Dan_profile_footer_img.svg"
-import nicole from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/images/Nicole_profile_footer_img.svg"
-import gabe from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/images/Gabe_profile_footer_img.svg"
+import amber from "./../images/Amber_profile_footer_img.svg"
+import dan from "./../images/Dan_profile_footer_img.svg"
+import nicole from "./../images/Nicole_profile_footer_img.svg"
+import gabe from "./../images/Gabe_profile_footer_img.svg"
 import reactLogo from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/images/react_logo_white.svg"
-import pythonLogo from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/images/python_logo.svg"
+import pythonLogo from "./../images/python_logo.svg"
 import flaskLogo from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/images/flask_logo_img.svg"
 import { jsx } from '@emotion/react'
 
@@ -43,18 +43,7 @@ const Footer = () => {
 				}}
 			>
 
-				<a href="https://github.com/AmberJolieH">
-					<i
-						css={{ color: "white" }}
-						className="fab fa-github"
-					></i>
-				</a>
-                	<a href="https://www.linkedin.com/in/amber-horn-202743152">
-					<i
-						css={{ color: "white" }}
-						className="fab fa-linkedin"
-					></i>
-				</a>
+
             <div>
 				<img className="profilePic"
 					src={amber}
@@ -62,6 +51,18 @@ const Footer = () => {
 					css={{
 					}}
 				/>
+                    <a href="https://github.com/AmberJolieH">
+                        <i
+                            css={{ color: "white" }}
+                            className="fab fa-github"
+                        ></i>
+                    </a>
+                        <a href="https://www.linkedin.com/in/amber-horn-202743152">
+                        <i
+                            css={{ color: "white" }}
+                            className="fab fa-linkedin"
+                        ></i>
+                    </a>
 			</div>
                 <img className="profilePic"
 					src={nicole}
