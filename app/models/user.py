@@ -8,7 +8,7 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    phonenumber = db.Column(db.Integer)
+    phonenumber = db.Column(db.BigInteger)
     email = db.Column(db.String(255), nullable=False, unique=True)
     firstname = db.Column(db.String(40), nullable=False)
     lastname = db.Column(db.String(40), nullable=False)
@@ -45,7 +45,7 @@ class Location(db.Model):
     latitude = db.Column(db.Numeric(10, 8), nullable=False)
     longitude = db.Column(db.Numeric(11, 8), nullable=False)
 
-    resource = db.relationship('Resource', back_populates='locations')
+    resources = db.relationship('Resource', back_populates='location')
 
 
 class Resource(db.Model):
