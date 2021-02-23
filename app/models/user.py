@@ -65,6 +65,19 @@ class Resource(db.Model):
     user = db.relationship('User', back_populates='resources')
     location = db.relationship('Location', back_populates='resources')
 
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "description": self.description,
+            "image": self.image,
+            "posterId": self.posterId,
+            "quantity": self.quantity,
+            "catName": self.catName,
+            "startsAt": self.startsAt,
+            "endsAt": self.endsAt,
+            "locationId": self.locationId
+        }
+
 # class ClaimStatus(db.Model):
 #     __tablename__='claimStatus'
 
