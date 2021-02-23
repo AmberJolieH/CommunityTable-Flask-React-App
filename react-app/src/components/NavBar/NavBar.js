@@ -18,7 +18,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
           justifyContent: "space-between",
         }}
       >
-        <NavLink className="App" exact to="/">
+        <NavLink className="App left__nav__flex" exact to="/">
           <img src={homeIcon} alt="React Logo" css={{ marginTop: "-1rem" }} />
         </NavLink>
         {authenticated && (
@@ -33,17 +33,49 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
             }}
           >
             <div>
-              <NavLink to="/resources" exact={true} activeClassName="active" css={{textDecoration: "none", color: "black", fontWeight: "bold"}}>
+              <NavLink
+                to="/resources"
+                exact={true}
+                activeClassName="active"
+                className="button"
+                css={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontWeight: "bold",
+                }}
+              >
                 Create A Resource
               </NavLink>
             </div>
             <div>
-              <NavLink to="/resources" exact={true} activeClassName="active" css={{textDecoration: "none", color: "black", fontWeight: "bold"}}>
+              <NavLink
+                to="/resources"
+                exact={true}
+                activeClassName="active"
+                className="button"
+                css={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "1rem",
+                  fontWeight: "bold",
+                }}
+              >
                 All Resources
               </NavLink>
             </div>
             <div>
-              <NavLink to="/resources" exact={true} activeClassName="active" css={{textDecoration: "none", color: "black", fontWeight: "bold"}}>
+              <NavLink
+                to="/resources"
+                exact={true}
+                activeClassName="active"
+                className="button"
+                css={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "1rem",
+                  fontWeight: "bold",
+                }}
+              >
                 My Resources
               </NavLink>
             </div>
@@ -52,25 +84,47 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
             </div>
           </div>
         )}
-        {!authenticated &&
-        (
+        {!authenticated && (
           <div
-          className="right__nav__flex"
-          css={{
-            display: "flex",
-            alignItems: "center",
-            marginTop: "-2rem",
-            padding: "0.5rem",
-            textDecoration: "none",
-          }}
-        >
-          <div>
-            <NavLink to="/resources" exact={true} activeClassName="active">
-              All Resources
-            </NavLink>
-          </div>
+            className="right__nav__flex"
+            css={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "-2rem",
+              padding: "0.5rem",
+              textDecoration: "none",
+              fontSize: "1rem",
+            }}
+          >
             <div>
-              <NavLink to="/login" exact={true} activeClassName="active">
+              <NavLink
+                to="/resources"
+                exact={true}
+                activeClassName="active"
+                className="button"
+                css={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "1rem",
+                  fontWeight: "bold",
+                }}
+              >
+                All Resources
+              </NavLink>
+            </div>
+            <div>
+              <NavLink
+                to="/login"
+                exact={true}
+                activeClassName="active"
+                className="button"
+                css={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "1rem",
+                  fontWeight: "bold",
+                }}
+              >
                 Login
               </NavLink>
             </div>
@@ -82,7 +136,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   backgroundColor: "rgb(149, 181, 60)",
                   borderRadius: "2rem",
-                  padding: "0.75rem 1rem 0.75rem 1rem",
+                  padding: "1rem",
                   color: "white",
                   border: "0px",
                   textDecoration: "none",
@@ -92,7 +146,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 Sign Up
               </NavLink>
             </div>
-        </div>
+          </div>
         )}
       </div>
     </nav>

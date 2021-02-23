@@ -19,6 +19,8 @@ const LogoutButton = ({ setAuthenticated }) => {
         color: "white",
         border: "0px",
         fontSize: "1rem",
+        fontWeight: "bold",
+        "cursor": "pointer"
       }}
     >
       Logout
