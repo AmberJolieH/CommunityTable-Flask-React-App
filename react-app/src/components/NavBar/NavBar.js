@@ -42,6 +42,8 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                   textDecoration: "none",
                   color: "black",
                   fontWeight: "bold",
+                  padding: "0.75rem",
+                  margin: "1rem"
                 }}
               >
                 Create A Resource
@@ -56,8 +58,9 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   textDecoration: "none",
                   color: "black",
-                  padding: "1rem",
+                  padding: "0.75rem",
                   fontWeight: "bold",
+                  margin: "1rem"
                 }}
               >
                 All Resources
@@ -72,8 +75,9 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   textDecoration: "none",
                   color: "black",
-                  padding: "1rem",
+                  padding: "0.75rem",
                   fontWeight: "bold",
+                  margin: "1rem"
                 }}
               >
                 My Resources
@@ -105,8 +109,9 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   textDecoration: "none",
                   color: "black",
-                  padding: "1rem",
+                  padding: "0.75rem",
                   fontWeight: "bold",
+                  margin: "1rem"
                 }}
               >
                 All Resources
@@ -121,8 +126,9 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   textDecoration: "none",
                   color: "black",
-                  padding: "1rem",
+                  padding: "0.75rem",
                   fontWeight: "bold",
+                  margin: "1rem"
                 }}
               >
                 Login
@@ -136,11 +142,12 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   backgroundColor: "rgb(149, 181, 60)",
                   borderRadius: "2rem",
-                  padding: "1rem",
+                  padding: "0.75rem",
                   color: "white",
                   border: "0px",
                   textDecoration: "none",
                   fontSize: "1rem",
+                  margin: "1rem"
                 }}
               >
                 Sign Up
