@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from "react"
+// import React from "react"
 import amber from "./../images/Amber_profile_footer_img.svg"
 import dan from "./../images/Dan_profile_footer_img.svg"
 import nicole from "./../images/Nicole_profile_footer_img.svg"
