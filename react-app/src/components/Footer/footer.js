@@ -21,10 +21,14 @@ const Footer = () => {
 			css={{
 				width: "400rem",
 				backgroundColor: "black",
-				boxSizing: "border-box",
-				marginTop: "600px",
-				marginLeft: "0"
-
+				borderTop: "1px solid #E7E7E7",
+				textAlign: "center",
+				padding: "20px",
+				position: "fixed",
+				left: "0",
+				bottom: "0",
+				height: "150px",
+				width: "100%"
 			}}
 		>
 			<div className="footer_flex_all" css={{ display: "flex", marginTop: "0" }}>
@@ -34,7 +38,7 @@ const Footer = () => {
 							textAlign: "center",
 							color: "white",
 							fontSize: 10,
-							marginBottom: "1rem",
+							marginBottom: "2rem",
 							marginLeft:"1rem"
 						}}
 					>
@@ -128,7 +132,9 @@ const Footer = () => {
 							alt="new"
 							css={{
 								padding: "0rem",
-								marginBottom: "1rem"
+								marginBottom: "1rem",
+								marginRight:"-2rem",
+								marginLeft:"-4rem"
 							}}
 						/>
 					</div>
