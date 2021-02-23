@@ -17,7 +17,7 @@ def resource(id):
     resource = Resource.query.get(id)
     return resource.to_dict()
 
-@resource_routes.route('/resources', methods=['POST'])
+@resource_routes.route('/create_resource', methods=['POST'])
 #create a resource
 def create_resource():
     form = ResourceForm()

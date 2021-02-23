@@ -8,6 +8,8 @@ import UsersList from "./components/UsersList/UsersList";
 import User from "./components/User/User";
 import { authenticate } from "./services/auth";
 import Footer from "./components/footer.js"
+import Resources from "./components/Resources"
+import CreateResource from "./components/Resources/createResource"
 
 
 function App() {
@@ -46,6 +48,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path="/resources" exact={true} authenticated={authenticated}>
+          <Resources />
+        </ProtectedRoute>
+        <ProtectedRoute path="/resources/create_resource" exact={true} authenticated={authenticated}>
+          <CreateResource />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
