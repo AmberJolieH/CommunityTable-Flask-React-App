@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Email, ValidationError
 
 
 class ResourceForm(FlaskForm):
-    posterId = IntegerField('posterId', validators=[DataRequired()])
+    posterId = IntegerField('posterId')
     name = StringField('Name', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     image = StringField('Image')
@@ -13,7 +13,7 @@ class ResourceForm(FlaskForm):
     catName = StringField('Category', validators=[DataRequired()])
     startsAt = DateField('Starts At', validators=[DataRequired()])
     endsAt = DateField('Ends At', validators=[DataRequired()])
-    locationsId = SelectField('Location', choices=[
-        (1, 'location')
+    locationId = SelectField('Location', choices=[
+        1, 2, 3, 4
     ])
  

@@ -1,17 +1,18 @@
-from flask import Blueprint, jsonify, redirect
-from app.models import Resource
+from flask import Blueprint, jsonify, redirect, request
+from app.models import db, Resource
+from app.forms.resource_form import ResourceForm
 
 resource_routes = Blueprint('resources', __name__)
 
 
-@resource_routes.route('/resources')
+@resource_routes.route('/')
 #get all resources
 def resources():
     resources = Resource.query.all()
     return {"resources": [resource.to_dict() for resource in resources]}
 
 
-@resource_routes.route('/resources/<int:id>')
+@resource_routes.route('/<int:id>')
 #get a single resource
 def resource(id):
     resource = Resource.query.get(id)
@@ -21,9 +22,10 @@ def resource(id):
 #create a resource
 def create_resource():
     form = ResourceForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         resource = Resource(
-            posterId=form.data['posterId'],
+            posterId=2,
             name=form.data['name'],
             description=form.data['description'],
             image=form.data['image'],
@@ -35,5 +37,6 @@ def create_resource():
         )
         db.session.add(resource)
         db.session.commit()
-        return redirect('/')
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+        return resource.to_dict()
+    print(form.errors)
+    return {'errors': form.errors}
