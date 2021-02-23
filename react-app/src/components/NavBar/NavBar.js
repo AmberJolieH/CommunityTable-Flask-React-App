@@ -34,7 +34,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
           >
             <div>
               <NavLink
-                to="/resources"
+                to="/create_resource"
                 exact={true}
                 activeClassName="active"
                 className="button"
@@ -68,7 +68,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
             </div>
             <div>
               <NavLink
-                to="/resources"
+                to="/my_resources"
                 exact={true}
                 activeClassName="active"
                 className="button"
