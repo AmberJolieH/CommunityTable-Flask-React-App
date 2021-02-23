@@ -7,7 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList/UsersList";
 import User from "./components/User/User";
 import { authenticate } from "./services/auth";
-import Footer from "/Users/amberjolie/CommunityTable-Flask-React-App/react-app/src/components/footer.js"
+import Footer from "./components/footer.js"
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
