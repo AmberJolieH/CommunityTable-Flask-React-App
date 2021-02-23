@@ -32,14 +32,20 @@ const SearchBar = () => {
         onSubmit={handleSubmit}
         css={{
           display: "flex",
-          height: "8rem",
+          height: "7rem",
           justifyContent: "center",
           flexWrap: "wrap",
           alignItems: "center",
           width: "100%",
         }}
       >
-        <div className="location__container">
+        <div className="location__container" css={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "30%",
+          margin: "1rem"
+        }}>
           <label
             css={{
               padding: "0.5rem",
@@ -57,16 +63,22 @@ const SearchBar = () => {
               borderRadius: "2rem",
               padding: "0.4rem",
               textAlign: "center",
+              width: "80%"
             }}
           ></input>
         </div>
-        <div className="resourceType__container">
+        <div className="resourceType__container" css={{
+           display: "flex",
+           flexDirection: "column",
+           alignItems: "center",
+           width: "30%",
+           margin: "1rem"
+        }}>
           <label
             css={{
               padding: "0.5rem",
               fontWeight: "bolder",
               letterSpacing: "1.5px",
-              marginLeft: "3rem",
             }}
           >
             RESOURCE TYPE
@@ -80,6 +92,7 @@ const SearchBar = () => {
               textAlign: "center",
               fontWeight: "bold",
               cursor: "pointer",
+              width: "80%"
             }}
           >
             {types.map((type) => {
