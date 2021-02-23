@@ -7,6 +7,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList/UsersList";
 import User from "./components/User/User";
 import { authenticate } from "./services/auth";
+import Footer from "./components/footer.js"
+
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -28,7 +30,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -49,6 +51,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+      <Footer/>
     </BrowserRouter>
   );
 }
