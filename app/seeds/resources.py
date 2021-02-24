@@ -26,7 +26,7 @@ def seed_resources():
     catslen = len(cats)
 
     times = 0
-    while times < 5:
+    while times < 10:
         new_resource = Resource(
             posterId = random.randrange(1, users),
             name = 'My resource',
@@ -36,7 +36,7 @@ def seed_resources():
             catName = cats[random.randrange(catslen)],
             startsAt = datetime.datetime.now(),
             endsAt = datetime.datetime(2021,5,10),
-            locationId = random.randrange(1, 9)
+            locationId = random.randrange(1, locations)
         )
 
         times = times + 1
