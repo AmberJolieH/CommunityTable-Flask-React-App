@@ -52,10 +52,19 @@ const CreateResource = () =>{
     ]
     
     return (
-        <div>
+        <div
+        css={{
+            display: "flex",
+            flexDirection:"column",
+            alignItems:"center"
+        }}>
             <h2>Create a Resource</h2>
             <p>Community, helping community.</p>     
-            <form onSubmit={onSubmit}>
+            <form 
+            onSubmit={onSubmit}
+                class='standard-card'
+                >
+                    <label>Name of resource: </label>
                 <input 
                     name="name"
                     type="text"
@@ -63,12 +72,14 @@ const CreateResource = () =>{
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
+                <label>Description: </label>
                 <textarea
                     name="description"
-                    placeholder="Enter a desription"
+                    placeholder="Enter a description"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
+                <label>Enter image URL: </label>
                 <input
                     name="image"
                     type="text"
@@ -76,12 +87,14 @@ const CreateResource = () =>{
                     value={image}
                     onChange={e => setImage(e.target.value)}
                 />
+                <label>Enter quantity: </label>
                 <input
                     name="quantity"
                     type="number"
                     value={quantity}
                     onChange={e => setQuantity(e.target.value)}
                 />
+                <label>Select a category: </label>
                 <select
                     name="catName"
                     type=""
@@ -113,6 +126,7 @@ const CreateResource = () =>{
                     value={endsAt}
                     onChange={e => setEndsAt(e.target.value)}
                 />
+                <label>Select a location: </label>
                 <select
                     name="locationId"
                     type=""
@@ -130,7 +144,18 @@ const CreateResource = () =>{
                         )
                     })}
                 </select>
-                <button>Create Resource</button>
+                <button 
+                    css={{
+                        backgroundColor: "rgb(149, 181, 60)",
+                        borderRadius: "2rem",
+                        padding: "0.75rem 1rem 0.75rem 1rem",
+                        color: "white",
+                        border: "0px",
+                        fontSize: "1rem",
+                        fontWeight: "bold",
+                        "cursor": "pointer"
+                    }}
+                    >Create Resource</button>
             </form>
         </div>
     )
