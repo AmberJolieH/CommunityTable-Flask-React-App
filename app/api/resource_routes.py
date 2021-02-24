@@ -9,6 +9,8 @@ resource_routes = Blueprint('resources', __name__)
 #get all resources
 def resources():
     resources = Resource.query.all()
+    for resource in resources:
+        print(resource.to_dict())
     return {"resources": [resource.to_dict() for resource in resources]}
 
 
