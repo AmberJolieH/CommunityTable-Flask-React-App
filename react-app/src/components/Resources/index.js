@@ -1,8 +1,13 @@
 /** @jsx jsx */
-import React from "react";
+import React, { useDispatch, useEffect } from "react";
 import { jsx } from "@emotion/react";
+import { listresources } from "../../services/resourses"
 
 const Resources = () =>{
+    // dispatch = useDispatch()
+    // useEffect=()=>({
+    //     listresources()
+    // },[dispatch])
 
     return (
         <div>
