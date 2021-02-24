@@ -9,9 +9,10 @@ const MapComponent = () => {
   const [map, setMap] = useState();
 
   const containerStyle = {
-    width: "60rem",
-    height: "60rem",
-    marginTop: "1rem"
+    width: "50rem",
+    height: "50rem",
+    marginTop: "2rem",
+    marginBottom: "220px"
   };
 
 
@@ -47,7 +48,7 @@ const MapComponent = () => {
   }
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEYs}>
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
       <GoogleMap
         id="search-map"
         mapContainerStyle={containerStyle}
