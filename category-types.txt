@@ -1,15 +1,2 @@
 Categories for Resources on Community Table:
-
-- Non-Perishable Food
-- Perishable Food
-- Water and beverages
-- Baby care
-- Children toys
-- Clothing
-- Electronics
-- Books
-- School Supplies
-- Furniture
-- Shelter
-- Services (Barber, shower, etc)
-- Other
+Non-Perishable Food, Perishable Food, Water and beverages, Baby care, Children toys, Clothing, Electronics, Books, School Supplies, Furniture, Shelter, Services (Barber, shower, etc), Other

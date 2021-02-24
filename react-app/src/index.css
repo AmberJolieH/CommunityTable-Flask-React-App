@@ -3,6 +3,15 @@ body {
     font-family: inter;
 }
 
+.pageContainer{
+	display: grid;
+	grid-template-rows: auto minmax(1200px, 1fr) auto;
+}
+
+.pageItem{
+	grid-row: span 1 /span 1;
+}
+
 .button {
 	padding: 0.5em;
 	text-decoration: none;
