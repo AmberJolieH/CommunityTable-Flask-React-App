@@ -15,7 +15,6 @@ const removeUser = () => {
 };
 
 export const login = (email, password) => async (dispatch) => {
-    console.log("hit Login")
     const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -26,9 +25,9 @@ export const login = (email, password) => async (dispatch) => {
             password,
         }),
     });
-    console.log(response)
-    dispatch(setUser(response.data.user));
-    return await response.json();
+    const user = await response.json()
+    dispatch(setUser(user));
+    return user
 };
 
 // export const restoreUser = () => async dispatch => {

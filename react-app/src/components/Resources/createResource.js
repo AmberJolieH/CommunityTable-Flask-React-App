@@ -13,7 +13,7 @@ const CreateResource = () =>{
     const [startsAt, setStartsAt] = useState('')
     const [endsAt, setEndsAt] = useState('')
     const [locationId, setLocationId] = useState(1)
-    
+
     const onSubmit = async (e)=>{
         e.preventDefault()
         const resource = await createresource({
@@ -27,6 +27,7 @@ const CreateResource = () =>{
             endsAt,
             locationId
         })
+        console.log("resource on front end HERE-----", resource)
     }
     const categories = [
         'Non-Perishable Food',
@@ -50,7 +51,7 @@ const CreateResource = () =>{
         'University of Houston',
         'DownTown Houston'
     ]
-    
+
     return (
         <div
         css={{
@@ -59,13 +60,13 @@ const CreateResource = () =>{
             alignItems:"center"
         }}>
             <h2>Create a Resource</h2>
-            <p>Community, helping community.</p>     
-            <form 
+            <p>Community, helping community.</p>
+            <form
             onSubmit={onSubmit}
                 class='standard-card'
                 >
                     <label>Name of resource: </label>
-                <input 
+                <input
                     name="name"
                     type="text"
                     placeholder="Name of resource"
@@ -144,7 +145,7 @@ const CreateResource = () =>{
                         )
                     })}
                 </select>
-                <button 
+                <button
                     css={{
                         backgroundColor: "rgb(149, 181, 60)",
                         borderRadius: "2rem",
