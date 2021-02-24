@@ -21,10 +21,14 @@ const Footer = () => {
 			css={{
 				width: "400rem",
 				backgroundColor: "black",
-				boxSizing: "border-box",
-				marginTop: "600px",
-				marginLeft: "0"
-
+				borderTop: "1px solid #E7E7E7",
+				textAlign: "center",
+				padding: "10px",
+				position: "fixed",
+				left: "0",
+				bottom: "0",
+				height: "100px",
+				width: "100%"
 			}}
 		>
 			<div className="footer_flex_all" css={{ display: "flex", marginTop: "0" }}>
@@ -34,14 +38,14 @@ const Footer = () => {
 							textAlign: "center",
 							color: "white",
 							fontSize: 10,
-							marginBottom: "1rem",
+							marginBottom: "2rem",
 							marginLeft:"1rem"
 						}}
 					>
 						CREATED BY:
 			
 			</div>
-					<div className="profileTitleBlock" css={{ display: "flex", alignSelf: "flex-start", alignItems: 'center', marginLeft: ".15rem", marginRight: "10rem", marginTop:"2rem" }}>
+					<div className="profileTitleBlock" css={{ display: "flex", alignSelf: "flex-start", alignItems: 'center', marginLeft: ".15rem", marginRight: "10rem", marginTop:"0rem" }}>
 					<div className="amber" css={{display: "flex", alignSelf: "flex-start", alignItems: 'center', marginLeft: ".15rem", marginRight:"0"}}>
 						<img className="profilePicAmber"
 							src={amber}
@@ -51,8 +55,9 @@ const Footer = () => {
 							}}
 						/>
 						<a css={{ color: "white", marginTop: "4", fontSize: 15, marginLeft: "-1rem",}}>Amber Horn</a>
-							<a href="https://github.com/AmberJolieH" ></a>
+							<a href="https://github.com/AmberJolieH" >
 								<GitHubIcon css={{ color: "white", marginLeft: ".5rem" }}/>
+								</a>
 								<LinkedInIcon css={{ color: "white", marginLeft: ".5rem" }} />
 							{/* <img className="githubIcon" href="https://github.com/AmberJolieH" ccss={{ color: "white", marginLeft: ".5rem" }}/> */}
 						{/* <img src={linkedin} className="linkedinIcon" href="https://www.linkedin.com/in/amber-horn-202743152" css={{
@@ -68,7 +73,7 @@ const Footer = () => {
 								paddingRight: "1rem"
 							}}
 						/>
-							<a css={{ color: "white", marginTop: "4", fontSize: 15, marginLeft: "-1rem" }}>Nicole Loescher</a>
+							<a css={{ color: "white", marginTop: "3", fontSize: 15, marginLeft: "-1rem" }}>Nicole Loescher</a>
 							<GitHubIcon css={{ color: "white", marginLeft: ".5rem" }} />
 							<LinkedInIcon css={{ color: "white", marginLeft: ".5rem" }} />
 					
@@ -91,7 +96,7 @@ const Footer = () => {
 							src={gabe}
 							alt="new"
 							css={{
-								paddingRight: "1rem"
+								paddingRight: "0rem"
 							}}
 						/>
 							<a css={{ color: "white", marginTop: "4", fontSize: 15, marginLeft: "-1rem" }}>Gabriel Gutierrez</a>
@@ -101,7 +106,7 @@ const Footer = () => {
 
 				</div>
 			</div>
-				<div className="langLogoBlock" css={{ display: "flex", alignItems: 'center', marginLeft: "0rem"}}>
+	<div className="langLogoBlock" css={{ display: "flex", alignItems: 'center', marginLeft: "0rem", marginTop: "0rem", alignSelf: "flex-start"}}>
 					<div
 						css={{
 							textAlign: "center",
@@ -111,37 +116,43 @@ const Footer = () => {
 							marginLeft:"-5rem"
 						}}>
 						CREATED WITH:
-            </div>
-					<div>
-						<img className="langLogo"
-							src={pythonLogo}
-							alt="new"
-							css={{
-								padding: "0rem",
-								marginBottom: "1rem"
-							}}
-						/>
-					</div>
-					<div>
-						<img className="langLogo"
-							src={reactLogo}
-							alt="new"
-							css={{
-								padding: "0rem",
-								marginBottom: "1rem"
-							}}
-						/>
-					</div>
-					<div>
-						<img className="reactLogo"
-							src={flaskLogo}
-							alt="new"
-							css={{
-								padding: "0rem",
-								marginBottom: "1rem"
-							}}
-						/>
-					</div>
+           		    </div>
+				</div>
+				<div>
+					<img className="langLogo"
+						src={pythonLogo}
+						alt="new"
+						css={{
+							padding: "0rem",
+							marginBottom: "2rem",
+							marginRight: "1rem",
+							marginLeft: "1rem"
+						}}
+					/>
+				</div>
+				<div>
+					<img className="reactLogo"
+						src={reactLogo}
+						alt="new"
+						css={{
+							padding: "0rem",
+							marginBottom: "2rem",
+							marginRight: "1rem",
+							marginLeft: "1rem"
+						}}
+					/>
+				</div>
+				<div>
+					<img className="flaskLogo"
+						src={flaskLogo}
+						alt="new"
+						css={{
+							padding: "0rem",
+							marginBottom: "2rem",
+							marginRight: "1rem",
+							marginLeft: "1rem"
+						}}
+					/>
 				</div>
 			</div>
 		</footer>
