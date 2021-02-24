@@ -23,7 +23,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   const demoLogin = async (e) => {
     e.preventDefault();
-    const user = await login('demo@aa.io', 'password')
+    const user = await dispatch(sessionActions.login('demo@aa.io', 'password'));
     if (!user.errors) {
       setAuthenticated(true);
     } else {
