@@ -1,23 +1,64 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+/** @jsxImportSource @emotion/react */
+import React from "react";
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { useState, useEffect } from "react";
 
 const MapComponent = () => {
-  return (
-    <div className="map__container">
-      <Map google={window.google} zoom={14} containerStyle={{position: 'relative', width: "50rem", height: "50rem", margin: "0.5rem"}}>
-        {/* <Marker onClick={this.onMarkerClick}
-                  name={'Current location'} />
+  const [lat, setLat] = useState();
+  const [lng, setLng] = useState();
+  const [map, setMap] = useState();
 
-                  <InfoWindow onClose={this.onInfoWindowClose}>
-                  <div>
-                  <h1>{this.state.selectedPlace.name}</h1>
-                  </div>
-                </InfoWindow> */}
-      </Map>
-    </div>
+  const containerStyle = {
+    width: "60rem",
+    height: "60rem",
+    marginTop: "1rem"
+  };
+
+
+  useEffect(() => {
+    function geolocate() {
+      if (window.navigator && window.navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          onGeolocateSuccess,
+          onGeolocateError
+        );
+      }
+    }
+
+    function onGeolocateSuccess(coordinates) {
+      setLat(coordinates.coords.latitude);
+      setLng(coordinates.coords.longitude);
+    }
+
+    function onGeolocateError(error) {
+      console.warn(error.code, error.message);
+    }
+
+    geolocate();
+  }, []);
+
+  const center = {
+    lat: lat || 39.299236,
+    lng: lng || -76.609383,
+  };
+
+  function handleMapLoad(currentMap) {
+    setMap(currentMap);
+  }
+
+  return (
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEYs}>
+      <GoogleMap
+        id="search-map"
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={14}
+        onLoad={handleMapLoad}
+        // onDragEnd={handleBoundsChanged}
+        // onClick={handleBoundsChanged}
+      >
+      </GoogleMap>
+    </LoadScript>
   );
 };
-export default GoogleApiWrapper({
-  apiKey: "your api key here",
-})(MapComponent);
+export default MapComponent;
