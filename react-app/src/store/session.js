@@ -14,33 +14,41 @@ const removeUser = () => {
     };
 };
 
-export const login = (user) => async (dispatch) => {
-    const { email, password } = user;
-    const response = await fetch('/api/session', {
+export const login = (email, password) => async (dispatch) => {
+    console.log("hit Login")
+    const response = await fetch('/api/auth/login', {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             email,
             password,
         }),
     });
+    console.log(response)
     dispatch(setUser(response.data.user));
-    return response;
+    return await response.json();
 };
 
-export const restoreUser = () => async dispatch => {
-    const res = await fetch('/api/session');
-    dispatch(setUser(res.data.user));
-    return res;
-};
+// export const restoreUser = () => async dispatch => {
+//     const res = await fetch('/api/auth');
+//     dispatch(setUser(res.data.user));
+//     return res;
+// };
 
 export const signup = (user) => async (dispatch) => {
-    const { username, email, password } = user;
-    const response = await fetch("/api/users", {
+    const { username, email, password, firstname, lastname, isOrg, phonenumber } = user;
+    const response = await fetch("/api/auth/signup", {
         method: "POST",
         body: JSON.stringify({
             username,
             email,
             password,
+            firstname,
+            lastname,
+            isOrg,
+            phonenumber,
         }),
     });
     dispatch(setUser(response.data.user));
@@ -48,7 +56,7 @@ export const signup = (user) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-    const response = await fetch('/api/session', {
+    const response = await fetch('/api/auth/logout', {
         method: 'DELETE',
     });
     dispatch(removeUser());
@@ -57,8 +65,8 @@ export const logout = () => async (dispatch) => {
 
 const initialState = {
     user: {
-        email: 'demo@aa.io',
-        username: 'Demo',
+        email: 'initial@email.com',
+        username: 'Initial',
     }
 };
 
