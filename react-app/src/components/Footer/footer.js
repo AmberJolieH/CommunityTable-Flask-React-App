@@ -20,7 +20,7 @@ const Footer = () => {
       css={{
         width: "400rem",
         backgroundColor: "black",
-        borderTop: "1px solid #E7E7E7",
+        borderTop: "1px solid black",
         textAlign: "center",
         padding: "4px",
         width: "100%",
