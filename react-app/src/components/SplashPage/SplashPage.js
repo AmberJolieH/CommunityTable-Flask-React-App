@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import SearchBar from "./SearchBar"
+import MapComponent from "./MapComponent"
 
 
 const SplashPage = () => {
@@ -18,6 +19,7 @@ const SplashPage = () => {
                 margin: "1rem"
             }}>BRINGING <span css={{color: "rgb(149, 181, 60)"}}>UNITY</span> TO THE TABLE</h2>
             <SearchBar></SearchBar>
+            <MapComponent></MapComponent>
         </div>
     )
 }

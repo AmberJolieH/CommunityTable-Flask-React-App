@@ -1,14 +1,23 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 
 const MapComponent = () => {
-  function initMap() {
-    let map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: -34.397, lng: 150.644 },
-      zoom: 16,
-    });
+  return (
+    <div className="map__container">
+      <Map google={window.google} zoom={14} containerStyle={{position: 'relative', width: "50rem", height: "50rem", margin: "0.5rem"}}>
+        {/* <Marker onClick={this.onMarkerClick}
+                  name={'Current location'} />
 
-    return <div>test</div>;
-  }
+                  <InfoWindow onClose={this.onInfoWindowClose}>
+                  <div>
+                  <h1>{this.state.selectedPlace.name}</h1>
+                  </div>
+                </InfoWindow> */}
+      </Map>
+    </div>
+  );
 };
-export default MapComponent;
+export default GoogleApiWrapper({
+  apiKey: "your api key here",
+})(MapComponent);
