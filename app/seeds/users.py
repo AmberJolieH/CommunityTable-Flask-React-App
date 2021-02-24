@@ -1,7 +1,6 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, User
 from faker import Faker
-import bcrypt
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
@@ -15,7 +14,8 @@ def seed_users():
         firstname='Demo',
         lastname='User',
         isOrg=False,
-        hashed_password=bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt()))
+        password=password
+    )
     db.session.add(demo)
 
     times = 0
@@ -27,7 +27,7 @@ def seed_users():
             # phonenumber= faker.random_int(0000000000, 9999999999),
             email= faker.email(),
             isOrg=False,
-            hashed_password= bcrypt.hashpw(f'password{times}'.encode('utf8'), bcrypt.gensalt()),
+            password= (f'password{times}')
         ) 
         times = times + 1
         db.session.add(newUser)

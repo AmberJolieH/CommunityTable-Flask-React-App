@@ -8,7 +8,10 @@ import UsersList from "./components/UsersList/UsersList";
 import User from "./components/User/User";
 import SplashPage from "./components/SplashPage/SplashPage"
 import { authenticate } from "./services/auth";
-import Footer from "./components/footer.js";
+import Resources from "./components/Resources"
+import CreateResource from "./components/Resources/createResource"
+import Footer from "./components/Footer/footer.js"
+
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -47,11 +50,7 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <ProtectedRoute
-          path="/users"
-          exact={true}
-          authenticated={authenticated}
-        >
+        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute
@@ -60,6 +59,12 @@ function App() {
           authenticated={authenticated}
         >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path="/resources" exact={true} authenticated={authenticated}>
+          <Resources />
+        </ProtectedRoute>
+        <ProtectedRoute path="/resources/create_resource" exact={true} authenticated={authenticated}>
+          <CreateResource />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <SplashPage></SplashPage>
