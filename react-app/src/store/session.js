@@ -36,22 +36,26 @@ export const login = (email, password) => async (dispatch) => {
 //     return res;
 // };
 
-export const signup = (user) => async (dispatch) => {
-    const { username, email, password, firstname, lastname, isOrg, phonenumber } = user;
+export const signUp = (username, email, password) => async (dispatch) => {
     const response = await fetch("/api/auth/signup", {
         method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             username,
             email,
             password,
-            firstname,
-            lastname,
-            isOrg,
-            phonenumber,
+            // firstname,
+            // lastname,
+            // isOrg,
+            // phonenumber,
         }),
     });
-    dispatch(setUser(response.data.user));
-    return response;
+    const user = await response.json()
+    console.log(user)
+    dispatch(setUser(user));
+    return user;
 };
 
 export const logout = () => async (dispatch) => {
