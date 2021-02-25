@@ -15,7 +15,6 @@ const Resources = () =>{
     if(!resources){
         return null;
     }
-    console.log(resources)
 
     return (
         <div>
