@@ -1,13 +1,15 @@
 /** @jsx jsx */
-import React, { useDispatch, useEffect } from "react";
+import React, { useEffect } from "react";
+import {useDispatch} from "react-redux";
 import { jsx } from "@emotion/react";
 import { listresources } from "../../services/resourses"
 
 const Resources = () =>{
-    // dispatch = useDispatch()
-    // useEffect=()=>({
-    //     listresources()
-    // },[dispatch])
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(listresources())
+    },[dispatch])
 
     return (
         <div>
