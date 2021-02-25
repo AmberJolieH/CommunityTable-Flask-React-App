@@ -134,20 +134,20 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 Login
               </NavLink>
             </div>
-            <div>
+            <div className="signupButton" style={{marginTop:"0rem"}} >
               <NavLink
                 to="/sign-up"
                 exact={true}
                 activeClassName="active"
-                css={{
+                style={{
                   backgroundColor: "rgb(149, 181, 60)",
                   borderRadius: "2rem",
-                  padding: "0.75rem",
+                  padding: "0.02rem",
                   color: "white",
                   border: "0px",
                   textDecoration: "none",
-                  fontSize: "1rem",
-                  margin: "1rem"
+                  fontSize: "-1rem",
+                  marginLeft: ".5rem"
                 }}
               >
                 Sign Up
