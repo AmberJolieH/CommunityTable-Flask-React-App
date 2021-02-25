@@ -1,15 +1,20 @@
 /** @jsx jsx */
 import React, { useEffect } from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { jsx } from "@emotion/react";
-import { listresources } from "../../services/resourses"
+import { listResources } from "../../store/resources"
 
 const Resources = () =>{
     const dispatch = useDispatch()
+    let resources = useSelector(state => state.resources)
 
     useEffect(()=>{
-        dispatch(listresources())
+        dispatch(listResources())
     },[dispatch])
+
+    if(!resources){
+        return null;
+    }
 
     return (
         <div>
