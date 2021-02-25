@@ -36,8 +36,7 @@ export const login = (email, password) => async (dispatch) => {
 //     return res;
 // };
 
-export const signUp = (username, email, password) => async (dispatch) => {
-    console.log("signUp thunk got hit")
+export const signUp = (username, email, password, firstname, lastname, isOrg, phonenumber,) => async (dispatch) => {
     const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
@@ -47,24 +46,27 @@ export const signUp = (username, email, password) => async (dispatch) => {
             username,
             email,
             password,
-            // firstname,
-            // lastname,
-            // isOrg,
-            // phonenumber,
+            firstname,
+            lastname,
+            isOrg,
+            phonenumber,
         }),
     });
     const user = await response.json()
-    console.log(user)
     dispatch(setUser(user));
     return user;
 };
 
 export const logout = () => async (dispatch) => {
     const response = await fetch('/api/auth/logout', {
-        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
     });
     dispatch(removeUser());
-    return response;
+    const res = await response.json()
+    console.log(res)
+    return res;
 };
 
 const initialState = {
