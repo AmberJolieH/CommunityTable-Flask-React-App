@@ -48,9 +48,18 @@ class Location(db.Model):
 
     resources = db.relationship('Resource', back_populates='location')
 
+    def to_dict(self):
+        return {
+          "name": self.name,
+          "state": self.state,
+          "city": self.city,
+          "lat": str(self.latitude),
+          "long": str(self.longitude)
+        }
+
 
 class Resource(db.Model):
-    __tablename__= 'resources'
+    __tablename__ = 'resources'
 
     id = db.Column(db.Integer, primary_key=True)
     posterId = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -63,8 +72,8 @@ class Resource(db.Model):
     endsAt = db.Column(db.Date, nullable=False)
     locationId = db.Column(db.Integer, db.ForeignKey('locations.id'))
 
-    user = db.relationship('User', back_populates='resources')
-    location = db.relationship('Location', back_populates='resources')
+    user = db.relationship('User', lazy="joined", back_populates='resources')
+    location = db.relationship('Location', lazy="joined", back_populates='resources')
 
     def to_dict(self):
         return {
@@ -77,7 +86,13 @@ class Resource(db.Model):
             "catName": self.catName,
             "startsAt": self.startsAt,
             "endsAt": self.endsAt,
-            "locationId": self.locationId
+            "locationId": self.locationId,
+            "location": self.location.to_dict()
+        }
+
+    def to_location(self):
+        return{
+          "location": self.location.to_dict()
         }
 
 # class ClaimStatus(db.Model):
@@ -92,7 +107,7 @@ class Resource(db.Model):
 claimStatus = db.Table(
   'claimStatus',
   db.Column(
-    'claimUserId', 
+    'claimUserId',
     db.Integer,
     db.ForeignKey('users.id'),
     primary_key=True
@@ -109,4 +124,3 @@ claimStatus = db.Table(
     nullable=False
   )
 )
-

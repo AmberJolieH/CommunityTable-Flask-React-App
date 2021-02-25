@@ -25,6 +25,7 @@ const SearchBar = () => {
         width: "50%",
         justifyContent: "center",
         alignItems: "center",
+        minWidth: "50rem"
       }}
     >
       <form
