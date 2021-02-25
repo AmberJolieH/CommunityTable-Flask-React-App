@@ -9,6 +9,7 @@ import {
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listResources } from "../../store/resources";
+import MarkerAndInfo from "./MarkerAndInfo";
 
 const MapComponent = () => {
   const [lat, setLat] = useState();
@@ -67,51 +68,19 @@ const MapComponent = () => {
     setMap(currentMap);
   }
 
-  // function displayMarkerDetails(lat, lng) {
-  //   return (
-  //     <InfoWindow
-  //       position={{
-  //         lat: lat,
-  //         lng: lng,
-  //       }}
-  //     >
-  //       <div>Test</div>
-  //     </InfoWindow>
-  //   );
-  // }
-
   //jsx
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEYf}>
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
       <GoogleMap
         id="search-map"
         mapContainerStyle={containerStyle}
         center={center}
         zoom={12}
         onLoad={handleMapLoad}
-        // onDragEnd={handleBoundsChanged}
-        // onClick={handleBoundsChanged}
       >
         {resources.map((resource) => {
           return (
-            <>
-              <Marker
-                id={resource.id}
-                className="marker"
-                key={resource.id}
-                position={{
-                  lat: Number(resource.location.lat),
-                  lng: Number(resource.location.long),
-                }}
-                title={`"${resource.name}"\n${resource.location.city}, ${resource.catName}`}
-                // onClick={displayMarkerDetails(
-                //   Number(resource.location.lat),
-                //   Number(resource.location.long)
-                // )}
-              >
-                <InfoWindow>Test</InfoWindow>
-              </Marker>
-            </>
+            <MarkerAndInfo key={resource.id} resource={resource}></MarkerAndInfo>
           );
         })}
       </GoogleMap>
@@ -126,3 +95,8 @@ export default MapComponent;
 // 4. Reload map markers when map moves
 // 5. Mark resources posted by the user a different color
 // 6. Have a pop up component that shows the resource details when clicked (?)
+
+// displaying the info window
+// make a new component that houses the marker AND infowindow
+// have a boolean for the display info window that changes on click, this is local to the new component so each resource has this variable
+// use onCloseClick to set the display boolean to flase
