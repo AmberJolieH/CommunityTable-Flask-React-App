@@ -72,6 +72,24 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           value={username}
         ></input>
       </div>
+        <div>
+          <label>Firstname:</label>
+          <input
+            type="text"
+            name="username"
+            onChange={updateUsername}
+            value={username}
+          ></input>
+        </div>
+        <div>
+          <label>Lastname:</label>
+          <input
+            type="text"
+            name="username"
+            onChange={updateUsername}
+            value={username}
+          ></input>
+        </div>
       <div>
         <label>Email:</label>
         <input
@@ -128,3 +146,9 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
 };
 
 export default SignUpForm;
+
+
+
+// firstname 
+// lastname 
+// isOrg 
