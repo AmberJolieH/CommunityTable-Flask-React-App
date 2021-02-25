@@ -48,7 +48,7 @@ const MapComponent = () => {
   }
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_fKEY}>
       <GoogleMap
         id="search-map"
         mapContainerStyle={containerStyle}
