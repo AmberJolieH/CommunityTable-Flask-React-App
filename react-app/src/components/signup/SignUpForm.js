@@ -61,7 +61,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         }}>JOIN THE COMM<span css={{ color: "rgb(149, 181, 60)", marginTop:"2rem"}}>UNITY</span></h2>
       </div>
       <form onSubmit={onSignUp} class="standard-card">
-        <h2 className="standard-card-header" style={{marginleft:""}}>Sign-Up:</h2>
+        {/* <h2 className="standard-card-header" style={{}}>Sign-Up:</h2> */}
         
       <div>
         <label>User Name:</label>

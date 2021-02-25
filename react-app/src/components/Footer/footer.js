@@ -222,7 +222,7 @@ const Footer = () => {
               marginLeft: "-5rem",
             }}
           >
-            CREATED WITH:
+           
           </div>
         </div>
         <div>
