@@ -1,8 +1,8 @@
 const LOAD = 'resources/LOAD'
 
-const load = resources => ({
+const load = list => ({
     type: LOAD,
-    resources
+    list
 });
 
 export const listResources = () => async dispatch => {
@@ -12,25 +12,25 @@ export const listResources = () => async dispatch => {
             'Content-Type': 'application/json'
         }
     })
-    const resources = await response.json();
-    console.log(resources)
-    dispatch(load(resources))
+    const list = await response.json();
+    dispatch(load(list))
 };
 
 const initialState = {
-    resources: []
+    list: []
 };
 
 const resourceReducer = (state= initialState, action) =>{
     switch(action.type){
         case LOAD: {
             const resourceList = {};
-            action.resources.resources.forEach(resource =>{
+            action.list.resources.forEach(resource =>{
                 resourceList[resource.id] = resource
             });
             return {
                 ...resourceList,
-                ...state
+                ...state,
+                list: action.list
             } 
         }
         default:
