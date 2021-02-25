@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { jsx } from "@emotion/react";
 import { listResources } from "../../store/resources"
+import ResourceDetail from './ResourceDetail'
+import { Link } from "react-router-dom";
 
 const Resources = () =>{
     const dispatch = useDispatch()
@@ -15,13 +17,12 @@ const Resources = () =>{
     if(!resources){
         return null;
     }
-    console.log(resources)
 
     return (
         <div>
             <h1>this is functional</h1>
             {resources.map(resource =>(
-                <p key={resource.id}>{resource.name + resource.id}</p>
+                <Link key={resource.id} to={`/resources/${resource.id}`}>{resource.name + resource.id}</Link>
             ))}
             <p> will be adding a list of resources here</p>
         </div>
