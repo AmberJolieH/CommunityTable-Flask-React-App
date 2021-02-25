@@ -63,7 +63,7 @@ const CreateResource = () =>{
             <p>Community, helping community.</p>
             <form
             onSubmit={onSubmit}
-                class='standard-card'
+                className='standard-card'
                 >
                     <label>Name of resource: </label>
                 <input

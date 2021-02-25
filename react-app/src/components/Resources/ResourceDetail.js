@@ -5,6 +5,8 @@ import { jsx } from "@emotion/react";
 import { getOneResource } from "../../store/resources"
 import { useParams } from "react-router-dom";
 import resourceImages from "./resourceImages"
+// import clothing from "/catImages/clothing.jpg"
+
 
 const ResourceDetail = () =>{
     const dispatch = useDispatch();
@@ -22,19 +24,22 @@ const ResourceDetail = () =>{
     }
 
     let imageContent;
-    const imageFinder = () =>{
-        if(!resource.image){
-            return imageContent = resourceImages[resource.catName]
-        }
-        else{
-            return imageContent = resource.image
-        }
+    
+    if(resource.image === null){
+        imageContent = resourceImages[resource.catName]
     }
+    else{
+        imageContent = resource.image
+    }
+
+    
+    console.log(imageContent)
+
     return(
         <div className='standard-card'>
             <h2>Name: {resource.name}</h2>
 
-            <img src={`${imageContent}`} />
+            <img css={{maxWidth: "100px"}} src={`${imageContent}`} alt={resource.catName}/>
             <p>Description: {resource.description}</p>
             <p>Category: {resource.catName}</p>
             <p>Location: {resource.locationId}</p>
