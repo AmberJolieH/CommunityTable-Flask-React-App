@@ -43,22 +43,26 @@ const Resources = () =>{
     
         }}>
             {cats.map((cat, i)=> (
-                    <div
+                    <Link
                     css={{
                         display:'flex',
                         flexDirection:'column',
                         margin:'4rem',
                         width: '100%',
                         alignItems: 'center',
-                        fontSize: '1.2rem'
+                        fontSize: '1.2rem',
+                        color:'black',
+                        fontFamily: 'monospace',
+                        textDecoration: 'none',
+                        textAlign:'center'
                     }}>
                         <img src={resourceImages[cat]} alt={cat} css={{
                             maxWidth:'80px'
                         }}/>
-                        <Link key={cat} to={`/resources/categories/${i + 1}`}>
+                        <p key={cat} to={`/resources/categories/${i + 1}`}>
                             {cat}
-                        </Link>
-                    </div>
+                        </p>
+                    </Link>
                 )
             )}
         </div>
