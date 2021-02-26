@@ -50,6 +50,7 @@ const Resources = () =>{
             }}>
                 {cats.map((cat, i)=> (
                     <Link
+                    key={i}
                     to={`/resources/categories/${i + 1}`}
                     css={{
                         display:'flex',

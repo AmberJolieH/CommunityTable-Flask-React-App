@@ -20,6 +20,7 @@ const ResourceCategories = () => {
        getCatRes()
     },[])
 
+
     if(!resources || resources.length === 0){
         return (
         <div>
@@ -31,15 +32,42 @@ const ResourceCategories = () => {
 
     return (
         <div>
-            <h1>
+            <h1
+                css={{
+                    color: 'rgb(149, 181, 60)',
+                    textAlign: 'center'
+                }}>
                 {resources[0].catName} Resources
             </h1>
-            {resources.map(resource =>{
-               return  <Link to={`/resources/${resource.id}`}key={resource.id} className='standard-card'>
-                   <h2>{resource.name}</h2>
-                   <p>{resource.location.name}</p>
-                   </Link>
-            })}
+            <div 
+                css={{
+                    display: 'grid',
+                    gridTemplateColumns: '18% 18% 18% 18% 18%',
+                    padding: '2rem',
+
+                }}
+                >
+                {resources.map(resource =>{
+                    return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        margin: '1rem',
+                        width: '100%',
+                        alignItems: 'center',
+                        fontSize: '1.2rem',
+                        color: 'black',
+                        fontFamily: 'monospace',
+                        textDecoration: 'none',
+                        textAlign: 'center'
+                    }}>
+                    <h2>{resource.name}</h2>
+                    {/* <img css={{ maxWidth: "100px" }} src={`${imageContent}`} alt={resource.catName} /> */}  
+                    <p>{resource.description}</p>
+                    <p>{resource.location.name}</p>
+                    </Link>
+                })}
+
+                </div>
         </div>
     )
 }
