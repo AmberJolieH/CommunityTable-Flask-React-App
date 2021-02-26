@@ -35,14 +35,20 @@ const Resources = () =>{
 
 
     return (
-        <div
-        css={{
-            display:'grid',
-            gridTemplateColumns: '18% 18% 18% 18% 18%',
-            padding: '2rem',
-    
-        }}>
-            {cats.map((cat, i)=> (
+        <div>
+            <h1
+            css={{
+                color: 'rgb(149, 181, 60)',
+                textAlign: 'center'
+            }}> Resource Categories </h1>
+            <div
+            css={{
+                display:'grid',
+                gridTemplateColumns: '18% 18% 18% 18% 18%',
+                padding: '2rem',
+                
+            }}>
+                {cats.map((cat, i)=> (
                     <Link
                     to={`/resources/categories/${i + 1}`}
                     css={{
@@ -57,17 +63,18 @@ const Resources = () =>{
                         textDecoration: 'none',
                         textAlign:'center'
                     }}>
-                        <img src={resourceImages[cat]} alt={cat} css={{
-                            maxWidth:'90%',
-                            borderRadius:'100%',
-                            margin: '1rem'
-                        }}/>
-                        <p key={cat} >
-                            {cat}
-                        </p>
-                    </Link>
-                )
-            )}
+                            <img src={resourceImages[cat]} alt={cat} css={{
+                                maxWidth:'90%',
+                                borderRadius:'100%',
+                                margin: '1rem'
+                            }}/>
+                            <p key={cat} >
+                                {cat}
+                            </p>
+                        </Link>
+                    )
+                    )}
+            </div>
         </div>
     )
 }
