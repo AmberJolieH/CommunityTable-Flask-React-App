@@ -13,6 +13,8 @@ import { authenticate } from "./services/auth";
 import Resources from "./components/Resources";
 import CreateResource from "./components/Resources/createResource";
 import Footer from "./components/Footer/footer.js";
+import ResourceDetail from "./components/Resources/ResourceDetail";
+import ResourceCategories from "./components/Resources/ResourceCategories";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -75,13 +77,13 @@ function App() {
             >
               <User />
             </ProtectedRoute>
-            <ProtectedRoute
+            <Route
               path="/resources"
               exact={true}
               authenticated={authenticated}
             >
               <Resources />
-            </ProtectedRoute>
+            </Route>
             <ProtectedRoute
               path="/resources/create_resource"
               exact={true}
@@ -89,9 +91,23 @@ function App() {
             >
               <CreateResource />
             </ProtectedRoute>
-            <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+            <Route
+              path="/resources/:id"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <ResourceDetail />
+            </Route>
+            <Route
+              path="/resources/categories/:id"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <ResourceCategories />
+            </Route>
+            <Route path="/" exact={true} authenticated={authenticated}>
               <SplashPage></SplashPage>
-            </ProtectedRoute>
+            </Route>
             <Route>
               <h2 style={{display: "flex", justifyContent:"center"}}>Resource Not Found</h2>
             </Route>

@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from "../../store/session"
 import { jsx } from "@emotion/react";
-import {Link, Redirect} from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -15,7 +17,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await dispatch(sessionActions.signUp(username, email, password));
+      const user = await dispatch(sessionActions.signUp(username, firstname, lastname, email, password));
       if (!user.errors) {
         setAuthenticated(true);
       }
@@ -24,6 +26,14 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
+  };
+
+  const updateFirstname = (e) => {
+    setFirstname(e.target.value);
+  };
+
+  const updateLastname = (e) => {
+    setLastname(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -80,21 +90,21 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           ></input>
         </div>
         <div>
-          <label>Firstname:</label>
+          <label>First Name:</label>
           <input
             type="text"
-            name="username"
-            onChange={updateUsername}
-            value={username}
+            name="firstname"
+            onChange={updateFirstname}
+            value={firstname}
           ></input>
         </div>
         <div>
-          <label>Lastname:</label>
+          <label>Last Name:</label>
           <input
             type="text"
-            name="username"
-            onChange={updateUsername}
-            value={username}
+            name="lastname"
+            onChange={updateLastname}
+            value={lastname}
           ></input>
         </div>
         <div>
