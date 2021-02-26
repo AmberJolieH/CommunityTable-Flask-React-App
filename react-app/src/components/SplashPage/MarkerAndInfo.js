@@ -20,10 +20,10 @@ const MarkerAndInfo = ({ resource }) => {
       {display && (
         <InfoWindow onCloseClick={() => setDisplay(false)}>
           <div className="resource__infoWindow">
-            <div>{resource.name}</div>
-            <div>{resource.catName}</div>
-            <div>{resource.quantity}</div>
-            <NavLink to={`/resources/${resource.id}`}>Resource Page</NavLink>
+            <div> {resource.name}</div>
+            <div>Type: {resource.catName}</div>
+            <div>Available: {resource.quantity}</div>
+            <NavLink to={`/resources/${resource.id}`}>To Resource Page</NavLink>
           </div>
         </InfoWindow>
       )}
