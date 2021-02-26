@@ -52,12 +52,12 @@ const MapComponent = () => {
 
   // map styles and variables
   const containerStyle = {
-    width: "70%",
+    width: "80%",
+    height: "60vh",
     minWidth: "50rem",
-    minHeight: "50rem",
     marginBottom: "220px",
     marginTop: "-1rem",
-    borderRadius: "5rem"
+    borderRadius: "5rem",
   };
 
   const center = {
@@ -82,7 +82,10 @@ const MapComponent = () => {
       >
         {resources.map((resource) => {
           return (
-            <MarkerAndInfo key={resource.id} resource={resource}></MarkerAndInfo>
+            <MarkerAndInfo
+              key={resource.id}
+              resource={resource}
+            ></MarkerAndInfo>
           );
         })}
       </GoogleMap>
