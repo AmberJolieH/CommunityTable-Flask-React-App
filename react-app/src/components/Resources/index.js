@@ -44,6 +44,7 @@ const Resources = () =>{
         }}>
             {cats.map((cat, i)=> (
                     <Link
+                    to={`/resources/categories/${i + 1}`}
                     css={{
                         display:'flex',
                         flexDirection:'column',
@@ -59,7 +60,7 @@ const Resources = () =>{
                         <img src={resourceImages[cat]} alt={cat} css={{
                             maxWidth:'80px'
                         }}/>
-                        <p key={cat} to={`/resources/categories/${i + 1}`}>
+                        <p key={cat} >
                             {cat}
                         </p>
                     </Link>
