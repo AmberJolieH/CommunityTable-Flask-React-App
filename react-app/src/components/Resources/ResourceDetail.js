@@ -42,11 +42,11 @@ const ResourceDetail = () =>{
             <img css={{maxWidth: "100px"}} src={`${imageContent}`} alt={resource.catName}/>
             <p>Description: {resource.description}</p>
             <p>Category: {resource.catName}</p>
-            <p>Location: {resource.locationId}</p>
+            <p>Location: {resource.location.name}</p>
             <p>Quantity: {resource.quantity}</p>
             <p>Starts At: {resource.startsAt}</p>
             <p>Ends At: {resource.endsAt}</p>
-            <p>Poster: {resource.posterId}</p>
+            {/* <p>Poster: {resource.user.name}</p> */}
         </div>
     )
 }

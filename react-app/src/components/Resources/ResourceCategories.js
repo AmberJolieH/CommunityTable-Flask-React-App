@@ -35,10 +35,10 @@ const ResourceCategories = () => {
                 {resources[0].catName} Resources
             </h1>
             {resources.map(resource =>{
-               return  <div key={resource.id} className='standard-card'>
+               return  <Link to={`/resources/${resource.id}`}key={resource.id} className='standard-card'>
                    <h2>{resource.name}</h2>
                    <p>{resource.location.name}</p>
-                   </div>
+                   </Link>
             })}
         </div>
     )
