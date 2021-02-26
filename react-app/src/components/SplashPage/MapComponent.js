@@ -52,10 +52,12 @@ const MapComponent = () => {
 
   // map styles and variables
   const containerStyle = {
-    width: "50rem",
-    height: "50rem",
-    marginTop: "2rem",
+    width: "80%",
+    height: "60vh",
+    minWidth: "50rem",
     marginBottom: "220px",
+    marginTop: "-1rem",
+    borderRadius: "3rem",
   };
 
   const center = {
@@ -80,7 +82,10 @@ const MapComponent = () => {
       >
         {resources.map((resource) => {
           return (
-            <MarkerAndInfo key={resource.id} resource={resource}></MarkerAndInfo>
+            <MarkerAndInfo
+              key={resource.id}
+              resource={resource}
+            ></MarkerAndInfo>
           );
         })}
       </GoogleMap>
@@ -95,8 +100,3 @@ export default MapComponent;
 // 4. Reload map markers when map moves
 // 5. Mark resources posted by the user a different color
 // 6. Have a pop up component that shows the resource details when clicked (?)
-
-// displaying the info window
-// make a new component that houses the marker AND infowindow
-// have a boolean for the display info window that changes on click, this is local to the new component so each resource has this variable
-// use onCloseClick to set the display boolean to flase

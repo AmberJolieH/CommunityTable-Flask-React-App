@@ -1,10 +1,11 @@
 from app.models import db, Resource, User, Location
 from faker import Faker
+from faker.providers import BaseProvider
 import random
 import datetime
 
 def seed_resources():
-    faker = Faker()
+    faker = Faker('en_PH')
 
     users = len(User.query.all())
     locations = len(Location.query.all())
@@ -26,13 +27,13 @@ def seed_resources():
     catslen = len(cats)
 
     times = 0
-    while times < 10:
+    while times < 100:
         new_resource = Resource(
             posterId = random.randrange(1, users),
-            name = 'My resource',
+            name = faker.random_company_product(),
             description = 'My resource description',
             # image = ,
-            quantity = random.randrange(30),
+            quantity = random.randrange(1,30),
             catName = cats[random.randrange(catslen)],
             startsAt = datetime.datetime.now(),
             endsAt = datetime.datetime(2021,5,10),
