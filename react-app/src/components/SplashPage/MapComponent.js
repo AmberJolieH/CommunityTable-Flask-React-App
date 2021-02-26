@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listResources } from "../../store/resources";
 import MarkerAndInfo from "./MarkerAndInfo";
-import "./map.css"
 
 const MapComponent = () => {
   const [lat, setLat] = useState();
@@ -58,7 +57,7 @@ const MapComponent = () => {
     minWidth: "50rem",
     marginBottom: "220px",
     marginTop: "-1rem",
-    borderRadius: "5rem",
+    borderRadius: "3rem",
   };
 
   const center = {

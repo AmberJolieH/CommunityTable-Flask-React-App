@@ -20,7 +20,7 @@ export const createresource = async ({name, description, image, quantity, catNam
 }
 
 export const listresources = async () =>{
-    const response = await fetch('/api/resources', {
+    const response = await fetch('/api/resources/', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
