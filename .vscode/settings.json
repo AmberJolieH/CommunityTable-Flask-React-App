@@ -1,4 +1,8 @@
 {
+<<<<<<< HEAD
+    "python.pythonPath": ".venv/bin/python3.8",
+=======
+>>>>>>> ce57cd48f741f5edc39abd68a9bd5982ffc1a884
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
     "python.linting.pycodestyleEnabled": true
