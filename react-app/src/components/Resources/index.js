@@ -2,8 +2,8 @@
 import React, { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { jsx } from "@emotion/react";
-import { listResources } from "../../store/resources"
-import ResourceDetail from './ResourceDetail'
+import { listResources } from "../../store/resources";
+import resourceImages from "./resourceImages"
 import { Link } from "react-router-dom";
 
 const Resources = () =>{
@@ -35,18 +35,32 @@ const Resources = () =>{
 
 
     return (
-        <div>
-            <h1>this is functional</h1>
-           
+        <div
+        css={{
+            display:'grid',
+            gridTemplateColumns: '18% 18% 18% 18% 18%',
+            padding: '2rem',
+    
+        }}>
             {cats.map((cat, i)=> (
-                    <div>
-                        <img src='' alt='' />
-                        <Link key={cat} to={`/resources/categories/${i + 1}`}>{cat}</Link>
+                    <div
+                    css={{
+                        display:'flex',
+                        flexDirection:'column',
+                        margin:'4rem',
+                        width: '100%',
+                        alignItems: 'center',
+                        fontSize: '1.2rem'
+                    }}>
+                        <img src={resourceImages[cat]} alt={cat} css={{
+                            maxWidth:'80px'
+                        }}/>
+                        <Link key={cat} to={`/resources/categories/${i + 1}`}>
+                            {cat}
+                        </Link>
                     </div>
                 )
             )}
-
-            <p> will be adding a list of resources here</p>
         </div>
     )
 }

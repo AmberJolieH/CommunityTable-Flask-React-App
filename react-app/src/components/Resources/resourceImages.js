@@ -1,18 +1,18 @@
 
 const resourceImages = {
-    'Non-Perishable Food':'./images/non-perishable',
-    'Perishable Food': '/public/images/perishable',
-    'Water and beverages':'/public/images/beverages.jpg',
-    'Baby care': '/public/images/baby',
-    'Children toys': '/public/images/toys',
+    'Non-Perishable Food': '/catImages/clothing.jpg',
+    'Perishable Food': '/catImages/clothing.jpg',
+    'Water and beverages': '/catImages/clothing.jpg',
+    'Baby care': '/catImages/clothing.jpg',
+    'Children toys': '/catImages/clothing.jpg',
     'Clothing': '/catImages/clothing.jpg',
-    'Electronics': '/public/images/electronics.jpg',
-    'Books': '/public/images/books',
-    'School Supplies': '/public/images/school',
-    'Furniture': '/public/images/furniture',
-    'Shelter': '/public/images/shelter',
-    'Services (Barber, shower, etc)': '/public/images/services',
-    'Other': '/public/images/other'
+    'Electronics': '/catImages/clothing.jpg',
+    'Books': '/catImages/clothing.jpg',
+    'School Supplies': '/catImages/clothing.jpg',
+    'Furniture': '/catImages/clothing.jpg',
+    'Shelter': '/catImages/clothing.jpg',
+    'Services (Barber, shower, etc)': '/catImages/clothing.jpg',
+    'Other': '/catImages/clothing.jpg'
 }
 
 export default resourceImages;
