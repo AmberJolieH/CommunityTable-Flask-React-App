@@ -33,7 +33,7 @@ def seed_resources():
             name = faker.random_company_product(),
             description = 'My resource description',
             # image = ,
-            quantity = random.randrange(30),
+            quantity = random.randrange(1,30),
             catName = cats[random.randrange(catslen)],
             startsAt = datetime.datetime.now(),
             endsAt = datetime.datetime(2021,5,10),

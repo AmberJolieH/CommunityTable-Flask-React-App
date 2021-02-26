@@ -1,3 +1,2 @@
-from faker import Faker
-faker = Faker('en_PH')
-print(faker.random_company_product())
+import random
+print(round(random.random(), 5))

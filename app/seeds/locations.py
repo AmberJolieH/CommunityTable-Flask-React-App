@@ -40,13 +40,15 @@ def seed_locations():
     db.session.add(downtown)
 
     times = 0
-    while times < 100:
+    while times < 20:
+        newLat = 29.256106 + (round(random.random(), 6))
+        newLong = -95.857752 + (round(random.random(), 5))
         new_location = Location(
             name= 'DownTown Houston',
             state = 'Texas',
             city = 'Houston',
-            latitude = 29.756106,
-            longitude = -95.357752,
+            latitude = newLat,
+            longitude = newLong,
         )
 
         times = times + 1

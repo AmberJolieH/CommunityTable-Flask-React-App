@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listResources } from "../../store/resources";
 import MarkerAndInfo from "./MarkerAndInfo";
+import "./map.css"
 
 const MapComponent = () => {
   const [lat, setLat] = useState();
@@ -72,7 +73,7 @@ const MapComponent = () => {
 
   //jsx
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEYf}>
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
       <GoogleMap
         id="search-map"
         mapContainerStyle={containerStyle}
