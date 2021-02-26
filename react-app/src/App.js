@@ -77,13 +77,13 @@ function App() {
             >
               <User />
             </ProtectedRoute>
-            <ProtectedRoute
+            <Route
               path="/resources"
               exact={true}
               authenticated={authenticated}
             >
               <Resources />
-            </ProtectedRoute>
+            </Route>
             <ProtectedRoute
               path="/resources/create_resource"
               exact={true}
@@ -91,23 +91,23 @@ function App() {
             >
               <CreateResource />
             </ProtectedRoute>
-            <ProtectedRoute
+            <Route
               path="/resources/:id"
               exact={true}
               authenticated={authenticated}
             >
               <ResourceDetail />
-            </ProtectedRoute>
-            <ProtectedRoute
+            </Route>
+            <Route
               path="/resources/categories/:id"
               exact={true}
               authenticated={authenticated}
             >
               <ResourceCategories />
-            </ProtectedRoute>
-            <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+            </Route>
+            <Route path="/" exact={true} authenticated={authenticated}>
               <SplashPage></SplashPage>
-            </ProtectedRoute>
+            </Route>
             <Route>
               <h2>Render a not found page</h2>
             </Route>
