@@ -6,13 +6,13 @@ const load = list => ({
     list
 });
 
-const one = resource =>({
+const one = resource => ({
     type: ONE,
     resource
 });
 
 export const listResources = () => async dispatch => {
-    const response = await fetch('/api/resources', {
+    const response = await fetch('/api/resources/', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -48,21 +48,21 @@ const initialState = {
     list: []
 };
 
-const resourceReducer = (state= initialState, action) =>{
-    switch(action.type){
+const resourceReducer = (state = initialState, action) => {
+    switch (action.type) {
         case LOAD: {
             const resourceList = {};
-            action.list.resources.forEach(resource =>{
+            action.list.resources.forEach(resource => {
                 resourceList[resource.id] = resource
             });
             return {
                 ...resourceList,
                 ...state,
                 list: action.list
-            } 
+            }
         }
-        case ONE:{
-            if(!state[action.resource.id]){
+        case ONE: {
+            if (!state[action.resource.id]) {
                 const newState = {
                     ...state,
                     [action.resource.id]: action.resource
