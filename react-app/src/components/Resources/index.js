@@ -58,7 +58,9 @@ const Resources = () =>{
                         textAlign:'center'
                     }}>
                         <img src={resourceImages[cat]} alt={cat} css={{
-                            maxWidth:'80px'
+                            maxWidth:'90%',
+                            borderRadius:'100%',
+                            margin: '1rem'
                         }}/>
                         <p key={cat} >
                             {cat}
