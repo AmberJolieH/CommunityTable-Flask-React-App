@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { jsx } from "@emotion/react";
 import { listResources } from "../../store/resources";
 import resourceImages from "./resourceImages"
+import ResourceImage from "./resource-img-picker"
 import { Link } from "react-router-dom";
 
 const Resources = () =>{
@@ -63,6 +64,8 @@ const Resources = () =>{
                         textDecoration: 'none',
                         textAlign:'center'
                     }}>
+
+                        <ResourceImage/>
                             <img src={resourceImages[cat]} alt={cat} css={{
                                 maxWidth:'90%',
                                 borderRadius:'100%',
