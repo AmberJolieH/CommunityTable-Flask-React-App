@@ -9,21 +9,43 @@ import { Link } from "react-router-dom";
 const Resources = () =>{
     const dispatch = useDispatch()
     let resources = useSelector(state => state.resources.list.resources)
-
+    
     useEffect(()=>{
         dispatch(listResources())
     },[dispatch])
-
+    
     if(!resources){
         return null;
     }
+    const cats = [
+        'Non-Perishable Food',
+        'Perishable Food',
+        'Water and beverages',
+        'Baby care',
+        'Children toys',
+        'Clothing',
+        'Electronics',
+        'Books',
+        'School Supplies',
+        'Furniture',
+        'Shelter',
+        'Services (Barber, shower, etc)',
+        'Other'
+    ]
+
 
     return (
         <div>
             <h1>this is functional</h1>
-            {resources.map(resource =>(
-                <Link key={resource.id} to={`/resources/${resource.id}`}>{resource.name + resource.id}</Link>
-            ))}
+           
+            {cats.map((cat, i)=> (
+                    <div>
+                        <img src='' alt='' />
+                        <a key={cat} href={`/resources/category/${i + 1}`}>{cat}</a>
+                    </div>
+                )
+            )}
+
             <p> will be adding a list of resources here</p>
         </div>
     )

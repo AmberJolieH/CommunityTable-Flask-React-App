@@ -28,3 +28,12 @@ export const listresources = async () =>{
     })
     return await response.json();
 }
+export const getCategories = async (id) =>{
+    const response = await fetch(`/api/categories/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    return await response.json();
+}

@@ -21,6 +21,30 @@ def resource(id):
     resource = Resource.query.get(id)
     return resource.to_dict()
 
+
+@resource_routes.route('/category/<int:id>')
+#get resources by category type
+def categories(cat):
+    cats = [
+        'Non-Perishable Food',
+        'Perishable Food',
+        'Water and beverages',
+        'Baby care',
+        'Children toys',
+        'Clothing',
+        'Electronics',
+        'Books',
+        'School Supplies',
+        'Furniture',
+        'Shelter',
+        'Services (Barber, shower, etc)',
+        'Other'
+    ]
+    category = cats[id - 1]
+    resources = Resource.query.filter(Resource.catName == category)
+    return resources.to_dict()
+
+
 @resource_routes.route('/create_resource', methods=['POST'])
 #create a resource
 def create_resource():

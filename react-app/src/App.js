@@ -14,6 +14,7 @@ import Resources from "./components/Resources";
 import CreateResource from "./components/Resources/createResource";
 import Footer from "./components/Footer/footer.js";
 import ResourceDetail from "./components/Resources/ResourceDetail";
+import ResourceCategories from "./components/Resources/ResourceCategories";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -96,6 +97,13 @@ function App() {
               authenticated={authenticated}
             >
               <ResourceDetail />
+            </ProtectedRoute>
+            <ProtectedRoute
+              path="/resources/category/:id"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <ResourceCategories />
             </ProtectedRoute>
             <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
               <SplashPage></SplashPage>
