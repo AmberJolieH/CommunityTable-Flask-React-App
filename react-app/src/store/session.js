@@ -36,7 +36,7 @@ export const login = (email, password) => async (dispatch) => {
 //     return res;
 // };
 
-export const signUp = (username, email, password, firstname, lastname, isOrg, phonenumber,) => async (dispatch) => {
+export const signUp = (username, firstname, lastname, email, password) => async (dispatch) => {
     const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
@@ -48,8 +48,6 @@ export const signUp = (username, email, password, firstname, lastname, isOrg, ph
             password,
             firstname,
             lastname,
-            isOrg,
-            phonenumber,
         }),
     });
     const user = await response.json()
