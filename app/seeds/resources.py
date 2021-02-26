@@ -27,7 +27,7 @@ def seed_resources():
     catslen = len(cats)
 
     times = 0
-    while times < 10:
+    while times < 100:
         new_resource = Resource(
             posterId = random.randrange(1, users),
             name = faker.random_company_product(),
