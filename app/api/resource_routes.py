@@ -22,9 +22,9 @@ def resource(id):
     return resource.to_dict()
 
 
-@resource_routes.route('/category/<int:id>')
+@resource_routes.route('/categories/<int:id>')
 #get resources by category type
-def categories(cat):
+def categories(id):
     cats = [
         'Non-Perishable Food',
         'Perishable Food',
@@ -42,7 +42,8 @@ def categories(cat):
     ]
     category = cats[id - 1]
     resources = Resource.query.filter(Resource.catName == category)
-    return resources.to_dict()
+    print('=====================', [resource.to_dict() for resource in resources])
+    return {"resources": [resource.to_dict() for resource in resources]}
 
 
 @resource_routes.route('/create_resource', methods=['POST'])

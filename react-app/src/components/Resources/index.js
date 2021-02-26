@@ -41,7 +41,7 @@ const Resources = () =>{
             {cats.map((cat, i)=> (
                     <div>
                         <img src='' alt='' />
-                        <a key={cat} href={`/resources/category/${i + 1}`}>{cat}</a>
+                        <Link key={cat} to={`/resources/categories/${i + 1}`}>{cat}</Link>
                     </div>
                 )
             )}

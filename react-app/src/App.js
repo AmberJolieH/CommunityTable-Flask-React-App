@@ -99,7 +99,7 @@ function App() {
               <ResourceDetail />
             </ProtectedRoute>
             <ProtectedRoute
-              path="/resources/category/:id"
+              path="/resources/categories/:id"
               exact={true}
               authenticated={authenticated}
             >
