@@ -2,9 +2,7 @@
 import React from "react";
 import {
   GoogleMap,
-  InfoWindow,
   LoadScript,
-  Marker,
 } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,7 +55,7 @@ const MapComponent = () => {
     minWidth: "50rem",
     marginBottom: "220px",
     marginTop: "-1rem",
-    borderRadius: "3rem",
+    borderRadius: "2rem",
   };
 
   const center = {
