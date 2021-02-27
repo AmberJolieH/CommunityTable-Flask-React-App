@@ -34,7 +34,6 @@ export const getOneResource = (id) => async dispatch => {
 };
 
 export const getCategories = (id) => async dispatch => {
-    console.log('------------------', id)
     const response = await fetch(`/api/categories/${id}`, {
         method: 'GET',
         headers: {
