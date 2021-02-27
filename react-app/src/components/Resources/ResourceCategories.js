@@ -14,7 +14,7 @@ const ResourceCategories = () => {
     useEffect(()=>{
        const getCatRes= async() =>{
            const res = await getCategories(id)
-           console.log('--------', res.resources)
+           
            setResources(res.resources)
        } 
        getCatRes()
