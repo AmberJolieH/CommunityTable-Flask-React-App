@@ -159,10 +159,10 @@ const Footer = () => {
               >
                 Daniel Upchurch
               </a>
-              <a href="https://www.linkedin.com/in/daniel-upchurch-058899205/">
+              <a href="https://github.com/dupchurch93">
                 <GitHubIcon css={{ color: "white", marginLeft: ".5rem" }} />
               </a>
-              <a href="https://github.com/dupchurch93">
+              <a href="https://www.linkedin.com/in/daniel-upchurch-058899205/">
                 <LinkedInIcon css={{ color: "white", marginLeft: ".5rem" }} />
               </a>
             </div>
@@ -197,7 +197,7 @@ const Footer = () => {
               <a href="https://github.com/OptimumMars">
                 <GitHubIcon css={{ color: "white", marginLeft: ".5rem" }} />
               </a>
-              <a href="www.linkedin.com/in/gabriel-gutierrez-100451204">
+              <a href="https://www.linkedin.com/in/gabriel-gutierrez-100451204">
                 <LinkedInIcon css={{ color: "white", marginLeft: ".5rem" }} />
               </a>
             </div>
@@ -222,7 +222,7 @@ const Footer = () => {
               marginLeft: "-5rem",
             }}
           >
-           
+
           </div>
         </div>
         <div>
