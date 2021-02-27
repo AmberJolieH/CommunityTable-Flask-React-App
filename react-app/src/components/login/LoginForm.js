@@ -50,7 +50,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         flexDirection: "column",
         alignItems: "center",
         marginTop: "10rem"
-      }}>
+      }}><h4>Check out what's on the table.</h4>
         <form onSubmit={onLogin} class="standard-card">
           <div>
             {errors.map((error) => (

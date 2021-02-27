@@ -109,7 +109,7 @@ function App() {
               <SplashPage></SplashPage>
             </Route>
             <Route>
-              <h2>Render a not found page</h2>
+              <h2 style={{display: "flex", justifyContent:"center"}}>Resource Not Found</h2>
             </Route>
           </Switch>
         </div>
