@@ -1,98 +1,31 @@
-# Flask React Project
+# Welcome to the Community Table app
 
-This is the backend for the Flask React project.
+This is a project made by Amber Horn, Dan Upchurch, Gabriel Gutierrez, and Nicole Loescher using React-Redux
+and a Python/Flask backend. All of our Github and Linkedin links are on the footer of our site, and included
+in our repo (but you can also find them here):
 
-## Getting started
+- Amber Horn
+    - https://github.com/AmberJolieH
+    - https://www.linkedin.com/in/amber-horn-202743152
 
-1. Clone this repository (only this branch)
+- Dan Upchurch
+    - https://github.com/dupchurch93
+    - https://www.linkedin.com/in/daniel-upchurch-058899205/
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+- Gabriel Gutierrez
+    - https://github.com/OptimumMars
+    - https://www.linkedin.com/in/gabriel-gutierrez-100451204
 
-2. Install dependencies
+- Nicole Loescher
+    - https://github.com/nicole-loescher
+    - https://www.linkedin.com/in/nicole-marie-loescher/
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+## About the App
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
-
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
-
-## Deploy to Heroku
-
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
-
-   ```bash
-   heroku login
-   ```
-
-5. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-8. Release your docker container to heroku
-
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. set up your database:
-
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
-
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
-
-11. profit
+Community Table was developed with the idea of being charitable to our neighbors and communities, while also
+being clear and accessible to anyone who might need it. Our design philosphy was primarily focused on making
+the website modern and clean looking without compromising functionality that may be missed by someone who
+isn't technically inclined. The site allows new users to create an account and immediately view resources
+posted by other users in their area or post their own resources they'd like to donate to someone in need.
+Once a resource is posted, another user can 'claim' the resource. This will share their contact info with the
+user donating, and allow them to meet up to exchange the goods in question.
