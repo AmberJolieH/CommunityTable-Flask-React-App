@@ -1,13 +1,10 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { jsx } from "@emotion/react";
-import { getOneResource } from "../../store/resources"
 import { Link, useParams } from "react-router-dom";
 import { getCategories } from "../../services/resourses";
 
 const ResourceCategories = () => {
-    const dispatch = useDispatch()
     const {id} = useParams();
     const [resources, setResources] = useState('')
 
@@ -19,6 +16,23 @@ const ResourceCategories = () => {
        } 
        getCatRes()
     },[])
+
+    const componentMap = {
+        'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
+        'Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/parishable.svg",
+        'Water and beverages': "https://resourceimage.s3-us-west-2.amazonaws.com/WATER.svg",
+        'Baby care': "https://resourceimage.s3-us-west-2.amazonaws.com/diapers.svg",
+        'Children toys': "https://resourceimage.s3-us-west-2.amazonaws.com/CHILDS-toys.svg",
+        'Clothing': "https://resourceimage.s3-us-west-2.amazonaws.com/cloth.svg",
+        'Electronics': "https://resourceimage.s3-us-west-2.amazonaws.com/elec.svg",
+        'Books': "https://resourceimage.s3-us-west-2.amazonaws.com/books.svg",
+        'School Supplies': "https://resourceimage.s3-us-west-2.amazonaws.com/schoolSupplies.svg",
+        'Furniture': "https://resourceimage.s3-us-west-2.amazonaws.com/furn.svg",
+        'Shelter': "https://resourceimage.s3-us-west-2.amazonaws.com/shelter.svg",
+        'Services (Barber, shower, etc)': "https://resourceimage.s3-us-west-2.amazonaws.com/services.svg",
+        'Other': "https://resourceimage.s3-us-west-2.amazonaws.com/etc.svg",
+    };
+    
 
 
     if(!resources || resources.length === 0){
@@ -43,7 +57,7 @@ const ResourceCategories = () => {
                 css={{
                     display: 'grid',
                     gridTemplateColumns: '18% 18% 18% 18% 18%',
-                    padding: '2rem',
+                    
 
                 }}
                 >
@@ -51,9 +65,8 @@ const ResourceCategories = () => {
                     return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
                         display: 'flex',
                         flexDirection: 'column',
-                        margin: '1rem',
-                        width: '100%',
-                        alignItems: 'center',
+                        margin: '2rem 4rem 2rem',
+                        width: '80%',
                         fontSize: '1.2rem',
                         color: 'black',
                         fontFamily: 'monospace',
@@ -61,7 +74,7 @@ const ResourceCategories = () => {
                         textAlign: 'center'
                     }}>
                     <h2>{resource.name}</h2>
-                    {/* <img css={{ maxWidth: "100px" }} src={`${imageContent}`} alt={resource.catName} /> */}  
+                    <img css={{ maxWidth: "30%" }} src={`${componentMap[resource.catName]}`} alt={resource.catName} />  
                     <p>{resource.description}</p>
                     <p>{resource.location.name}</p>
                     </Link>

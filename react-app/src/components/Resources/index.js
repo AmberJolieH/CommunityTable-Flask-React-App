@@ -79,12 +79,6 @@ const Resources = () => {
                             textDecoration: 'none',
                             textAlign: 'center'
                         }}>
-
-                        {/* <ResourceImage
-                            name={"Books"}/>
-                        <p key={cat} >
-                            {cat}
-                        </p>  */}
                         <img src={componentMap[cat]} alt={cat} css={{
                             maxWidth: '90%',
                             borderRadius: '100%',
@@ -94,8 +88,7 @@ const Resources = () => {
                             {cat}
                         </p>
                     </Link>
-                )
-                )}
+                ))}
             </div>
         </div>
     )
