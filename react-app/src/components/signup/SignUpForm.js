@@ -72,9 +72,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           fontWeight: "bolder",
           margin: "1rem"
         }}>JOIN THE COMM<span css={{ color: "rgb(149, 181, 60)", marginTop: "2rem" }}>UNITY</span></h2>
-        <div css={{width: "55%", textAlign: "center", marginBottom: "2rem"}}>Welcome to Community Table, a place for people
-        to share resources with their community. Get resources that you need from your fellow neighbors and post resources
-        that you can spare for others.
+        <div css={{width: "55%", textAlign: "center", marginBottom: "2rem"}}>
         </div>
       </div>
       <form onSubmit={onSignUp} className="standard-card">
@@ -135,7 +133,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
             required={true}
           ></input>
         </div>
-        <button className="signupButton" type="submit" style={{ marginLeft: "14.5rem" }}>Submit</button>
+        <button className="signupButton" type="submit" style={{ marginLeft: "11.5rem" }}>Submit</button>
         <p style={{ marginLeft: "3rem" }}>
           Already have an account?
         </p>

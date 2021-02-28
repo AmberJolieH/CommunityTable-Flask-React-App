@@ -62,10 +62,10 @@ const ResourceDetail = () =>{
     // console.log(imageContent)
 
     return(
-        <div className='standard-card'>
+        <div className='standard-card' style={{marginLeft:"30rem"}}>
             <h2>Name: {resource.name}</h2>
 
-            <img css={{ maxWidth: "100px" }} src={componentMap[cat]}/>
+            {/* <img css={{ maxWidth: "100px" }} src={componentMap}/> */}
             <p>Description: {resource.description}</p>
             <p>Category: {resource.catName}</p>
             <p>Location: {resource.location.name}</p>

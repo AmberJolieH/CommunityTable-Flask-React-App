@@ -45,12 +45,14 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <>
+      <h1 className="cardheader" >Please Login</h1>
       <div style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        marginTop: "10rem"
-      }}><h4>Check out what's on the table.</h4>
+        marginTop: "2.5rem"
+      }}>
+        
         <form onSubmit={onLogin} class="standard-card">
           <div>
             {errors.map((error) => (
@@ -76,18 +78,18 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               value={password}
               onChange={updatePassword}
             />
-            <button style={{ marginLeft: "3.5rem" }} className="signupButton" type="submit">Login</button>
+            <button style={{ marginLeft: "3.5rem", marginTop:"2rem" }} className="signupButton" type="submit">Login</button>
 
           </div>
           <form onSubmit={demoLogin}>
             <button style={{
               textDecoration: "none",
               color: "black",
-              padding: "0.75rem",
+              padding: "0.5rem",
               margin: "1rem",
               backgroundColor: "rgb(237, 237, 237)",
               marginLeft: "2.9rem"
-            }} className="text-button" type="submit">Demo User Login</button>
+            }} className="text-button" type="submit">Demo User</button>
           </form>
         </form>
       </div>
