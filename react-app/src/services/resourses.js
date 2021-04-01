@@ -29,7 +29,6 @@ export const listresources = async () =>{
     return await response.json();
 }
 export const getCategories = async (id) =>{
-    console.log('------------------', id)
     const response = await fetch(`/api/resources/categories/${id}`, {
         method: 'GET',
         headers: {
