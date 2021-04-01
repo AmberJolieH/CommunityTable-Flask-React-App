@@ -26,8 +26,8 @@ const CreateResource = () =>{
             startsAt,
             endsAt,
             locationId
-        })
-        console.log("resource on front end HERE-----", resource)
+        });
+        
     }
     const categories = [
         'Non-Perishable Food',

@@ -9,15 +9,11 @@ import { Link } from "react-router-dom";
 
 const Resources = () => {
     const dispatch = useDispatch()
-    let resources = useSelector(state => state.resources.list.resources)
 
     useEffect(() => {
         dispatch(listResources())
     }, [dispatch])
 
-    if (!resources) {
-        return null;
-    }
     const cats = [
         'Non-Perishable Food',
         'Perishable Food',

@@ -22,7 +22,7 @@ const ResourceDetail = () =>{
     }
 
     // let imageContent;
-    
+
     // if(resource.image === null){
     //     imageContent = resourceImages[resource.catName]
     // }
@@ -59,7 +59,6 @@ const ResourceDetail = () =>{
         'Services (Barber, shower, etc)': "https://resourceimage.s3-us-west-2.amazonaws.com/services.svg",
         'Other': "https://resourceimage.s3-us-west-2.amazonaws.com/etc.svg",
     };
-    // console.log(imageContent)
 
     return(
         <div className='standard-card' style={{marginLeft:"30rem"}}>

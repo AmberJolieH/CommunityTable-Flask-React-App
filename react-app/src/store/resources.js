@@ -44,7 +44,6 @@ export const getCategories = (id) => async dispatch => {
 }
 
 const initialState = {
-    list: []
 };
 
 const resourceReducer = (state = initialState, action) => {
@@ -57,7 +56,6 @@ const resourceReducer = (state = initialState, action) => {
             return {
                 ...resourceList,
                 ...state,
-                list: action.list
             }
         }
         case ONE: {

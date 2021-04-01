@@ -15,7 +15,7 @@ const MapComponent = () => {
   const [map, setMap] = useState();
   const dispatch = useDispatch();
   //state grabber
-  let resources = useSelector((state) => state.resources.list.resources);
+  let resources = useSelector((state) => Object.values(state.resources));
 
   // Use effects
   useEffect(() => {

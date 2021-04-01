@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const MarkerAndInfo = ({ resource }) => {
   const [display, setDisplay] = useState(false);
+  console.log("resource in marker", resource)
   return (
     <Marker
       id={resource.id}
