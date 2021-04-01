@@ -1,6 +1,6 @@
 from .db import db
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash  # noqa
+from flask_login import UserMixin  # noqa
 
 
 class User(db.Model, UserMixin):
@@ -73,7 +73,9 @@ class Resource(db.Model):
     locationId = db.Column(db.Integer, db.ForeignKey('locations.id'))
 
     user = db.relationship('User', lazy="joined", back_populates='resources')
-    location = db.relationship('Location', lazy="joined", back_populates='resources')
+    location = db.relationship(
+      'Location', lazy="joined", back_populates='resources'
+      )
 
     def to_dict(self):
         return {

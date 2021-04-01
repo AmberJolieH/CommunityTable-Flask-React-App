@@ -1,8 +1,9 @@
 from app.models import db, Resource, User, Location
-from faker import Faker
-from faker.providers import BaseProvider
+from faker import Faker  # noqa
+from faker.providers import BaseProvider  # noqa
 import random
 import datetime
+
 
 def seed_resources():
     faker = Faker('en_PH')
@@ -29,21 +30,22 @@ def seed_resources():
     times = 0
     while times < 100:
         new_resource = Resource(
-            posterId = random.randrange(1, users),
-            name = faker.random_company_product(),
-            description = 'My resource description',
-            # image = ,
-            quantity = random.randrange(1,30),
-            catName = cats[random.randrange(catslen)],
-            startsAt = datetime.datetime.now(),
-            endsAt = datetime.datetime(2021,5,10),
-            locationId = random.randrange(1, locations)
+            posterId=random.randrange(1, users),
+            name=faker.random_company_product(),
+            description='My resource description',
+            # image=,
+            quantity=random.randrange(1, 30),
+            catName=cats[random.randrange(catslen)],
+            startsAt=datetime.datetime.now(),
+            endsAt=datetime.datetime(2021, 5, 10),
+            locationId=random.randrange(1, locations)
         )
 
         times = times + 1
         db.session.add(new_resource)
 
     db.session.commit()
+
 
 def undo_resources():
     db.session.execute('TRUNCATE resources;')

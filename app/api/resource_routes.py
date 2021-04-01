@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, redirect, request
+from flask import Blueprint, jsonify, redirect, request  # noqa
 from app.models import db, Resource
 from app.forms.resource_form import ResourceForm
 
@@ -6,7 +6,7 @@ resource_routes = Blueprint('resources', __name__)
 
 
 @resource_routes.route('/')
-#get all resources
+# get all resources
 def resources():
     resources = Resource.query.all()
     # for resource in resources:
@@ -16,14 +16,14 @@ def resources():
 
 
 @resource_routes.route('/<int:id>')
-#get a single resource
+# get a single resource
 def resource(id):
     resource = Resource.query.get(id)
     return resource.to_dict()
 
 
 @resource_routes.route('/categories/<int:id>')
-#get resources by category type
+# get resources by category type
 def categories(id):
     cats = [
         'Non-Perishable Food',
@@ -42,12 +42,14 @@ def categories(id):
     ]
     category = cats[id - 1]
     resources = Resource.query.filter(Resource.catName == category)
-    print('=====================', [resource.to_dict() for resource in resources])
+    print('=====================', [
+        resource.to_dict() for resource in resources
+        ])
     return {"resources": [resource.to_dict() for resource in resources]}
 
 
 @resource_routes.route('/create_resource', methods=['POST'])
-#create a resource
+# create a resource
 def create_resource():
     form = ResourceForm()
     form['csrf_token'].data = request.cookies['csrf_token']
