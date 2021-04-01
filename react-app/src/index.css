@@ -94,7 +94,7 @@ form {
 	padding: 0.5em;
 	text-decoration: none;
 	color: black;
-	font-size: 16px;
+	font-size: 13px;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
@@ -111,4 +111,8 @@ form {
     align-items:center;
 	display: flex;
 	margin-left: 2rem;
+}
+
+.cardheader{
+	margin-Left: 38rem,
 }
