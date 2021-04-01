@@ -37,16 +37,18 @@ body {
 	border: 0px;
 	font-size: 1rem;
 	box-shadow: 0 0.25rem 1rem rgba(83, 81, 81, 0.336);
-	width: 30%;
+	width: 60%;
 }
+.input__card,
 .standard-card input,
 .standard-card textarea,
-.standard-card select{
+.standard-card select {
 	border: .5px solid rgba(83, 81, 81, 0.336);
 	border-radius: .5rem;
 	padding: .5em;
 	margin: .5rem;
 	text-align: center;
+	width: 60%;
 
 }
 .signupButton {
