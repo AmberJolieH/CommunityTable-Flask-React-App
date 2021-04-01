@@ -19,21 +19,3 @@ export const createresource = async ({name, description, image, quantity, catNam
     return await response.json();
 }
 
-export const listresources = async () =>{
-    const response = await fetch('/api/resources/', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    return await response.json();
-}
-export const getCategories = async (id) =>{
-    const response = await fetch(`/api/resources/categories/${id}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    return await response.json();
-}

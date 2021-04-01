@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, redirect, request  # noqa
 from app.models import db, Resource
 from app.forms.resource_form import ResourceForm
+from app.aws import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 resource_routes = Blueprint('resources', __name__)
 
@@ -54,11 +56,37 @@ def create_resource():
     form = ResourceForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        if 'image' not in request.files:
+            componentMap = {
+                'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
+                'Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/parishable.svg",
+                'Water and beverages': "https://resourceimage.s3-us-west-2.amazonaws.com/WATER.svg",
+                'Baby care': "https://resourceimage.s3-us-west-2.amazonaws.com/diapers.svg",
+                'Children toys': "https://resourceimage.s3-us-west-2.amazonaws.com/CHILDS-toys.svg",
+                'Clothing': "https://resourceimage.s3-us-west-2.amazonaws.com/cloth.svg",
+                'Electronics': "https://resourceimage.s3-us-west-2.amazonaws.com/elec.svg",
+                'Books': "https://resourceimage.s3-us-west-2.amazonaws.com/books.svg",
+                'School Supplies': "https://resourceimage.s3-us-west-2.amazonaws.com/schoolSupplies.svg",
+                'Furniture': "https://resourceimage.s3-us-west-2.amazonaws.com/furn.svg",
+                'Shelter': "https://resourceimage.s3-us-west-2.amazonaws.com/shelter.svg",
+                'Services (Barber, shower, etc)': "https://resourceimage.s3-us-west-2.amazonaws.com/services.svg",
+                'Other': "https://resourceimage.s3-us-west-2.amazonaws.com/etc.svg",
+            }
+            url = componentMap[form.catName]
+        else:
+            image = request.files["image"]
+            if not allowed_file(image.filename):
+                return {"errors": "file type not permitted"}, 400
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if "url" not in upload:
+                upload['url'] = {'error': 'file failed to upload, try again'}
+            url = upload['url']
         resource = Resource(
             posterId=2,
             name=form.data['name'],
             description=form.data['description'],
-            image=form.data['image'],
+            image=url,
             quantity=form.data['quantity'],
             catName=form.data['catName'],
             startsAt=form.data['startsAt'],

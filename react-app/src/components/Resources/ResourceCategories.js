@@ -2,15 +2,17 @@
 import React, { useEffect, useState } from "react";
 import { jsx } from "@emotion/react";
 import { Link, useParams } from "react-router-dom";
-import { getCategories } from "../../services/resourses";
+import { getCategories } from "../../store/resources";
+import { useDispatch } from "react-redux";
 
 const ResourceCategories = () => {
     const {id} = useParams();
+    const dispatch = useDispatch();
     const [resources, setResources] = useState('')
 
     useEffect(()=>{
        const getCatRes= async() =>{
-           const res = await getCategories(id)
+           const res = dispatch(getCategories(id))
            
            setResources(res.resources)
        } 

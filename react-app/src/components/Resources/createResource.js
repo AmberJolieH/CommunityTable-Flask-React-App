@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, {useState} from "react";
 import { jsx } from "@emotion/react";
-import { createresource } from "../../services/resourses";
+import { createresource } from "../../store/resources";
 
 
 const CreateResource = () =>{
@@ -83,10 +83,10 @@ const CreateResource = () =>{
                 <label>Enter image URL: </label>
                 <input
                     name="image"
-                    type="text"
-                    placeholder="Image URL"
+                    type="file"
+                    // placeholder="Image URL"
                     value={image}
-                    onChange={e => setImage(e.target.value)}
+                    onChange={e => setImage(e.target.files[0])}
                 />
                 <label>Enter quantity: </label>
                 <input

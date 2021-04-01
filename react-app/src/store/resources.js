@@ -1,9 +1,39 @@
 const LOAD = 'resources/LOAD'
+const ONE = 'resources/ONE'
 
 const load = list => ({
     type: LOAD,
     list
 });
+const one = resource => ({
+    type: ONE,
+    resource
+})
+
+export const createresource = ({ name, description, image, quantity, catName, startsAt, endsAt, locationId }) => async dispatch => {
+    const form = new FormData()
+    form.append('name', name)
+    form.append('description', description)
+    form.append('image', image)
+    form.append('quantity', quantity)
+    form.append('catName', catName)
+    form.append('startsAt', startsAt)
+    form.append('endsAt', endsAt)
+    form.append('locationId', locationId)
+    const response = await fetch('/api/resources/create_resource', {
+        method: 'POST',
+        body: form
+    })
+    const resource = await response.json();
+    if(resource.ok){
+        dispatch(one(resource))
+    }
+    else {
+        return {'error': 'resource not created'}
+    }
+    return resource;
+}
+
 
 export const listResources = () => async dispatch => {
     const response = await fetch('/api/resources/', {
@@ -30,16 +60,19 @@ const initialState = {
 };
 
 const resourceReducer = (state = initialState, action) => {
+    let newState = Object.assign({}, state);
     switch (action.type) {
         case LOAD: {
             const resourceList = {};
             action.list.resources.forEach(resource => {
                 resourceList[resource.id] = resource
             });
-            return {
-                ...resourceList,
-                ...state,
-            }
+            newState = action.resourceList
+            return newState;
+        }
+        case ONE: {
+            newState.resourceList[action.resource.id] = action.resource
+            return newState;
         }
         default:
             return state;
