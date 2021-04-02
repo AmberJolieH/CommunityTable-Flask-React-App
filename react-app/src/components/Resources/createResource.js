@@ -67,8 +67,8 @@ const CreateResource = () =>{
             alignItems:"center"
         }}>
             <h2>Create a Resource</h2>
-            {errors.map((error) => (
-              <div key={error}>{error}</div>
+            {errors.map((error, index) => (
+              <div key={index}>{error}</div>
             ))}
             <p>Community, helping community.</p>
             <form
@@ -112,10 +112,10 @@ const CreateResource = () =>{
                     value={catName}
                     onChange={e => setCatName(e.target.value)}
                 >
-                {categories.map((cat)=> {
+                {categories.map((cat, index)=> {
                     return (
                         <option
-                        key={cat}
+                        key={index}
                         value={cat}
                         >
                             {cat}
@@ -147,7 +147,7 @@ const CreateResource = () =>{
                     {locations.map((location, i) => {
                         return (
                             <option
-                                key={location}
+                                key={i}
                                 value={i+1}
                             >
                                 {location}

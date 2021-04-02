@@ -27,7 +27,6 @@ def resource(id):
 @resource_routes.route('/categories/<int:id>')
 # get resources by category type
 def categories(id):
-    print("hitting correct route----------------------", id)
     cats = [
         'Non-Perishable Food',
         'Perishable Food',

@@ -62,6 +62,7 @@ const Resources = () => {
                 }}>
                 {cats.map((cat, i) => (
                     <Link
+                        key={i}
                         to={`/resources/categories/${i + 1}`}
                         css={{
                             display: 'flex',
@@ -80,7 +81,7 @@ const Resources = () => {
                             borderRadius: '100%',
                             margin: '1rem'
                         }} />
-                        <p key={cat} >
+                        <p>
                             {cat}
                         </p>
                     </Link>

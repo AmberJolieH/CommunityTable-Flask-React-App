@@ -63,7 +63,7 @@ const ResourceCategories = () => {
                 }}
                 >
                 {resources.map((resource, index) =>{
-                    return <Link key={index} to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
+                    return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
                         display: 'flex',
                         flexDirection: 'column',
                         margin: '2rem 4rem 2rem',
