@@ -18,7 +18,6 @@ const Footer = () => {
     <footer
       className="Footer"
       css={{
-        width: "400rem",
         backgroundColor: "black",
         borderTop: "1px solid black",
         textAlign: "center",
@@ -78,7 +77,7 @@ const Footer = () => {
                   paddingRight: 0,
                 }}
               />
-              <a
+              <div
                 css={{
                   color: "white",
                   marginTop: "4",
@@ -87,7 +86,7 @@ const Footer = () => {
                 }}
               >
                 Amber Horn
-              </a>
+              </div>
               <a href="https://github.com/AmberJolieH">
                 <GitHubIcon css={{ color: "white", marginLeft: ".5rem" }} />
               </a>
@@ -114,7 +113,7 @@ const Footer = () => {
                   paddingRight: "1rem",
                 }}
               />
-              <a
+              <div
                 css={{
                   color: "white",
                   marginTop: "3",
@@ -123,7 +122,7 @@ const Footer = () => {
                 }}
               >
                 Nicole Loescher
-              </a>
+              </div>
               <a href="https://github.com/nicole-loescher">
                 <GitHubIcon css={{ color: "white", marginLeft: ".5rem" }} />
               </a>
@@ -149,7 +148,7 @@ const Footer = () => {
                   paddingRight: "1rem",
                 }}
               />
-              <a
+              <div
                 css={{
                   color: "white",
                   marginTop: "4",
@@ -158,7 +157,7 @@ const Footer = () => {
                 }}
               >
                 Daniel Upchurch
-              </a>
+              </div>
               <a href="https://github.com/dupchurch93">
                 <GitHubIcon css={{ color: "white", marginLeft: ".5rem" }} />
               </a>
@@ -184,7 +183,7 @@ const Footer = () => {
                   paddingRight: "0rem",
                 }}
               />
-              <a
+              <div
                 css={{
                   color: "white",
                   marginTop: "4",
@@ -193,7 +192,7 @@ const Footer = () => {
                 }}
               >
                 Gabriel Gutierrez
-              </a>
+              </div>
               <a href="https://github.com/OptimumMars">
                 <GitHubIcon css={{ color: "white", marginLeft: ".5rem" }} />
               </a>

@@ -2,10 +2,12 @@
 import React, {useState} from "react";
 import { jsx } from "@emotion/react";
 import { createresource } from "../../store/resources";
-
+import { useDispatch } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
 const CreateResource = () =>{
-    // posterId = useState(state => state.session.user.id)
+    const dispatch = useDispatch();
+
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
@@ -13,11 +15,11 @@ const CreateResource = () =>{
     const [startsAt, setStartsAt] = useState('')
     const [endsAt, setEndsAt] = useState('')
     const [locationId, setLocationId] = useState(1)
+    const [errors, setErrors] = useState([]);
 
     const onSubmit = async (e)=>{
         e.preventDefault()
-        const resource = await createresource({
-            // posterId,
+        const resource = await dispatch(createresource({
             name,
             description,
             image,
@@ -26,8 +28,11 @@ const CreateResource = () =>{
             startsAt,
             endsAt,
             locationId
-        });
-        
+        }));
+        if(!resource.error){
+            return <Redirect to="/"/>
+        }
+
     }
     const categories = [
         'Non-Perishable Food',
@@ -60,6 +65,9 @@ const CreateResource = () =>{
             alignItems:"center"
         }}>
             <h2>Create a Resource</h2>
+            {errors.map((error) => (
+              <div>{error}</div>
+            ))}
             <p>Community, helping community.</p>
             <form
             onSubmit={onSubmit}

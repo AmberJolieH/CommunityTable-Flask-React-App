@@ -29,7 +29,7 @@ export const createresource = ({ name, description, image, quantity, catName, st
         dispatch(one(resource))
     }
     else {
-        return {'error': 'resource not created'}
+        return {'error': 'Resource not created. Please try again.'}
     }
     return resource;
 }
