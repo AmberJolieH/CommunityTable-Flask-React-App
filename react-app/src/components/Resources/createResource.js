@@ -90,12 +90,10 @@ const CreateResource = () =>{
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
-                <label>Enter image URL: </label>
+                <label>Picture</label>
                 <input
                     name="image"
                     type="file"
-                    // placeholder="Image URL"
-                    value={image}
                     onChange={e => setImage(e.target.files[0])}
                 />
                 <label>Enter quantity: </label>
