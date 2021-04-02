@@ -16,7 +16,7 @@ const ResourceCategories = () => {
            const res = await dispatch(getCategories(id))
            setResources(res.resources)
        })()
-    },[])
+    },[dispatch, id])
 
     const componentMap = {
         'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
