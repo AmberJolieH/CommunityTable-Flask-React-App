@@ -68,7 +68,7 @@ const CreateResource = () =>{
         }}>
             <h2>Create a Resource</h2>
             {errors.map((error) => (
-              <div>{error}</div>
+              <div key={error}>{error}</div>
             ))}
             <p>Community, helping community.</p>
             <form

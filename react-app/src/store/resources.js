@@ -47,7 +47,7 @@ export const listResources = () => async dispatch => {
 };
 
 export const getCategories = (id) => async dispatch => {
-    const response = await fetch(`/api/categories/${id}`, {
+    const response = await fetch(`/api/resources/categories/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

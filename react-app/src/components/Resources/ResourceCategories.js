@@ -13,9 +13,9 @@ const ResourceCategories = () => {
     useEffect(()=>{
        const getCatRes= async() =>{
            const res = dispatch(getCategories(id))
-           
+
            setResources(res.resources)
-       } 
+       }
        getCatRes()
     },[])
 
@@ -34,7 +34,7 @@ const ResourceCategories = () => {
         'Services (Barber, shower, etc)': "https://resourceimage.s3-us-west-2.amazonaws.com/services.svg",
         'Other': "https://resourceimage.s3-us-west-2.amazonaws.com/etc.svg",
     };
-    
+
 
 
     if(!resources || resources.length === 0){
@@ -55,16 +55,16 @@ const ResourceCategories = () => {
                 }}>
                 {resources[0].catName} Resources
             </h1>
-            <div 
+            <div
                 css={{
                     display: 'grid',
                     gridTemplateColumns: '18% 18% 18% 18% 18%',
-                    
+
 
                 }}
                 >
-                {resources.map(resource =>{
-                    return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
+                {resources.map((resource, index) =>{
+                    return <Link key={index} to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
                         display: 'flex',
                         flexDirection: 'column',
                         margin: '2rem 4rem 2rem',
@@ -76,7 +76,7 @@ const ResourceCategories = () => {
                         textAlign: 'center'
                     }}>
                     <h2>{resource.name}</h2>
-                    <img css={{ maxWidth: "30%" }} src={`${componentMap[resource.catName]}`} alt={resource.catName} />  
+                    <img css={{ maxWidth: "30%" }} src={`${componentMap[resource.catName]}`} alt={resource.catName} />
                     <p>{resource.description}</p>
                     <p>{resource.location.name}</p>
                     </Link>
