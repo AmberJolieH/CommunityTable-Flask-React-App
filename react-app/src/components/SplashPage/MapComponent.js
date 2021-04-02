@@ -5,15 +5,13 @@ import {
   LoadScript,
 } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { listResources } from "../../store/resources";
+import { useSelector } from "react-redux";
 import MarkerAndInfo from "./MarkerAndInfo";
 
 const MapComponent = () => {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
-  const dispatch = useDispatch();
   //state grabber
   let resources = useSelector((state) => Object.values(state.resources));
 
@@ -39,10 +37,6 @@ const MapComponent = () => {
 
     geolocate();
   }, []);
-
-  useEffect(() => {
-    dispatch(listResources());
-  }, [dispatch]);
 
   if (!resources) {
     return <h1>Loading...</h1>;

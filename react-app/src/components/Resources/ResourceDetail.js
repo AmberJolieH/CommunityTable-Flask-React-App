@@ -56,7 +56,7 @@ const ResourceDetail = () =>{
     };
 
     return(
-        <div className='standard-card' style={{marginLeft:"30rem"}}>
+        <div className='standard-card' style={{marginLeft:"auto", marginRight: "auto"}}>
             <h2>Name: {resource.name}</h2>
 
             {/* <img css={{ maxWidth: "100px" }} src={componentMap}/> */}
