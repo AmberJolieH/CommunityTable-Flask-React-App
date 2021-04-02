@@ -56,8 +56,7 @@ export const getCategories = (id) => async dispatch => {
     return await response.json();
 }
 
-const initialState = {
-};
+const initialState = {};
 
 const resourceReducer = (state = initialState, action) => {
     let newState = Object.assign({}, state);

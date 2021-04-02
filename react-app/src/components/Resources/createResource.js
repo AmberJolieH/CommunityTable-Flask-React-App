@@ -31,6 +31,8 @@ const CreateResource = () =>{
         }));
         if(!resource.error){
             return <Redirect to="/"/>
+        } else{
+            setErrors(resource.error);
         }
 
     }
