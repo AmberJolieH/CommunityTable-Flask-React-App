@@ -11,12 +11,11 @@ const ResourceCategories = () => {
     const [resources, setResources] = useState('')
 
     useEffect(()=>{
-       const getCatRes= async() =>{
-           const res = dispatch(getCategories(id))
-
+        // IIFE to grab resources in the specified category
+       (async() =>{
+           const res = await dispatch(getCategories(id))
            setResources(res.resources)
-       }
-       getCatRes()
+       })()
     },[])
 
     const componentMap = {
