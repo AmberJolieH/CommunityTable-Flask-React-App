@@ -62,20 +62,20 @@ const initialState = {
 const resourceReducer = (state = initialState, action) => {
     let newState = Object.assign({}, state);
     switch (action.type) {
-        case LOAD: {
+        case LOAD:
             const resourceList = {};
             action.list.resources.forEach(resource => {
                 resourceList[resource.id] = resource
             });
-            newState = action.resourceList
+            newState = resourceList
             return newState;
-        }
-        case ONE: {
+
+        case ONE:
             newState.resourceList[action.resource.id] = action.resource
             return newState;
-        }
+
         default:
-            return state;
+            return newState;
     }
 
 };
