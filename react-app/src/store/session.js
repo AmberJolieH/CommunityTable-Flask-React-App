@@ -69,6 +69,7 @@ export const logout = () => async (dispatch) => {
 
 const initialState = {
     user: {
+        id: '0',
         email: 'initial@email.com',
         username: 'Initial',
     }
