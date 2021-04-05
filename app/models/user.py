@@ -17,8 +17,8 @@ class User(db.Model, UserMixin):
 
     resources = db.relationship('Resource', back_populates='user')
     claimedResources = db.relationship(
-        'Resource', secondary='claimStatus',
-        lazy='joined', backref=db.backref('resourceClaimee')
+        'ClaimStatus',
+        lazy='joined', backref=db.backref('user')
     )
 
     @property
@@ -81,9 +81,11 @@ class Resource(db.Model):
         'Location', lazy="joined", back_populates='resources'
     )
     resourceClaimees = db.relationship(
-        'User', secondary='claimStatus',
-        lazy='joined', backref=db.backref('claimedResource')
-    )
+        'ClaimStatus', lazy='joined', backref=db.backref('resources'))
+    # resourceClaimees = db.relationship(
+    #     'User', secondary='claimStatus',
+    #     lazy='joined', backref=db.backref('claimedResource')
+    # )
 
     def to_dict(self):
         return {
@@ -105,32 +107,12 @@ class Resource(db.Model):
             "location": self.location.to_dict()
         }
 
-# class ClaimStatus(db.Model):
-#     __tablename__='claimStatus'
+class ClaimStatus(db.Model):
+    __tablename__='claimStatus'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     claimUserId = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     resourceId = db.Column(db.Integer, db.ForeignKey('resources.id'))
-#     quantity = db.Column(db.Integer, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    claimUserId = db.Column(db.Integer, db.ForeignKey('users.id'))
+    resourceId = db.Column(db.Integer, db.ForeignKey('resources.id'))
+    quantity = db.Column(db.Integer, nullable=False)
 
-
-claimStatus = db.Table(
-    'claimStatus',
-    db.Column(
-        'claimUserId',
-        db.Integer,
-        db.ForeignKey('users.id'),
-        primary_key=True
-    ),
-    db.Column(
-        'resourceId',
-        db.Integer,
-        db.ForeignKey('resources.id'),
-        primary_key=True
-    ),
-    db.Column(
-        'quantity',
-        db.Integer,
-        nullable=False
-    )
-)
+   

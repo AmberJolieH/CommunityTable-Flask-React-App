@@ -38,6 +38,21 @@ const ResourceDetail = () => {
       console.log("success")
     }
   };
+  let buttonContent;
+  if(resource.quantity >= 1){
+    buttonContent = (
+        <button className="button" css={{ width: "100%" }}>
+          Claim Resources
+        </button>
+    )
+  }
+  if(resource.quantity <= 0){
+    buttonContent = (
+      <button className="button" disabled css={{ width: "100%" }}>
+        Off the table
+      </button>
+    )
+  }
 
   return (
     <div
@@ -79,9 +94,7 @@ const ResourceDetail = () => {
             onChange={(e) => setClaimQuant(e.target.value)}
           ></input>
         </div>
-        <button className="button" css={{ width: "100%" }}>
-          Claim Resources
-        </button>
+       {buttonContent}
       </form>
       {/* <p>Poster: {resource.user.name}</p> */}
     </div>
