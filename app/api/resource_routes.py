@@ -1,8 +1,10 @@
 from flask import Blueprint, jsonify, redirect, request  # noqa
-from app.models import db, Resource
+from app.models import db, Resource, User
+from flask_login import current_user  # noqa
 from app.forms.resource_form import ResourceForm
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
+import json
 
 resource_routes = Blueprint('resources', __name__)
 
@@ -98,3 +100,13 @@ def create_resource():
         return resource.to_dict()
     print(form.errors)
     return {'errors': form.errors}
+
+
+@resource_routes.route('/claim', methods=['POST'])
+def claim_resource():
+    user = User.query.get(current_user.id)
+    decoded = json.loads(request.data.decode("UTF-8"))
+    resourceId = decoded['resourceId']
+    quantity = decoded['quantity']
+    print("-------------------resourceId and quanitty", resourceId, quantity)
+    return({"Success": "Resources have been claimed."})

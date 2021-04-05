@@ -53,7 +53,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         marginTop: "2.5rem"
       }}>
 
-        <form onSubmit={onLogin} class="standard-card">
+        <form onSubmit={onLogin} className="standard-card">
           <div>
             {errors.map((error, index) => (
               <div key={index}>{error}</div>

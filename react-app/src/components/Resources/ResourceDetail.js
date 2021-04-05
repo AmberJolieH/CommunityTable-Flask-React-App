@@ -5,6 +5,7 @@ import { jsx } from "@emotion/react";
 import { useParams } from "react-router-dom";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import { claimResource } from "../../store/resources";
 
 const ResourceDetail = () => {
   const dispatch = useDispatch();
@@ -29,9 +30,13 @@ const ResourceDetail = () => {
     }
   };
 
-  const handleClaim = () => {
+  const handleClaim = async (e) => {
     //dispatch thunk to subtract the amount in claimQuant from this item's quanity and updated backend
-    
+    e.preventDefault();
+    const res = await dispatch(claimResource(resource.id, claimQuant));
+    if(!res.error){
+      console.log("success")
+    }
   };
 
   return (
@@ -49,13 +54,13 @@ const ResourceDetail = () => {
       <p>Starts At: {resource.startsAt}</p>
       <p>Ends At: {resource.endsAt}</p>
       <form onSubmit={handleClaim} css={{ alignItems: "center" }}>
-        <div css={{ display: "flex", margin: "1rem", height: "3rem" }}>
+        <div css={{ display: "flex", margin: "1rem", height: "3rem", alignItems: "center"}}>
           <div css={{ display: "flex", flexDirection: "column" }}>
             <button
               onClick={() => handleIncrement("add")}
               type="button"
               className="button"
-              style={{ padding: "0", width: "20px" }}
+              style={{ padding: "0", width: "20px", backgroundColor: "rgb(237, 237, 237)" }}
             >
               <ArrowUpwardIcon style={{ fontSize: "1rem" }} />
             </button>
@@ -63,7 +68,7 @@ const ResourceDetail = () => {
               onClick={() => handleIncrement("sub")}
               type="button"
               className="button"
-              style={{ padding: "0", width: "20px" }}
+              style={{padding: "0", width: "20px", backgroundColor: "rgb(237, 237, 237)"}}
             >
               <ArrowDownwardIcon style={{ fontSize: "1rem" }} />
             </button>

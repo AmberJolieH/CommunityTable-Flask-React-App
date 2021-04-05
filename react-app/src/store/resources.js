@@ -56,10 +56,12 @@ export const getCategories = (id) => async dispatch => {
     return await response.json();
 }
 
-export const claimResource = (resourceId, posterId, quantity) => async dispatch => {
-    const response = await fetch(`/api/resources/claim/${resourceId}`, {
+export const claimResource = (resourceId, quantity) => async dispatch => {
+    console.log("in thunk resourceId", resourceId);
+    console.log("in thunk quantity", quantity)
+    const response = await fetch(`/api/resources/claim`, {
         method: 'POST',
-        body: JSON.stringify({posterId, quantity}),
+        body: JSON.stringify({quantity, resourceId}),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -68,9 +70,9 @@ export const claimResource = (resourceId, posterId, quantity) => async dispatch 
     // claiming a resource will return the updated resource, which will update the resourceList state, specifically the quanity
     // so the one action can be dispatched to update(override) the resource in our state
     // will also need a thunk from users(?) to grab all resource with claim status equal to the user ID
-    if(res.ok){
-        dispatch(one(res))
-    }
+    // if(res.ok){
+    //     dispatch(one(res))
+    // }
     return res;
 }
 
