@@ -85,7 +85,7 @@ def create_resource():
                 upload['url'] = {'error': 'file failed to upload, try again'}
             url = upload['url']
         resource = Resource(
-            posterId=2,
+            posterId=current_user,
             name=form.data['name'],
             description=form.data['description'],
             image=url,
@@ -108,5 +108,8 @@ def claim_resource():
     decoded = json.loads(request.data.decode("UTF-8"))
     resourceId = decoded['resourceId']
     quantity = decoded['quantity']
+    resource = Resource.query.get(resourceId)
+    resource.quantity = resource.quantity - quantity
+    db.session.commit()
     print("-------------------resourceId and quanitty", resourceId, quantity)
     return({"Success": "Resources have been claimed."})
