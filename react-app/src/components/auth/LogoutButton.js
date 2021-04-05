@@ -3,12 +3,16 @@
 // import { logout } from "../../services/auth";
 import { jsx } from "@emotion/react";
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router";
 import * as sessionActions from '../../store/session';
 
 const LogoutButton = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
 
+  const history = useHistory();
+
   const onLogout = async (e) => {
+    history.push("/")
     await dispatch(sessionActions.logout());
     setAuthenticated(false);
   };

@@ -12,9 +12,9 @@ const one = resource => ({
     resource
 });
 
-const posted = postedResources => ({
+const posted = list => ({
     type: POSTED,
-    postedResources
+    list
 })
 
 export const listResources = () => async dispatch => {
@@ -50,7 +50,7 @@ export const getCategories = (id) => async dispatch => {
 }
 
 export const getPostedResources = (id) => async dispatch => {
-    const response = await fetch(`/api/resources/${id}/posted_resources`, {
+    const response = await fetch(`/api/users/${id}/posted_resources`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ const resourceReducer = (state = initialState, action) => {
         }
         case POSTED: {
             const postedResources = {};
-            action.list.resources.forEach(resource => {
+            action.list.posted_resources.forEach(resource => {
                 postedResources[resource.id] = resource
             });
             return {

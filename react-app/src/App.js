@@ -7,9 +7,9 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList/UsersList";
 import User from "./components/User/User";
 import SplashPage from "./components/SplashPage/SplashPage";
-import { authenticate } from "./services/auth";
+import { authenticate } from "./store/session";
 // import * as sessionActions from "./store/session";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Resources from "./components/Resources";
 import CreateResource from "./components/Resources/createResource";
 import Footer from "./components/Footer/footer.js";
@@ -21,7 +21,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const [isLoaded, setIsLoaded] = useState(false);
   // useEffect(() => {
   //   dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const user = await authenticate();
+      const user = await dispatch(authenticate());
       if (!user.errors) {
         setAuthenticated(true);
       }
