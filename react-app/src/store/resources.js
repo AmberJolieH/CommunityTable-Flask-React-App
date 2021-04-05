@@ -5,11 +5,35 @@ const load = list => ({
     type: LOAD,
     list
 });
-
 const one = resource => ({
     type: ONE,
     resource
-});
+})
+
+export const createresource = ({ name, description, image, quantity, catName, startsAt, endsAt, locationId }) => async dispatch => {
+    const form = new FormData()
+    form.append('name', name)
+    form.append('description', description)
+    form.append('image', image)
+    form.append('quantity', quantity)
+    form.append('catName', catName)
+    form.append('startsAt', startsAt)
+    form.append('endsAt', endsAt)
+    form.append('locationId', locationId)
+    const response = await fetch('/api/resources/create_resource', {
+        method: 'POST',
+        body: form
+    })
+    const resource = await response.json();
+    if(!resource.errors){
+        dispatch(one(resource))
+    }
+    else {
+        return {'error': ['Resource not created. Please try again.']}
+    }
+    return resource;
+}
+
 
 export const listResources = () => async dispatch => {
     const response = await fetch('/api/resources/', {
@@ -22,19 +46,8 @@ export const listResources = () => async dispatch => {
     dispatch(load(list))
 };
 
-export const getOneResource = (id) => async dispatch => {
-    const response = await fetch(`/api/resources/${id}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    const resource = await response.json()
-    dispatch(one(resource))
-};
-
 export const getCategories = (id) => async dispatch => {
-    const response = await fetch(`/api/categories/${id}`, {
+    const response = await fetch(`/api/resources/categories/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -43,37 +56,26 @@ export const getCategories = (id) => async dispatch => {
     return await response.json();
 }
 
-const initialState = {
-    list: []
-};
+const initialState = {};
 
 const resourceReducer = (state = initialState, action) => {
+    let newState = Object.assign({}, state);
     switch (action.type) {
-        case LOAD: {
+        case LOAD:
             const resourceList = {};
             action.list.resources.forEach(resource => {
                 resourceList[resource.id] = resource
             });
-            return {
-                ...resourceList,
-                ...state,
-                list: action.list
-            }
-        }
-        case ONE: {
-            if (!state[action.resource.id]) {
-                const newState = {
-                    ...state,
-                    [action.resource.id]: action.resource
-                }
-                const resourceList = newState.list.map(id => newState[id])
-                resourceList.push(action.resource)
-                newState.list = resourceList
-                return newState
-            }
-        }
+            newState = resourceList
+            return newState;
+
+        case ONE:
+
+            newState[action.resource.id] = action.resource
+            return newState;
+
         default:
-            return state;
+            return newState;
     }
 
 };

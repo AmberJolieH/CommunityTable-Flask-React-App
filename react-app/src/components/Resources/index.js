@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { jsx } from "@emotion/react";
 import { listResources } from "../../store/resources";
 
@@ -9,15 +9,11 @@ import { Link } from "react-router-dom";
 
 const Resources = () => {
     const dispatch = useDispatch()
-    let resources = useSelector(state => state.resources.list.resources)
 
     useEffect(() => {
         dispatch(listResources())
     }, [dispatch])
 
-    if (!resources) {
-        return null;
-    }
     const cats = [
         'Non-Perishable Food',
         'Perishable Food',
@@ -66,6 +62,7 @@ const Resources = () => {
                 }}>
                 {cats.map((cat, i) => (
                     <Link
+                        key={i}
                         to={`/resources/categories/${i + 1}`}
                         css={{
                             display: 'flex',
@@ -84,7 +81,7 @@ const Resources = () => {
                             borderRadius: '100%',
                             margin: '1rem'
                         }} />
-                        <p key={cat} >
+                        <p>
                             {cat}
                         </p>
                     </Link>

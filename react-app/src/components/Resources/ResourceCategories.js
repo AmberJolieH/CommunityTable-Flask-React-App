@@ -2,20 +2,21 @@
 import React, { useEffect, useState } from "react";
 import { jsx } from "@emotion/react";
 import { Link, useParams } from "react-router-dom";
-import { getCategories } from "../../services/resourses";
+import { getCategories } from "../../store/resources";
+import { useDispatch } from "react-redux";
 
 const ResourceCategories = () => {
     const {id} = useParams();
+    const dispatch = useDispatch();
     const [resources, setResources] = useState('')
 
     useEffect(()=>{
-       const getCatRes= async() =>{
-           const res = await getCategories(id)
-           
+        // IIFE to grab resources in the specified category
+       (async() =>{
+           const res = await dispatch(getCategories(id))
            setResources(res.resources)
-       } 
-       getCatRes()
-    },[])
+       })()
+    },[dispatch, id])
 
     const componentMap = {
         'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
@@ -32,7 +33,7 @@ const ResourceCategories = () => {
         'Services (Barber, shower, etc)': "https://resourceimage.s3-us-west-2.amazonaws.com/services.svg",
         'Other': "https://resourceimage.s3-us-west-2.amazonaws.com/etc.svg",
     };
-    
+
 
 
     if(!resources || resources.length === 0){
@@ -53,15 +54,15 @@ const ResourceCategories = () => {
                 }}>
                 {resources[0].catName} Resources
             </h1>
-            <div 
+            <div
                 css={{
                     display: 'grid',
                     gridTemplateColumns: '18% 18% 18% 18% 18%',
-                    
+
 
                 }}
                 >
-                {resources.map(resource =>{
+                {resources.map((resource, index) =>{
                     return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -74,7 +75,7 @@ const ResourceCategories = () => {
                         textAlign: 'center'
                     }}>
                     <h2>{resource.name}</h2>
-                    <img css={{ maxWidth: "30%" }} src={`${componentMap[resource.catName]}`} alt={resource.catName} />  
+                    <img css={{ maxWidth: "30%" }} src={`${componentMap[resource.catName]}`} alt={resource.catName} />
                     <p>{resource.description}</p>
                     <p>{resource.location.name}</p>
                     </Link>
