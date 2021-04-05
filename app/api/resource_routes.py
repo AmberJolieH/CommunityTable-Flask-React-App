@@ -71,7 +71,9 @@ def create_resource():
     return {'errors': form.errors}
 
 
-@resource_routes.route('/posted_resources')
+@resource_routes.route('/<int:userId>/posted_resources')
 # get all resources a user has posted
-def get_posted_resources():
-    posted_resources = Resource.query
+def get_posted_resources(userId):
+    posted_resources = Resource.query.filter(Resource.posterId == userId).all()
+
+    return {"posted_resources": [resource.to_dict() for resource in posted_resources]}
