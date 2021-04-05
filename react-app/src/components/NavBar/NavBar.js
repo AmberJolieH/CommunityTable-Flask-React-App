@@ -80,7 +80,24 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                   margin: "1rem"
                 }}
               >
-                My Resources
+                My Claimed Resources
+              </NavLink>
+            </div>
+            <div>
+              <NavLink
+                to="/posted_resources"
+                exact={true}
+                activeClassName="active"
+                className="button"
+                css={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "0.75rem",
+                  fontWeight: "bold",
+                  margin: "1rem"
+                }}
+              >
+                My Posted Resources
               </NavLink>
             </div>
             <div>
@@ -134,7 +151,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 Login
               </NavLink>
             </div>
-            <div className="signupButton" style={{marginTop:"0rem"}} >
+            <div className="signupButton" style={{ marginTop: "0rem" }} >
               <NavLink
                 to="/sign-up"
                 exact={true}
