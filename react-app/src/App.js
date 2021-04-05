@@ -9,7 +9,8 @@ import User from "./components/User/User";
 import SplashPage from "./components/SplashPage/SplashPage";
 import { authenticate } from "./services/auth";
 // import * as sessionActions from "./store/session";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { listResources } from "./store/resources";
 import Resources from "./components/Resources";
 import CreateResource from "./components/Resources/createResource";
 import Footer from "./components/Footer/footer.js";
@@ -19,6 +20,7 @@ import ResourceCategories from "./components/Resources/ResourceCategories";
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
 
   // const dispatch = useDispatch();
   // const [isLoaded, setIsLoaded] = useState(false);
@@ -29,6 +31,7 @@ function App() {
   useEffect(() => {
     (async () => {
       const user = await authenticate();
+      dispatch(listResources())
       if (!user.errors) {
         setAuthenticated(true);
       }

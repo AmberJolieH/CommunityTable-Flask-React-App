@@ -1,11 +1,13 @@
 /** @jsx jsx */
 import React, {useState} from "react";
 import { jsx } from "@emotion/react";
-import { createresource } from "../../services/resourses";
-
+import { createresource } from "../../store/resources";
+import { useDispatch } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
 const CreateResource = () =>{
-    // posterId = useState(state => state.session.user.id)
+    const dispatch = useDispatch();
+
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
@@ -13,11 +15,11 @@ const CreateResource = () =>{
     const [startsAt, setStartsAt] = useState('')
     const [endsAt, setEndsAt] = useState('')
     const [locationId, setLocationId] = useState(1)
+    const [errors, setErrors] = useState([]);
 
     const onSubmit = async (e)=>{
         e.preventDefault()
-        const resource = await createresource({
-            // posterId,
+        const resource = await dispatch(createresource({
             name,
             description,
             image,
@@ -26,8 +28,13 @@ const CreateResource = () =>{
             startsAt,
             endsAt,
             locationId
-        })
-        console.log("resource on front end HERE-----", resource)
+        }));
+        if(!resource.error){
+            return <Redirect to="/"/>
+        } else{
+            setErrors(resource.error);
+        }
+
     }
     const categories = [
         'Non-Perishable Food',
@@ -61,6 +68,9 @@ const CreateResource = () =>{
             
         }}>
             <h2>Create a Resource</h2>
+            {errors.map((error, index) => (
+              <div key={index}>{error}</div>
+            ))}
             <p>Community, helping community.</p>
             <form
             onSubmit={onSubmit}
@@ -82,13 +92,11 @@ const CreateResource = () =>{
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
-                <label>Enter image URL: </label>
+                <label>Picture</label>
                 <input
                     name="image"
-                    type="text"
-                    placeholder="Image URL"
-                    value={image}
-                    onChange={e => setImage(e.target.value)}
+                    type="file"
+                    onChange={e => setImage(e.target.files[0])}
                 />
                 <label>Enter quantity: </label>
                 <input
@@ -104,10 +112,10 @@ const CreateResource = () =>{
                     value={catName}
                     onChange={e => setCatName(e.target.value)}
                 >
-                {categories.map((cat)=> {
+                {categories.map((cat, index)=> {
                     return (
                         <option
-                        key={cat}
+                        key={index}
                         value={cat}
                         >
                             {cat}
@@ -139,7 +147,7 @@ const CreateResource = () =>{
                     {locations.map((location, i) => {
                         return (
                             <option
-                                key={location}
+                                key={i}
                                 value={i+1}
                             >
                                 {location}

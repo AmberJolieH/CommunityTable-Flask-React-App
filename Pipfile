@@ -30,6 +30,7 @@ PyJWT = "==1.7.1"
 psycopg2-binary = "*"
 bcrypt = "*"
 Faker = "*"
+boto3 = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"
