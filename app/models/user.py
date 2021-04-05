@@ -16,9 +16,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     resources = db.relationship('Resource', back_populates='user')
-    claimedResources = db.relationship(
-        'ClaimStatus',
-        lazy='joined', backref=db.backref('user')
+    claimedResource = db.relationship(
+        'ClaimStatus', back_populates='claimUser'
     )
 
     @property
@@ -78,14 +77,10 @@ class Resource(db.Model):
 
     user = db.relationship('User', lazy="joined", back_populates='resources')
     location = db.relationship(
-        'Location', lazy="joined", back_populates='resources'
+        'Location', back_populates='resources'
     )
-    resourceClaimees = db.relationship(
-        'ClaimStatus', lazy='joined', backref=db.backref('resources'))
-    # resourceClaimees = db.relationship(
-    #     'User', secondary='claimStatus',
-    #     lazy='joined', backref=db.backref('claimedResource')
-    # )
+    claimUser = db.relationship(
+        'ClaimStatus', lazy='joined', back_populates='claimedResource')
 
     def to_dict(self):
         return {
@@ -107,12 +102,12 @@ class Resource(db.Model):
             "location": self.location.to_dict()
         }
 
-class ClaimStatus(db.Model):
-    __tablename__='claimStatus'
 
-    id = db.Column(db.Integer, primary_key=True)
-    claimUserId = db.Column(db.Integer, db.ForeignKey('users.id'))
-    resourceId = db.Column(db.Integer, db.ForeignKey('resources.id'))
+class ClaimStatus(db.Model):
+    __tablename__ = 'claimStatus'
+    claimUserId = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    claimedResourceId = db.Column(db.Integer, db.ForeignKey('resources.id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable=False)
 
-   
+    claimUser = db.relationship('User', back_populates="claimedResource")
+    claimedResource = db.relationship('Resource', back_populates="claimUser")
