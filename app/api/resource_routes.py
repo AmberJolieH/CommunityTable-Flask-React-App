@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, redirect, request  # noqa
-from app.models import db, Resource, User
+from app.models import db, Resource, User, ClaimStatus
 from flask_login import current_user  # noqa
 from app.forms.resource_form import ResourceForm
 from app.aws import (
@@ -110,6 +110,10 @@ def claim_resource():
     quantity = decoded['quantity']
     resource = Resource.query.get(resourceId)
     resource.quantity = resource.quantity - quantity
-    db.session.commit()
-    print("-------------------resourceId and quanitty", resourceId, quantity)
+    #  test query for claimStatus model
+    # print("-----------user claimed resources----------", user.claimedResource)
+    for resource in user.claimedResource:
+        print('----test quant', resource.quantity)
+    # db.session.commit()
+    # print("-------------------resourceId and quanitty", resourceId, quantity)
     return({"Success": "Resources have been claimed."})

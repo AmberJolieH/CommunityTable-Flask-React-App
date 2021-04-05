@@ -1,2 +1,2 @@
 from .db import db
-from .user import User, Location, Resource
+from .user import User, Location, Resource, ClaimStatus

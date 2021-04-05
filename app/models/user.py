@@ -80,7 +80,7 @@ class Resource(db.Model):
         'Location', back_populates='resources'
     )
     claimUser = db.relationship(
-        'ClaimStatus', lazy='joined', back_populates='claimedResource')
+        'ClaimStatus', back_populates='claimedResource')
 
     def to_dict(self):
         return {
