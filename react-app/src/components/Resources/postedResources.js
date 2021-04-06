@@ -10,7 +10,7 @@ const PostedResources = () => {
 
     const dispatch = useDispatch();
 
-    const resources = useSelector(state => state.resources.posted_resources)
+    const resources = useSelector(state => Object.values(state.resources.postedResources))
 
     useEffect(() => {
         dispatch(getPostedResources(userId))
