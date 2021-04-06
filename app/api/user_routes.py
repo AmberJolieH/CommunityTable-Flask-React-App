@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify  # noqa
 from flask_login import login_required  # noqa
-from app.models import User
+from app.models import User, Resource
 
 user_routes = Blueprint('users', __name__)
 

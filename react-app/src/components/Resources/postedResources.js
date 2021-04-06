@@ -10,7 +10,7 @@ const PostedResources = () => {
 
     const dispatch = useDispatch();
 
-    const resources = useSelector(state => state.resources.list.posted_resources)
+    const resources = useSelector(state => state.resources.posted_resources)
 
     useEffect(() => {
         dispatch(getPostedResources(userId))
@@ -32,11 +32,17 @@ const PostedResources = () => {
         'Other': "https://resourceimage.s3-us-west-2.amazonaws.com/etc.svg",
     };
 
+    if(!resources){
+        return(
+            <div>Loading...</div>
+        )
+    }
+
     return (
         <div>
             <h1>Your Posted Resources:</h1>
             <div>
-                {resources && resources.map(resource => {
+                {resources.map(resource => {
                     return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card'>
                         <h2>{resource.name}</h2>
                         <img src={`${componentMap[resource.catName]}`} alt={resource.catName} />

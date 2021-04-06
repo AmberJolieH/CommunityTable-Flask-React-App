@@ -108,10 +108,4 @@ def claim_resource():
     quantity = decoded['quantity']
     resource = Resource.query.get(resourceId)
     resource.quantity = resource.quantity - quantity
-    #  test query for claimStatus model
-    # print("-----------user claimed resources----------", user.claimedResource)
-    for resource in user.claimedResource:
-        print('----test quant', resource.quantity)
-    # db.session.commit()
-    # print("-------------------resourceId and quanitty", resourceId, quantity)
     return({"Success": "Resources have been claimed."})
