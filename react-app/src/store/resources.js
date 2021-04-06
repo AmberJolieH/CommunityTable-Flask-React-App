@@ -32,11 +32,11 @@ export const createresource = ({ name, description, image, quantity, catName, st
         body: form
     })
     const resource = await response.json();
-    if(resource.ok){
+    if(!resource.errors){
         dispatch(one(resource))
     }
     else {
-        return {'error': 'Resource not created. Please try again.'}
+        return {'error': ['Resource not created. Please try again.']}
     }
     return resource;
 }

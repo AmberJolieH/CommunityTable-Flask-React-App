@@ -55,6 +55,7 @@ def create_resource():
     form = ResourceForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print('after form validation-------------------------------------------------------')
         if 'image' not in request.files:
             componentMap = {
                 'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
@@ -71,7 +72,7 @@ def create_resource():
                 'Services (Barber, shower, etc)': "https://resourceimage.s3-us-west-2.amazonaws.com/services.svg",
                 'Other': "https://resourceimage.s3-us-west-2.amazonaws.com/etc.svg",
             }
-            url = componentMap[form.catName]
+            url = componentMap[form.data['catName']]
         else:
             image = request.files["image"]
             if not allowed_file(image.filename):
