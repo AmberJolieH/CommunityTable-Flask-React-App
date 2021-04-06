@@ -47,8 +47,7 @@ const MapComponent = () => {
     width: "80%",
     height: "60vh",
     minWidth: "50rem",
-    marginBottom: "220px",
-    marginTop: "-1rem",
+    marginTop: "1rem",
     borderRadius: "2rem",
   };
 

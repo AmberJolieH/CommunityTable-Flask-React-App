@@ -64,7 +64,8 @@ const CreateResource = () =>{
         css={{
             display: "flex",
             flexDirection:"column",
-            alignItems:"center"
+            alignItems:"center",
+            
         }}>
             <h2>Create a Resource</h2>
             {errors.map((error, index) => (
@@ -73,10 +74,11 @@ const CreateResource = () =>{
             <p>Community, helping community.</p>
             <form
             onSubmit={onSubmit}
-                className='standard-card'
-                >
-                    <label>Name of resource: </label>
+            className='standard-card'
+            >
+                <label>Name of resource: </label>
                 <input
+                    className='input__card'
                     name="name"
                     type="text"
                     placeholder="Name of resource"
