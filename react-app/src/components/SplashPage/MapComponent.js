@@ -46,6 +46,7 @@ const MapComponent = () => {
   const containerStyle = {
     width: "80%",
     height: "60vh",
+    marginBottom: '8rem',
     minWidth: "50rem",
     marginTop: "1rem",
     borderRadius: "2rem",

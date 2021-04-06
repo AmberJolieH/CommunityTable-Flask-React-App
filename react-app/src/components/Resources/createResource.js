@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import { jsx } from "@emotion/react";
 import { createresource } from "../../store/resources";
 import { useDispatch } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 const CreateResource = () =>{
     const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const CreateResource = () =>{
     const [endsAt, setEndsAt] = useState('')
     const [locationId, setLocationId] = useState(1)
     const [errors, setErrors] = useState([]);
+    const history = useHistory();
 
     const onSubmit = async (e)=>{
         e.preventDefault()
@@ -30,7 +31,7 @@ const CreateResource = () =>{
             locationId
         }));
         if(!resource.error){
-            return <Redirect to="/"/>
+            history.push(`/resources/${resource.id}`)
         } else{
             setErrors(resource.error);
         }
@@ -61,10 +62,11 @@ const CreateResource = () =>{
 
     return (
         <div
-        css={{
+        style={{
             display: "flex",
             flexDirection:"column",
             alignItems:"center",
+            
             
         }}>
             <h2>Create a Resource</h2>
