@@ -23,12 +23,6 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
-  // const [isLoaded, setIsLoaded] = useState(false);
-  // useEffect(() => {
-  //   dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  // }, [dispatch]);
-
   useEffect(() => {
     (async () => {
       const user = await dispatch(authenticate());

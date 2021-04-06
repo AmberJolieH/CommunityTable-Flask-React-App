@@ -12,7 +12,7 @@ const ResourceDetail = () => {
   const [claimQuant, setClaimQuant] = useState(0);
 
   const { id } = useParams();
-  const resource = useSelector((state) => state.resources[id]);
+  const resource = useSelector((state) => state.resources.list[id]);
 
   if (!resource) {
     return "loading...";

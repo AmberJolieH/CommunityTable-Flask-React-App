@@ -13,7 +13,7 @@ const MapComponent = () => {
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
   //state grabber
-  let resources = useSelector((state) => Object.values(state.resources));
+  let resources = useSelector((state) => Object.values(state.resources.list));
 
   // Use effects
   useEffect(() => {

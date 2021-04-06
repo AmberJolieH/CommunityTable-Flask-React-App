@@ -83,7 +83,7 @@ export const claimResource = (resourceId, quantity) => async dispatch => {
     return res;
 }
 
-const initialState = {};
+const initialState = {list: {}, postedResources: {}};
 export const getPostedResources = (id) => async dispatch => {
     const response = await fetch(`/api/users/${id}/posted_resources`, {
         method: 'GET',
@@ -103,25 +103,12 @@ const resourceReducer = (state = initialState, action) => {
             action.list.resources.forEach(resource => {
                 resourceList[resource.id] = resource
             });
-            newState = resourceList
+            newState.list = resourceList
             return newState;
 
         case ONE:
-            newState.resourceList[action.resource.id] = action.resource
+            newState.list[action.resource.id] = action.resource
             return newState;
-        }
-        case ONE: {
-            if (!state[action.resource.id]) {
-                const newState = {
-                    ...state,
-                    [action.resource.id]: action.resource
-                }
-                const resourceList = newState.list.map(id => newState[id])
-                resourceList.push(action.resource)
-                newState.list = resourceList
-                return newState
-            }
-        }
         case POSTED: {
             const postedResources = {};
             action.list.posted_resources.forEach(resource => {

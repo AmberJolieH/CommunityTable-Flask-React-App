@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 from flask import Blueprint, jsonify  # noqa
 from flask_login import login_required  # noqa
 from app.models import User
-=======
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User, Resource
->>>>>>> 85c6f40ffd9dc1380de7bcdabc9ec60e410a35b2
 
 user_routes = Blueprint('users', __name__)
 
