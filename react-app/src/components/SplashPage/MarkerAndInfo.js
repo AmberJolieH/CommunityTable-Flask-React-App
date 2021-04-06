@@ -19,11 +19,14 @@ const MarkerAndInfo = ({ resource }) => {
     >
       {display && (
         <InfoWindow onCloseClick={() => setDisplay(false)}>
-          <div className="resource__infoWindow">
+          <div style={{overflowY:"none"}} className="resource__infoWindow">
             <div> {resource.name}</div>
             <div>Type: {resource.catName}</div>
             <div>Available: {resource.quantity}</div>
             <NavLink to={`/resources/${resource.id}`}>To Resource Page</NavLink>
+            <div style={{maxHeight: "40px", maxWidth: "40px"}}>
+              <img style={{objectFit: "cover", height: "100%", width: "100%"}}src={resource.image} alt="resource"/>
+            </div>
           </div>
         </InfoWindow>
       )}
