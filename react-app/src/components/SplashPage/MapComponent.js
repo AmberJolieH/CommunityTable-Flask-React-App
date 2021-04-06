@@ -5,15 +5,12 @@ import {
   LoadScript,
 } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import MarkerAndInfo from "./MarkerAndInfo";
 
-const MapComponent = () => {
+const MapComponent = ({resources}) => {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
-  //state grabber
-  let resources = useSelector((state) => Object.values(state.resources.list));
 
   // Use effects
   useEffect(() => {
