@@ -81,7 +81,7 @@ export const logout = () => async (dispatch) => {
 
 const initialState = {
     user: {
-        id: '1',
+        id: '0',
         email: 'initial@email.com',
         username: 'Initial',
     }
