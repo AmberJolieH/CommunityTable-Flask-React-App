@@ -1,13 +1,20 @@
-const LOAD = 'resources/LOAD';
-const ONE = 'resources/ONE';
+const LOAD = 'resources/LOAD'
+const ONE = 'resources/ONE'
+const POSTED = 'resources/POSTED'
 
 const load = list => ({
     type: LOAD,
     list
 });
+
 const one = resource => ({
     type: ONE,
     resource
+});
+
+const posted = list => ({
+    type: POSTED,
+    list
 });
 
 export const createresource = ({ name, description, image, quantity, catName, startsAt, endsAt, locationId }) => async dispatch => {
@@ -77,6 +84,16 @@ export const claimResource = (resourceId, quantity) => async dispatch => {
 }
 
 const initialState = {};
+export const getPostedResources = (id) => async dispatch => {
+    const response = await fetch(`/api/users/${id}/posted_resources`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const postedResources = await response.json();
+    dispatch(posted(postedResources))
+}
 
 const resourceReducer = (state = initialState, action) => {
     let newState = Object.assign({}, state);
@@ -92,6 +109,27 @@ const resourceReducer = (state = initialState, action) => {
         case ONE:
             newState.resourceList[action.resource.id] = action.resource
             return newState;
+        }
+        case ONE: {
+            if (!state[action.resource.id]) {
+                const newState = {
+                    ...state,
+                    [action.resource.id]: action.resource
+                }
+                const resourceList = newState.list.map(id => newState[id])
+                resourceList.push(action.resource)
+                newState.list = resourceList
+                return newState
+            }
+        }
+        case POSTED: {
+            const postedResources = {};
+            action.list.posted_resources.forEach(resource => {
+                postedResources[resource.id] = resource
+            });
+            newState.postedResources = postedResources;
+            return newState;
+        }
         default:
             return newState;
     }

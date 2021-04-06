@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 
@@ -53,7 +53,11 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         marginTop: "2.5rem"
       }}>
 
+<<<<<<< HEAD
         <form onSubmit={onLogin} className="standard-card">
+=======
+        <form onSubmit={onLogin} class="standard-card">
+>>>>>>> 85c6f40ffd9dc1380de7bcdabc9ec60e410a35b2
           <div>
             {errors.map((error, index) => (
               <div key={index}>{error}</div>
@@ -78,7 +82,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               value={password}
               onChange={updatePassword}
             />
-            <button style={{ marginLeft: "3.5rem", marginTop:"2rem" }} className="signupButton" type="submit">Login</button>
+            <button style={{ marginLeft: "3.5rem", marginTop: "2rem" }} className="signupButton" type="submit">Login</button>
 
           </div>
           <form onSubmit={demoLogin}>

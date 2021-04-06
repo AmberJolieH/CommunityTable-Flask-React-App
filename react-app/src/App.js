@@ -7,7 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList/UsersList";
 import User from "./components/User/User";
 import SplashPage from "./components/SplashPage/SplashPage";
-import { authenticate } from "./services/auth";
+import { authenticate } from "./store/session";
 // import * as sessionActions from "./store/session";
 import { useDispatch } from "react-redux";
 import { listResources } from "./store/resources";
@@ -16,13 +16,14 @@ import CreateResource from "./components/Resources/createResource";
 import Footer from "./components/Footer/footer.js";
 import ResourceDetail from "./components/Resources/ResourceDetail";
 import ResourceCategories from "./components/Resources/ResourceCategories";
+import PostedResources from "./components/Resources/postedResources";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const [isLoaded, setIsLoaded] = useState(false);
   // useEffect(() => {
   //   dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -30,7 +31,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const user = await authenticate();
+      const user = await dispatch(authenticate());
       dispatch(listResources())
       if (!user.errors) {
         setAuthenticated(true);
@@ -111,8 +112,15 @@ function App() {
             <Route path="/" exact={true} authenticated={authenticated}>
               <SplashPage></SplashPage>
             </Route>
+            <ProtectedRoute
+              path="/posted_resources"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <PostedResources />
+            </ProtectedRoute>
             <Route>
-              <h2 style={{display: "flex", justifyContent:"center"}}>Resource Not Found</h2>
+              <h2 style={{ display: "flex", justifyContent: "center" }}>Resource Not Found</h2>
             </Route>
           </Switch>
         </div>

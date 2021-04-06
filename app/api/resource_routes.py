@@ -46,9 +46,6 @@ def categories(id):
     ]
     category = cats[id - 1]
     resources = Resource.query.filter(Resource.catName == category)
-    print('=====================', [
-        resource.to_dict() for resource in resources
-        ])
     return {"resources": [resource.to_dict() for resource in resources]}
 
 
