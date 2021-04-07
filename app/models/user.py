@@ -89,7 +89,8 @@ class Resource(db.Model):
             "startsAt": self.startsAt,
             "endsAt": self.endsAt,
             "locationId": self.locationId,
-            "location": self.location.to_dict()
+            "location": self.location.to_dict(),
+            "user": self.user.to_dict()
         }
 
     def to_location(self):

@@ -99,3 +99,12 @@ def create_resource():
         return resource.to_dict()
     print(form.errors)
     return {'errors': form.errors}
+
+
+@resource_routes.route('/<int:id>', methods=['PUT'])
+# updates a resource
+def update(id):
+    resource = Resource.query.get(id)
+    print(request.to_dict(), '........................')
+
+
