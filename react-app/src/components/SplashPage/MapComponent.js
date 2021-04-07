@@ -2,14 +2,11 @@
 import React from "react";
 import {
   GoogleMap,
-  LoadScript,
 } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
 import MarkerAndInfo from "./MarkerAndInfo";
 
-const MapComponent = ({resources}) => {
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
+const MapComponent = ({resources, lat, lng, setLat, setLng}) => {
   const [map, setMap] = useState();
 
   // Use effects

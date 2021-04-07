@@ -8,7 +8,9 @@ import {useEffect, useState} from "react";
 const SplashPage = () => {
   //state grabber
   let resources = useSelector((state) => state.resources.list);
-  const [filteredResources, setFilteredResources] = useState(Object.values(resources))
+  const [filteredResources, setFilteredResources] = useState(Object.values(resources));
+  const [lat, setLat] = useState(29.760427);
+  const [lng, setLng] = useState(-95.369804);
 
   //useEffect monitors the filtered resources for the assignment from state, then updates and renders the markers
   useEffect(() => {
@@ -35,8 +37,8 @@ const SplashPage = () => {
         BRINGING <span css={{ color: "rgb(149, 181, 60)" }}>UNITY</span> TO THE
         TABLE
       </h2>
-      <SearchBar setFilteredResources={setFilteredResources} resources={resources}></SearchBar>
-      <MapComponent resources={filteredResources}></MapComponent>
+      <SearchBar setLat={setLat} setLng={setLng} setFilteredResources={setFilteredResources} resources={resources}></SearchBar>
+      <MapComponent lat={lat} lng={lng} setLng={setLng} setLat={setLat} resources={filteredResources}></MapComponent>
     </div>
   );
 };

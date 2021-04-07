@@ -5,9 +5,10 @@ import { useState } from "react";
 import types from "./resource-types";
 import SearchIcon from "@material-ui/icons/Search";
 import PlacesAutocomplete from "./usePlacesAutoComplete";
+import { getLatLng, getGeocode } from "use-places-autocomplete";
 
-const SearchBar = ({ resources, setFilteredResources }) => {
-const [locationQuery, setLocationQuery] = useState("");
+const SearchBar = ({ resources, setFilteredResources, setLat, setLng }) => {
+const [address, setAddress] = useState("");
 const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
 
 
@@ -16,7 +17,13 @@ const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
     //write function to use search thunk and return
     //all location data for search
     e.preventDefault();
-    filterResource(resourceTypeQuery);
+    const geocodedAddress = await getGeocode({address});
+    const latlng = await getLatLng(geocodedAddress[0]);
+    const {lat, lng} = latlng;
+    setLat(lat);
+    setLng(lng);
+    console.log("converted address", {lat, lng})
+    // filterResource(resourceTypeQuery);
   };
 
   const filterResource = async (type) => {
@@ -83,7 +90,7 @@ const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
           >
             LOCATION
           </label>
-          <PlacesAutocomplete></PlacesAutocomplete>
+          <PlacesAutocomplete address={address} setAddress={setAddress}></PlacesAutocomplete>
         </div>
         <div
           className="resourceType__container"
