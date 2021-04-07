@@ -58,6 +58,14 @@ const MapComponent = ({resources}) => {
     setMap(currentMap);
   }
 
+  //handle bounds changing
+  function handleBoundsChange() {
+    const bounds = map.getBounds();
+    const center = bounds.getCenter();
+    setLat(center.lat());
+    setLng(center.lng());
+  }
+
   //jsx
   return (
     <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
@@ -67,6 +75,8 @@ const MapComponent = ({resources}) => {
         center={center}
         zoom={12}
         onLoad={handleMapLoad}
+        onDragEnd={handleBoundsChange}
+        onClick={handleBoundsChange}
       >
         {resources.map((resource) => {
           return (
