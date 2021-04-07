@@ -17,6 +17,7 @@ import Footer from "./components/Footer/footer.js";
 import ResourceDetail from "./components/Resources/ResourceDetail";
 import ResourceCategories from "./components/Resources/ResourceCategories";
 import PostedResources from "./components/Resources/postedResources";
+import ClaimedResources from "./components/Resources/claimedResources";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -112,6 +113,13 @@ function App() {
               authenticated={authenticated}
             >
               <PostedResources />
+            </ProtectedRoute>
+            <ProtectedRoute
+              path="/my_resources"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <ClaimedResources />
             </ProtectedRoute>
             <Route>
               <h2 style={{ display: "flex", justifyContent: "center" }}>Resource Not Found</h2>
