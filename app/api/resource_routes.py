@@ -117,3 +117,11 @@ def claim_resource():
     resource.quantity = resource.quantity - quantity
     db.session.commit()
     return({"Success": "Resources have been claimed."})
+
+
+@resource_routes.route('/filter', methods=['POST'])
+def filter_resources():
+    decoded = json.loads(request.data.decode("UTF-8"))
+    category = decoded['category']
+    filtered_resources = Resource.query.filter(Resource.catName == category).all()
+    return {"resources": [resource.to_dict() for resource in filtered_resources]}

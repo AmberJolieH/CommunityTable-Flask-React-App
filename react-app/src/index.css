@@ -125,3 +125,7 @@ input:focus, select:focus {
 	outline: none !important;
 	box-shadow: 2px 2px 6px black;
 }
+
+.gm-style .gm-style-iw-d{
+	overflow-y: hidden;
+}
