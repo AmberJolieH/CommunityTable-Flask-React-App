@@ -10,6 +10,33 @@ const one = resource => ({
     resource
 })
 
+export const updateResource = ({id, name, description, image, quantity, catName, startsAt, endsAt, locationId }) => async dispatch => {
+    const form = new FormData()
+    form.append('name', name)
+    form.append('description', description)
+    form.append('image', image)
+    form.append('quantity', quantity)
+    form.append('catName', catName)
+    form.append('startsAt', startsAt)
+    form.append('endsAt', endsAt)
+    form.append('locationId', locationId)
+    const response = await fetch(`/api/resources/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: form
+    })
+    const resource = await response.json()
+    if (!resource.errors) {
+        dispatch(one(resource))
+    }
+    else {
+        return { 'error': ['Resource not created. Please try again.'] }
+    }
+    return resource;
+}
+
 export const createresource = ({ name, description, image, quantity, catName, startsAt, endsAt, locationId }) => async dispatch => {
     const form = new FormData()
     form.append('name', name)
