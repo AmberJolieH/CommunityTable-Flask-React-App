@@ -44,11 +44,11 @@ def upgrade():
     )
     op.create_table('claimStatus',
     sa.Column('claimUserId', sa.Integer(), nullable=False),
-    sa.Column('resourceId', sa.Integer(), nullable=False),
+    sa.Column('claimedResourceId', sa.Integer(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['claimUserId'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['resourceId'], ['resources.id'], ),
-    sa.PrimaryKeyConstraint('claimUserId', 'resourceId')
+    sa.ForeignKeyConstraint(['claimedResourceId'], ['resources.id'], ),
+    sa.PrimaryKeyConstraint('claimUserId', 'claimedResourceId')
     )
     op.add_column('users', sa.Column('firstname', sa.String(length=40), nullable=False))
     op.add_column('users', sa.Column('isOrg', sa.Boolean(), nullable=True))
