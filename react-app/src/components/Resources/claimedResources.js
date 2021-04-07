@@ -14,10 +14,44 @@ const ClaimedResources = () => {
         dispatch(getClaimedResources(userId))
     }, [dispatch, userId])
 
-    // const resources = useSelector()
+    const resources = useSelector(state => Object.values(state.resources.claimedResources))
+
+    const componentMap = {
+        'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
+        'Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/parishable.svg",
+        'Water and beverages': "https://resourceimage.s3-us-west-2.amazonaws.com/WATER.svg",
+        'Baby care': "https://resourceimage.s3-us-west-2.amazonaws.com/diapers.svg",
+        'Children toys': "https://resourceimage.s3-us-west-2.amazonaws.com/CHILDS-toys.svg",
+        'Clothing': "https://resourceimage.s3-us-west-2.amazonaws.com/cloth.svg",
+        'Electronics': "https://resourceimage.s3-us-west-2.amazonaws.com/elec.svg",
+        'Books': "https://resourceimage.s3-us-west-2.amazonaws.com/books.svg",
+        'School Supplies': "https://resourceimage.s3-us-west-2.amazonaws.com/schoolSupplies.svg",
+        'Furniture': "https://resourceimage.s3-us-west-2.amazonaws.com/furn.svg",
+        'Shelter': "https://resourceimage.s3-us-west-2.amazonaws.com/shelter.svg",
+        'Services (Barber, shower, etc)': "https://resourceimage.s3-us-west-2.amazonaws.com/services.svg",
+        'Other': "https://resourceimage.s3-us-west-2.amazonaws.com/etc.svg",
+    };
+
+    if (!resources) {
+        return (
+            <div>Loading...</div>
+        )
+    };
 
     return (
-        <h1>This is the claimed Resources page</h1>
+        <div>
+            <h1>Your Claimed Resources:</h1>
+            <div>
+                {resources.map(resource => {
+                    return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card'>
+                        <h2>{resource.name}</h2>
+                        <img src={`${componentMap[resource.catName]}`} alt={resource.catName} />
+                        <p>{resource.description}</p>
+                        <p>{resource.location.name}</p>
+                    </Link>
+                })}
+            </div>
+        </div>
     )
 };
 

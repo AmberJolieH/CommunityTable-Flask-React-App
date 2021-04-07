@@ -89,7 +89,7 @@ export const claimResource = (resourceId, quantity) => async dispatch => {
     return res;
 }
 
-const initialState = { list: {}, postedResources: {} };
+const initialState = { list: {}, postedResources: {}, claimedResources: {} };
 
 export const getPostedResources = (id) => async dispatch => {
     const response = await fetch(`/api/users/${id}/posted_resources`, {
