@@ -52,7 +52,7 @@ const PostedResources = () => {
             <div
                 css={{
                     display: 'grid',
-                    gridTemplateColumns: '18% 18% 18% 18% 18%',
+                    gridTemplateColumns: '24% 24% 24% 24% ',
 
 
                 }}
@@ -61,7 +61,7 @@ const PostedResources = () => {
                     return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
                         display: 'flex',
                         flexDirection: 'column',
-                        margin: '2rem 4rem 2rem',
+                        margin: '2rem 2rem 2rem',
                         width: '90%',
                         fontSize: '1.2rem',
                         color: 'black',
