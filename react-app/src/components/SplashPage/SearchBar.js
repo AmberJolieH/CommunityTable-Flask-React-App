@@ -20,7 +20,7 @@ const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
     const geocodedAddress = await getGeocode({address});
     const latlng = await getLatLng(geocodedAddress[0]);
     const {lat, lng} = latlng;
-    setLat(lat);
+    setLat(lat);  
     setLng(lng);
     console.log("converted address", {lat, lng})
     // filterResource(resourceTypeQuery);
