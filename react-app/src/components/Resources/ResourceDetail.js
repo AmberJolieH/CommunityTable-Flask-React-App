@@ -61,7 +61,7 @@ const ResourceDetail = () => {
     >
       <h2>Name: {resource.name}</h2>
 
-      <img css={{ maxWidth: "100px" }} src={resource.image} />
+      <img css={{ maxWidth: "100px" }} src={resource.image} alt="resource" />
       <p>Description: {resource.description}</p>
       <p>Category: {resource.catName}</p>
       <p>Location: {resource.location.name}</p>
