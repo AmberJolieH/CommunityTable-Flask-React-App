@@ -4,10 +4,13 @@ import { jsx } from "@emotion/react";
 import { useState } from "react";
 import types from "./resource-types";
 import SearchIcon from "@material-ui/icons/Search";
+import PlacesAutocomplete from "./usePlacesAutoComplete";
 
 const SearchBar = ({ resources, setFilteredResources }) => {
-  const [locationQuery, setLocationQuery] = useState("");
-  const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
+const [locationQuery, setLocationQuery] = useState("");
+const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
+
+
 
   const handleSubmit = async (e) => {
     //write function to use search thunk and return
@@ -18,10 +21,9 @@ const SearchBar = ({ resources, setFilteredResources }) => {
 
   const filterResource = async (type) => {
     let resourceRes;
-    console.log("type", type)
+    console.log("type", type);
     if (type === "all") {
       resourceRes = resources;
-
     } else {
       const res = await fetch(`/api/resources/filter`, {
         method: "POST",
@@ -31,7 +33,7 @@ const SearchBar = ({ resources, setFilteredResources }) => {
         },
       });
       const response = await res.json();
-      resourceRes = response.resources
+      resourceRes = response.resources;
     }
     setFilteredResources(Object.values(resourceRes));
   };
@@ -81,17 +83,7 @@ const SearchBar = ({ resources, setFilteredResources }) => {
           >
             LOCATION
           </label>
-          <input
-            type="text"
-            value={locationQuery}
-            onChange={(e) => setLocationQuery(e.target.value)}
-            css={{
-              borderRadius: "2rem",
-              padding: "0.4rem",
-              textAlign: "center",
-              width: "80%",
-            }}
-          ></input>
+          <PlacesAutocomplete></PlacesAutocomplete>
         </div>
         <div
           className="resourceType__container"
@@ -134,7 +126,7 @@ const SearchBar = ({ resources, setFilteredResources }) => {
             })}
           </select>
         </div>
-        <button css={{backgroundColor: "rgb(241, 241, 241)", border: "none"}}>
+        <button css={{ backgroundColor: "rgb(241, 241, 241)", border: "none" }}>
           <SearchIcon
             css={{
               padding: "1rem",

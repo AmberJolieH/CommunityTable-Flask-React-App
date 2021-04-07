@@ -68,7 +68,6 @@ const MapComponent = ({resources}) => {
 
   //jsx
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
       <GoogleMap
         id="search-map"
         mapContainerStyle={containerStyle}
@@ -87,7 +86,6 @@ const MapComponent = ({resources}) => {
           );
         })}
       </GoogleMap>
-    </LoadScript>
   );
 };
 export default MapComponent;
