@@ -16,6 +16,9 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     resources = db.relationship('Resource', back_populates='user')
+    claimedResource = db.relationship(
+        'ClaimStatus', back_populates='claimUser'
+    )
 
     @property
     def password(self):
@@ -50,11 +53,11 @@ class Location(db.Model):
 
     def to_dict(self):
         return {
-          "name": self.name,
-          "state": self.state,
-          "city": self.city,
-          "lat": str(self.latitude),
-          "long": str(self.longitude)
+            "name": self.name,
+            "state": self.state,
+            "city": self.city,
+            "lat": str(self.latitude),
+            "long": str(self.longitude)
         }
 
 
@@ -74,8 +77,10 @@ class Resource(db.Model):
 
     user = db.relationship('User', lazy="joined", back_populates='resources')
     location = db.relationship(
-      'Location', lazy="joined", back_populates='resources'
-      )
+        'Location', back_populates='resources'
+    )
+    claimUser = db.relationship(
+        'ClaimStatus', back_populates='claimedResource')
 
     def to_dict(self):
         return {
@@ -95,35 +100,15 @@ class Resource(db.Model):
 
     def to_location(self):
         return{
-          "location": self.location.to_dict()
+            "location": self.location.to_dict()
         }
 
-# class ClaimStatus(db.Model):
-#     __tablename__='claimStatus'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     claimUserId = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     resourceId = db.Column(db.Integer, db.ForeignKey('resources.id'))
-#     quantity = db.Column(db.Integer, nullable=False)
+class ClaimStatus(db.Model):
+    __tablename__ = 'claimStatus'
+    claimUserId = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    claimedResourceId = db.Column(db.Integer, db.ForeignKey('resources.id'), primary_key=True)
+    quantity = db.Column(db.Integer, nullable=False)
 
-
-claimStatus = db.Table(
-  'claimStatus',
-  db.Column(
-    'claimUserId',
-    db.Integer,
-    db.ForeignKey('users.id'),
-    primary_key=True
-  ),
-  db.Column(
-    'resourceId',
-    db.Integer,
-    db.ForeignKey('resources.id'),
-    primary_key=True
-  ),
-  db.Column(
-    'quantity',
-    db.Integer,
-    nullable=False
-  )
-)
+    claimUser = db.relationship('User', back_populates="claimedResource")
+    claimedResource = db.relationship('Resource', back_populates="claimUser")

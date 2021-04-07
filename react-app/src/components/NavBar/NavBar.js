@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { jsx } from "@emotion/react";
 import homeIcon from "../../images/Comm unity table-2.svg";
+import { useSelector } from "react-redux";
 
 const NavBar = ({ setAuthenticated, authenticated }) => {
   return (
@@ -80,7 +81,24 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                   margin: "1rem"
                 }}
               >
-                My Resources
+                My Claimed Resources
+              </NavLink>
+            </div>
+            <div>
+              <NavLink
+                to="/posted_resources"
+                exact={true}
+                activeClassName="active"
+                className="button"
+                css={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "0.75rem",
+                  fontWeight: "bold",
+                  margin: "1rem"
+                }}
+              >
+                My Posted Resources
               </NavLink>
             </div>
             <div>
@@ -134,7 +152,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 Login
               </NavLink>
             </div>
-            <div className="signupButton" style={{marginTop:"0rem"}} >
+            <div className="signupButton" style={{ marginTop: "0rem" }} >
               <NavLink
                 to="/sign-up"
                 exact={true}

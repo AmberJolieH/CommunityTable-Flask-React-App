@@ -1,14 +1,21 @@
 const LOAD = 'resources/LOAD'
 const ONE = 'resources/ONE'
+const POSTED = 'resources/POSTED'
 
 const load = list => ({
     type: LOAD,
     list
 });
+
 const one = resource => ({
     type: ONE,
     resource
-})
+});
+
+const posted = list => ({
+    type: POSTED,
+    list
+});
 
 export const updateResource = ({id, name, description, image, quantity, catName, startsAt, endsAt, locationId }) => async dispatch => {
     const form = new FormData()
@@ -83,7 +90,37 @@ export const getCategories = (id) => async dispatch => {
     return await response.json();
 }
 
-const initialState = {};
+export const claimResource = (resourceId, quantity) => async dispatch => {
+    console.log("in thunk resourceId", resourceId);
+    console.log("in thunk quantity", quantity)
+    const response = await fetch(`/api/resources/claim`, {
+        method: 'POST',
+        body: JSON.stringify({quantity, resourceId}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const res = await response.json();
+    // claiming a resource will return the updated resource, which will update the resourceList state, specifically the quanity
+    // so the one action can be dispatched to update(override) the resource in our state
+    // will also need a thunk from users(?) to grab all resource with claim status equal to the user ID
+    // if(res.ok){
+    //     dispatch(one(res))
+    // }
+    return res;
+}
+
+const initialState = {list: {}, postedResources: {}};
+export const getPostedResources = (id) => async dispatch => {
+    const response = await fetch(`/api/users/${id}/posted_resources`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const postedResources = await response.json();
+    dispatch(posted(postedResources))
+}
 
 const resourceReducer = (state = initialState, action) => {
     let newState = Object.assign({}, state);
@@ -93,14 +130,20 @@ const resourceReducer = (state = initialState, action) => {
             action.list.resources.forEach(resource => {
                 resourceList[resource.id] = resource
             });
-            newState = resourceList
+            newState.list = resourceList
             return newState;
 
         case ONE:
-
-            newState[action.resource.id] = action.resource
+            newState.list[action.resource.id] = action.resource
             return newState;
-
+        case POSTED: {
+            const postedResources = {};
+            action.list.posted_resources.forEach(resource => {
+                postedResources[resource.id] = resource
+            });
+            newState.postedResources = postedResources;
+            return newState;
+        }
         default:
             return newState;
     }
