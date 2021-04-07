@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { jsx } from "@emotion/react";
 import homeIcon from "../../images/Comm unity table-2.svg";
-import { useSelector } from "react-redux";
 
 const NavBar = ({ setAuthenticated, authenticated }) => {
   return (
