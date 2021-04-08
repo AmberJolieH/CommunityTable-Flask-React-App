@@ -5,6 +5,7 @@ import { jsx } from "@emotion/react";
 import { getPostedResources } from "../../store/resources"
 import { Link } from "react-router-dom";
 
+
 const PostedResources = () => {
     const userId = useSelector(state => state.session.user.id)
 
@@ -15,14 +16,6 @@ const PostedResources = () => {
     useEffect(() => {
         dispatch(getPostedResources(userId))
     }, [dispatch, userId])
-
-    const onEdit =(e) =>{
-        e.preventDefault()
-    }
-
-    const onDelete =(e) =>{
-        e.preventDefault()
-    }
 
     // const componentMap = {
     //     'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
@@ -45,7 +38,7 @@ const PostedResources = () => {
             <div>Loading...</div>
         )
     }
-
+   
     return (
         <div>
             <h1>Your Posted Resources:</h1>
@@ -74,8 +67,6 @@ const PostedResources = () => {
                         <p>{resource.description}</p>
                         <p>{resource.location.name}</p>
                         <p>{resource.quantity}</p>
-                        <button onClick={onEdit}>Edit</button>
-                        <button onClick={onDelete}>Delete</button>
                     </Link>
                 })}
             </div>

@@ -7,19 +7,50 @@ import {  useHistory } from 'react-router-dom';
 import PlacesAutocomplete from "../SplashPage/usePlacesAutoComplete";
 import { getLatLng, getGeocode } from "use-places-autocomplete";
 
-const CreateResource = () =>{
+const CreateResource = ({resource}) =>{
     const dispatch = useDispatch();
+    let nameContent;
+    let descriptionContent;
+    let imageContent;
+    let quantityContent;
+    let startsContent;
+    let endsContent;
+    let addressContent;
+    let catContent;
 
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [image, setImage] = useState('')
-    const [quantity, setQuantity] = useState(1)
-    const [startsAt, setStartsAt] = useState('')
-    const [endsAt, setEndsAt] = useState('')
-    const [address, setAddress] = useState('')
+    
+    
+    if(resource){
+        nameContent = resource.name
+        descriptionContent = resource.description
+        imageContent = resource.image
+        quantityContent = resource.quantity
+        startsContent = resource.startsAt
+        endsContent = resource.endsAt
+        addressContent = resource.location.address
+        catContent = resource.catName
+    }
+    if(!resource) {
+        nameContent = ''
+        descriptionContent = ''
+        imageContent = ''
+        quantityContent= ''
+        startsContent = ''
+        endsContent = ''
+        addressContent = ''
+        catContent = ''
+    }
+    const [name, setName] = useState(nameContent)
+    const [description, setDescription] = useState(descriptionContent)
+    const [image, setImage] = useState(imageContent)
+    const [quantity, setQuantity] = useState(quantityContent)
+    const [startsAt, setStartsAt] = useState(startsContent)
+    const [endsAt, setEndsAt] = useState(endsContent)
+    const [address, setAddress] = useState(addressContent)
+    console.log(address, '.....address....')
     const [errors, setErrors] = useState([]);
     const history = useHistory();
-
+    
     const onSubmit = async (e)=>{
         e.preventDefault()
         const geocodedAddress = await getGeocode({ address });
@@ -59,7 +90,7 @@ const CreateResource = () =>{
         'Services (Barber, shower, etc)',
         'Other'
     ]
-    const [catName, setCatName] = useState(categories[0])
+    const [catName, setCatName] = useState(catContent)
 
     return (
         <div
@@ -96,6 +127,11 @@ const CreateResource = () =>{
                     onChange={e => setDescription(e.target.value)}
                 />
                 <label>Picture</label>
+                {resource &&
+                <img src={resource.image} alt={resource.name} style={{
+                    maxWidth: '8rem'
+                }}/>
+                }
                 <input
                     name="image"
                     type="file"
@@ -141,27 +177,7 @@ const CreateResource = () =>{
                     onChange={e => setEndsAt(e.target.value)}
                 />
                 <label>Pick-up location: </label>
-                <PlacesAutocomplete setAddress={setAddress} style={{
-                    display: 'flex',
-                    justifyContent: 'center'
-                }}/>
-                {/* <select
-                    name="locationId"
-                    type=""
-                    value={locationId}
-                    onChange={e => setLocationId(e.target.value)}
-                >
-                    {locations.map((location, i) => {
-                        return (
-                            <option
-                                key={i}
-                                value={i+1}
-                            >
-                                {location}
-                            </option>
-                        )
-                    })}
-                </select> */}
+                <PlacesAutocomplete setAddress={setAddress} address={address} />
                 <button
                     css={{
                         backgroundColor: "rgb(149, 181, 60)",
