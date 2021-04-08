@@ -121,9 +121,15 @@ def claim_resource():
     user = User.query.get(current_user.id)
     decoded = json.loads(request.data.decode("UTF-8"))
     resourceId = decoded['resourceId']
-    quantity = decoded['quantity']
+    takenQuantity = decoded['quantity']
     resource = Resource.query.get(resourceId)
-    resource.quantity = resource.quantity - quantity
+    resource.quantity = resource.quantity - takenQuantity
+    claimed = ClaimStatus(
+        claimUserId=current_user.id,
+        claimedResourceId=resourceId,
+        quantity=takenQuantity
+    )
+    db.session.add(claimed)
     db.session.commit()
     return({"Success": "Resources have been claimed."})
 
