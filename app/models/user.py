@@ -43,9 +43,10 @@ class Location(db.Model):
     __tablename__ = 'locations'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    state = db.Column(db.String(30), nullable=False)
-    city = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(50))
+    address = db.Column(db.String(120), nullable=False)
+    # state = db.Column(db.String(30), nullable=False)
+    # city = db.Column(db.String(30), nullable=False)
     latitude = db.Column(db.Numeric(10, 8), nullable=False)
     longitude = db.Column(db.Numeric(11, 8), nullable=False)
 
@@ -54,8 +55,9 @@ class Location(db.Model):
     def to_dict(self):
         return {
             "name": self.name,
-            "state": self.state,
-            "city": self.city,
+            "address": self.address,
+            # "state": self.state,
+            # "city": self.city,
             "lat": str(self.latitude),
             "long": str(self.longitude)
         }
@@ -94,7 +96,8 @@ class Resource(db.Model):
             "startsAt": self.startsAt,
             "endsAt": self.endsAt,
             "locationId": self.locationId,
-            "location": self.location.to_dict()
+            "location": self.location.to_dict(),
+            "user": self.user.to_dict()
         }
 
     def to_location(self):

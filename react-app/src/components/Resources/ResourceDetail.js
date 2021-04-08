@@ -18,6 +18,15 @@ const ResourceDetail = () => {
     return "loading...";
   }
 
+    const realDate = date => {
+      console.log(date, '......', date.split(' '))
+      let newDate = date.split(' ')
+      return `${newDate[2]} ${newDate[1]} ${newDate[3]}` 
+    }
+    if(!resource){
+        return 'loading...'
+    }
+  
   const handleIncrement = (type) => {
     if (type === "add") {
       if (claimQuant < resource.quantity) {
@@ -54,51 +63,61 @@ const ResourceDetail = () => {
     )
   }
 
-  return (
-    <div
-      className="standard-card"
-      style={{ marginLeft: "auto", marginRight: "auto" }}
-    >
-      <h2>Name: {resource.name}</h2>
-
-      <img css={{ maxWidth: "100px" }} src={resource.image} alt="resource" />
-      <p>Description: {resource.description}</p>
-      <p>Category: {resource.catName}</p>
-      <p>Location: {resource.location.name}</p>
-      <p>Quantity Available: {resource.quantity}</p>
-      <p>Starts At: {resource.startsAt}</p>
-      <p>Ends At: {resource.endsAt}</p>
-      <form onSubmit={handleClaim} css={{ alignItems: "center" }}>
-        <div css={{ display: "flex", margin: "1rem", height: "3rem", alignItems: "center"}}>
-          <div css={{ display: "flex", flexDirection: "column" }}>
-            <button
-              onClick={() => handleIncrement("add")}
-              type="button"
-              className="button"
-              style={{ padding: "0", width: "20px", backgroundColor: "rgb(237, 237, 237)" }}
-            >
-              <ArrowUpwardIcon style={{ fontSize: "1rem" }} />
-            </button>
-            <button
-              onClick={() => handleIncrement("sub")}
-              type="button"
-              className="button"
-              style={{padding: "0", width: "20px", backgroundColor: "rgb(237, 237, 237)"}}
-            >
-              <ArrowDownwardIcon style={{ fontSize: "1rem" }} />
-            </button>
+    return(
+        <div className='standard-card' style={{marginLeft:"auto", marginRight: "auto"}}>
+            <h1 style={{
+              textTransform: 'capitalize',
+              marginTop: '-.3rem'
+            }}>{resource.name}</h1>
+            <p style={{
+              marginTop: '-1rem',
+              fontSize: '.8rem',
+            }}>{resource.catName}</p>
+            <img css={{ maxWidth: "12rem" }} src={resource.image}/>
+            <p>Description: {resource.description}</p>
+            <p style={{
+              fontSize: '.8rem',
+              marginTop: '-.7rem'
+            }}>(Quantity: {resource.quantity})</p>
+            <p>Pick-up Location: {resource.location.name}</p>
+            <p style={{
+              fontSize: '.8rem',
+              alignItems: 'right',
+              margin: '-.7rem',
+              paddingBottom: '1rem'
+            }}>Available: {realDate(resource.startsAt)} - {realDate(resource.endsAt)}</p>
+            <p>Donation made posible by: {resource.user.username}</p>
+            <form onSubmit={handleClaim} css={{ alignItems: "center" }}>
+              <div css={{ display: "flex", margin: "1rem", height: "3rem", alignItems: "center" }}>
+                <div css={{ display: "flex", flexDirection: "column" }}>
+                  <button
+                    onClick={() => handleIncrement("add")}
+                    type="button"
+                    className="button"
+                    style={{ padding: "0", width: "20px", backgroundColor: "rgb(237, 237, 237)" }}
+                  >
+                    <ArrowUpwardIcon style={{ fontSize: "1rem" }} />
+                  </button>
+                  <button
+                    onClick={() => handleIncrement("sub")}
+                    type="button"
+                    className="button"
+                    style={{ padding: "0", width: "20px", backgroundColor: "rgb(237, 237, 237)" }}
+                  >
+                    <ArrowDownwardIcon style={{ fontSize: "1rem" }} />
+                  </button>
+                </div>
+                <input
+                  value={claimQuant}
+                  name="claimQuant"
+                  onChange={(e) => setClaimQuant(e.target.value)}
+                ></input>
+              </div>
+              {buttonContent}
+            </form>
+            {/* <p>Poster: {resource.user.name}</p> */}
           </div>
-          <input
-            value={claimQuant}
-            name="claimQuant"
-            onChange={(e) => setClaimQuant(e.target.value)}
-          ></input>
-        </div>
-       {buttonContent}
-      </form>
-      {/* <p>Poster: {resource.user.name}</p> */}
-    </div>
-  );
-};
+      );
+    };
 
 export default ResourceDetail;

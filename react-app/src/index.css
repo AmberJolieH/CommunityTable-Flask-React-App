@@ -28,6 +28,8 @@
 }
 .standard-card {
 	display: flex;
+	box-sizing: border-box;
+	margin-bottom: 10rem;
 	flex-direction: column;
 	background-color: rgb(237, 237, 237);
 	align-items: center;
@@ -40,7 +42,7 @@
 	width: 60%;
 }
 .input__card,
-.standard-card input,
+
 .standard-card textarea,
 .standard-card select {
 	border: .5px solid rgba(83, 81, 81, 0.336);
@@ -50,6 +52,9 @@
 	text-align: center;
 	width: 60%;
 
+}
+.standard-card input {
+	max-width: 30%;
 }
 .signupButton {
 	display: block;
