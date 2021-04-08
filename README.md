@@ -22,10 +22,32 @@ in our repo (but you can also find them here):
 
 ## About the App
 
-Community Table was developed with the idea of being charitable to our neighbors and communities, while also
+[Community Table](https://community-table.herokuapp.com) was developed with the idea of being charitable to our neighbors and communities, while also
 being clear and accessible to anyone who might need it. Our design philosphy was primarily focused on making
 the website modern and clean looking without compromising functionality that may be missed by someone who
-isn't technically inclined. The site allows new users to create an account and immediately view resources
+isn't as technically inclined. The site allows new users to create an account and immediately view resources
 posted by other users in their area or post their own resources they'd like to donate to someone in need.
-Once a resource is posted, another user can 'claim' the resource. This will share their contact info with the
-user donating, and allow them to meet up to exchange the goods in question.
+Once a resource is posted, another user can 'claim' the resource and specify the quantity they need. This will
+share their contact info with the user who's donating, and allow them to meet up to exchange the goods in question.
+
+## Technologies Used
+
+For this application we decided to use React and Redux for our Frontend.
+This was a great choice for us allowing us to make distinct and reusable components throughout the site,
+and our Redux store allows us to retrieve all kinds of information from our Backend and make it readily available in the Frontend.
+
+On the Backend we're using Python and Flask.
+Flask was great throughout development as it's data oriented and super straight forward. All of our backend routes
+are written in Python and Flask allows us to simplify our data flow.
+
+Our Database is currently using SQLAlchemy and Alembic.
+SQLAlquemy is a great tool that works really well with our Flask integration, and Alembic is tailored around
+making Flask more intuitive and efficient.
+
+
+## Installation instructions
+
+You can find our detailed instructions on setting up the project and getting it running in a folder titled "TextDocs"
+(here in the root of the project directory).
+There are two files separated for the Backend and for the Frontend separately. If you're trying to set up this project yourself
+and run into any issues, you can reach out to us directly at [communitytable.dev@gmail.com](communitytable.dev@gmail.com).
