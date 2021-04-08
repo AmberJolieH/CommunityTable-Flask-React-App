@@ -8,21 +8,19 @@ import PlacesAutocomplete from "./usePlacesAutoComplete";
 import { getLatLng, getGeocode } from "use-places-autocomplete";
 
 const SearchBar = ({ resources, setFilteredResources, setLat, setLng }) => {
-const [address, setAddress] = useState("");
-const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
-
-
+  const [address, setAddress] = useState("");
+  const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
 
   const handleSubmit = async (e) => {
     //write function to use search thunk and return
     //all location data for search
     e.preventDefault();
-    const geocodedAddress = await getGeocode({address});
+    const geocodedAddress = await getGeocode({ address });
     const latlng = await getLatLng(geocodedAddress[0]);
-    const {lat, lng} = latlng;
-    setLat(lat);  
+    const { lat, lng } = latlng;
+    setLat(lat);
     setLng(lng);
-    console.log("converted address", {lat, lng})
+    console.log("converted address", { lat, lng });
     // filterResource(resourceTypeQuery);
   };
 
@@ -65,9 +63,9 @@ const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
         css={{
           display: "flex",
           height: "7rem",
-          justifyContent: "center",
-          flexWrap: "wrap",
           alignItems: "center",
+          justifyContent: "space-evenly",
+          flexDirection: "row",
           width: "100%",
         }}
       >
@@ -77,8 +75,10 @@ const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            width: "30%",
-            margin: "1rem",
+            width: "45%",
+            maxWidth: "30rem",
+            marginTop: "1rem",
+            marginBottom: "1rem",
           }}
         >
           <label
@@ -90,7 +90,10 @@ const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
           >
             LOCATION
           </label>
-          <PlacesAutocomplete address={address} setAddress={setAddress}></PlacesAutocomplete>
+          <PlacesAutocomplete
+            address={address}
+            setAddress={setAddress}
+          ></PlacesAutocomplete>
         </div>
         <div
           className="resourceType__container"
@@ -98,8 +101,9 @@ const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            width: "30%",
-            margin: "1rem",
+            width: "35%",
+            marginTop: "1rem",
+            marginBottom: "1rem",
           }}
         >
           <label
@@ -137,7 +141,8 @@ const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
           <SearchIcon
             css={{
               padding: "1rem",
-              margin: "1rem",
+              marginTop: "1rem",
+              marginBottom: "1rem",
               backgroundColor: "rgb(149, 181, 60)",
               color: "white",
               borderRadius: "50%",

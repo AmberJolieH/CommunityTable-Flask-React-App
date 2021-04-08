@@ -30,7 +30,7 @@ const MapComponent = ({resources, lat, lng, setLat, setLng}) => {
     }
 
     geolocate();
-  }, []);
+  }, [setLat, setLng]);
 
   if (!resources) {
     return <h1>Loading...</h1>;
