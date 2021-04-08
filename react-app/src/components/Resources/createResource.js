@@ -21,7 +21,6 @@ const CreateResource = ({resource}) =>{
     
     
     if(resource){
-        console.log(resource, '+++++++++')
         nameContent = resource.name
         descriptionContent = resource.description
         imageContent = resource.image
@@ -48,7 +47,6 @@ const CreateResource = ({resource}) =>{
     const [startsAt, setStartsAt] = useState(startsContent)
     const [endsAt, setEndsAt] = useState(endsContent)
     const [address, setAddress] = useState(addressContent)
-    console.log(address, '.....address....')
     const [errors, setErrors] = useState([]);
     const history = useHistory();
     
@@ -101,8 +99,12 @@ const CreateResource = ({resource}) =>{
         const { lat, lng } = latlng;
         const loc = await addAddress({ address, lat, lng })
         const locationId = loc.location.id
-        await dispatch(updateResource({ id, name, description, image, quantity, catName, startsAt, endsAt, locationId }))
-
+        const updatedResource = await dispatch(updateResource({ id, name, description, image, quantity, catName, startsAt, endsAt, locationId }))
+        if (!updatedResource.error) {
+            history.push(`/posted_resources`)
+        } else {
+            setErrors(updatedResource.error);
+        }
     }
 
     let buttonContent;

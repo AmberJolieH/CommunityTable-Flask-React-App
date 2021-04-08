@@ -104,20 +104,12 @@ form {
 	cursor: pointer;
 	background-color: white;
 }
-/* .standard-card input{
-	width: 60%;
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 1rem;
-} */
 .standard-card label{
 	flex-direction: column;
     align-items:center;
 	display: flex;
 	margin-left: 2rem;
 }
-
 .cardheader{
 	margin-Left: 42%;
 }

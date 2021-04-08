@@ -45,9 +45,6 @@ export const updateResource = ({id, name, description, image, quantity, catName,
     form.append('locationId', locationId)
     const response = await fetch(`/api/resources/${id}`, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
         body: form
     })
     const resource = await response.json()

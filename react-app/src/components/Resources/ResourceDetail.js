@@ -69,7 +69,7 @@ const ResourceDetail = () => {
       </div>
     )
   }
-  if (!resource.user.id === user.id){
+  if (resource.user.id !== user.id){
     if(resource.quantity >= 1){
       buttonContent = (
           <button className="button" css={{ width: "100%" }}>
