@@ -83,7 +83,7 @@ def create_resource():
                 upload['url'] = {'error': 'file failed to upload, try again'}
             url = upload['url']
         resource = Resource(
-            posterId=current_user,
+            posterId=current_user.id,
             name=form.data['name'],
             description=form.data['description'],
             image=url,
