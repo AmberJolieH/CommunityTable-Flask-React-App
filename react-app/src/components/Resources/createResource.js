@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import React, {useState} from "react";
 import { jsx } from "@emotion/react";
-import { createresource } from "../../store/resources";
+import { createresource, addAddress } from "../../store/resources";
 import { useDispatch } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import {  useHistory } from 'react-router-dom';
+import PlacesAutocomplete from "../SplashPage/usePlacesAutoComplete";
+import { getLatLng, getGeocode } from "use-places-autocomplete";
 
 const CreateResource = () =>{
     const dispatch = useDispatch();
@@ -14,11 +16,17 @@ const CreateResource = () =>{
     const [quantity, setQuantity] = useState(1)
     const [startsAt, setStartsAt] = useState('')
     const [endsAt, setEndsAt] = useState('')
-    const [locationId, setLocationId] = useState(1)
+    const [address, setAddress] = useState('')
     const [errors, setErrors] = useState([]);
+    const history = useHistory();
 
     const onSubmit = async (e)=>{
         e.preventDefault()
+        const geocodedAddress = await getGeocode({ address });
+        const latlng = await getLatLng(geocodedAddress[0]);
+        const { lat, lng } = latlng;
+        const loc = await addAddress({address, lat, lng})
+        const locationId = loc.location.id
         const resource = await dispatch(createresource({
             name,
             description,
@@ -30,7 +38,7 @@ const CreateResource = () =>{
             locationId
         }));
         if(!resource.error){
-            return <Redirect to="/"/>
+            history.push(`/resources/${resource.id}`)
         } else{
             setErrors(resource.error);
         }
@@ -52,20 +60,15 @@ const CreateResource = () =>{
         'Other'
     ]
     const [catName, setCatName] = useState(categories[0])
-    const locations = [
-        'Goodwill',
-        'Bethel Church of Houston',
-        'University of Houston',
-        'DownTown Houston'
-    ]
 
     return (
         <div
-        css={{
+        style={{
             display: "flex",
             flexDirection:"column",
             alignItems:"center",
-            
+
+
         }}>
             <h2>Create a Resource</h2>
             {errors.map((error, index) => (
@@ -137,8 +140,12 @@ const CreateResource = () =>{
                     value={endsAt}
                     onChange={e => setEndsAt(e.target.value)}
                 />
-                <label>Select a location: </label>
-                <select
+                <label>Pick-up location: </label>
+                <PlacesAutocomplete setAddress={setAddress} style={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}/>
+                {/* <select
                     name="locationId"
                     type=""
                     value={locationId}
@@ -154,7 +161,7 @@ const CreateResource = () =>{
                             </option>
                         )
                     })}
-                </select>
+                </select> */}
                 <button
                     css={{
                         backgroundColor: "rgb(149, 181, 60)",
