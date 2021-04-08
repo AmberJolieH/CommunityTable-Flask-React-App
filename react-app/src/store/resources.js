@@ -17,6 +17,17 @@ const posted = list => ({
     list
 });
 
+export const addAddress =  async ({address, lat, lng}) => {
+    const response = await fetch('/api/locations', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({address, lat, lng})
+    })
+    return await response.json()
+} 
+
 export const updateResource = ({id, name, description, image, quantity, catName, startsAt, endsAt, locationId }) => async dispatch => {
     const form = new FormData()
     form.append('name', name)

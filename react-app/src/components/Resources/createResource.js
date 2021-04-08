@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import React, {useState} from "react";
 import { jsx } from "@emotion/react";
-import { createresource } from "../../store/resources";
+import { createresource, addAddress } from "../../store/resources";
 import { useDispatch } from "react-redux";
 import { Redirect, useHistory } from 'react-router-dom';
+import PlacesAutocomplete from "../SplashPage/usePlacesAutoComplete";
+import { getLatLng, getGeocode } from "use-places-autocomplete";
 
 const CreateResource = () =>{
     const dispatch = useDispatch();
@@ -15,11 +17,18 @@ const CreateResource = () =>{
     const [startsAt, setStartsAt] = useState('')
     const [endsAt, setEndsAt] = useState('')
     const [locationId, setLocationId] = useState(1)
+    const [address, setAddress] = useState('')
     const [errors, setErrors] = useState([]);
     const history = useHistory();
 
     const onSubmit = async (e)=>{
         e.preventDefault()
+        const geocodedAddress = await getGeocode({ address });
+        const latlng = await getLatLng(geocodedAddress[0]);
+        const { lat, lng } = latlng;
+        const loc = await addAddress({address, lat, lng})
+        console.log('.......', loc)
+        setLocationId(loc.id)
         const resource = await dispatch(createresource({
             name,
             description,
@@ -139,8 +148,9 @@ const CreateResource = () =>{
                     value={endsAt}
                     onChange={e => setEndsAt(e.target.value)}
                 />
-                <label>Select a location: </label>
-                <select
+                <label>Add a location: </label>
+                <PlacesAutocomplete setAddress={setAddress}/>
+                {/* <select
                     name="locationId"
                     type=""
                     value={locationId}
@@ -156,7 +166,7 @@ const CreateResource = () =>{
                             </option>
                         )
                     })}
-                </select>
+                </select> */}
                 <button
                     css={{
                         backgroundColor: "rgb(149, 181, 60)",
