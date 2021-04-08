@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { jsx } from "@emotion/react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import { claimResource } from "../../store/resources";
@@ -13,6 +13,7 @@ const ResourceDetail = () => {
   const [claimQuant, setClaimQuant] = useState(0);
   const user = useSelector(state => state.session.user)
   const [editForm, setEditForm] = useState(false)
+  const history = useHistory()
 
   const { id } = useParams();
   const resource = useSelector((state) => state.resources.list[id]);
@@ -57,6 +58,7 @@ const ResourceDetail = () => {
     const res = await dispatch(claimResource(resource.id, claimQuant));
     if(!res.error){
       console.log("success")
+      history.push('/my_resources')
     }
   };
 

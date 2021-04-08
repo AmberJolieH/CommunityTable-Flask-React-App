@@ -25,11 +25,27 @@ const ClaimedResources = () => {
     return (
         <div>
             <h1>Your Claimed Resources:</h1>
-            <div>
+            <div
+                css={{
+                    display: 'grid',
+                    gridTemplateColumns: '24% 24% 24% 24% ',
+
+
+                }}>
                 {resources.map(resource => {
-                    return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card'>
+                    return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        margin: '2rem 2rem 2rem',
+                        width: '90%',
+                        fontSize: '1.2rem',
+                        color: 'black',
+                        fontFamily: 'monospace',
+                        textDecoration: 'none',
+                        textAlign: 'center'
+                    }}>
                         <h2>{resource.name}</h2>
-                        <img src={resource.image} alt={`${resource.catName1} resource`} />
+                        <img css={{ maxWidth: "80%" }} src={resource.image} alt={`${resource.catName1} resource`} />
                         <p>{resource.description}</p>
                         <p>{resource.location.name}</p>
                         <p>{resource.quantity}</p>
