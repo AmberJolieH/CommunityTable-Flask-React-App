@@ -1,6 +1,7 @@
 const LOAD = 'resources/LOAD'
 const ONE = 'resources/ONE'
 const POSTED = 'resources/POSTED'
+const CLAIMED = 'resources/CLAIMED'
 
 const load = list => ({
     type: LOAD,
@@ -17,6 +18,11 @@ const posted = list => ({
     list
 });
 
+const claimed = list => ({
+    type: CLAIMED,
+    list
+})
+
 export const createresource = ({ name, description, image, quantity, catName, startsAt, endsAt, locationId }) => async dispatch => {
     const form = new FormData()
     form.append('name', name)
@@ -32,11 +38,11 @@ export const createresource = ({ name, description, image, quantity, catName, st
         body: form
     })
     const resource = await response.json();
-    if(!resource.errors){
+    if (!resource.errors) {
         dispatch(one(resource))
     }
     else {
-        return {'error': ['Resource not created. Please try again.']}
+        return { 'error': ['Resource not created. Please try again.'] }
     }
     return resource;
 }
@@ -68,7 +74,7 @@ export const claimResource = (resourceId, quantity) => async dispatch => {
     console.log("in thunk quantity", quantity)
     const response = await fetch(`/api/resources/claim`, {
         method: 'POST',
-        body: JSON.stringify({quantity, resourceId}),
+        body: JSON.stringify({ quantity, resourceId }),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -83,7 +89,8 @@ export const claimResource = (resourceId, quantity) => async dispatch => {
     return res;
 }
 
-const initialState = {list: {}, postedResources: {}};
+const initialState = { list: {}, postedResources: {}, claimedResources: {} };
+
 export const getPostedResources = (id) => async dispatch => {
     const response = await fetch(`/api/users/${id}/posted_resources`, {
         method: 'GET',
@@ -93,6 +100,17 @@ export const getPostedResources = (id) => async dispatch => {
     })
     const postedResources = await response.json();
     dispatch(posted(postedResources))
+}
+
+export const getClaimedResources = (id) => async dispatch => {
+    const response = await fetch(`/api/users/${id}/claimed_resources`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const claimedResources = await response.json();
+    dispatch(claimed(claimedResources))
 }
 
 const resourceReducer = (state = initialState, action) => {
@@ -115,6 +133,14 @@ const resourceReducer = (state = initialState, action) => {
                 postedResources[resource.id] = resource
             });
             newState.postedResources = postedResources;
+            return newState;
+        }
+        case CLAIMED: {
+            const claimedResources = {};
+            action.list.claimed_resources.forEach(resource => {
+                claimedResources[resource.id] = resource
+            });
+            newState.claimedResources = claimedResources;
             return newState;
         }
         default:
