@@ -16,7 +16,6 @@ const CreateResource = () =>{
     const [quantity, setQuantity] = useState(1)
     const [startsAt, setStartsAt] = useState('')
     const [endsAt, setEndsAt] = useState('')
-    const [locationId, setLocationId] = useState(1)
     const [address, setAddress] = useState('')
     const [errors, setErrors] = useState([]);
     const history = useHistory();
@@ -27,8 +26,7 @@ const CreateResource = () =>{
         const latlng = await getLatLng(geocodedAddress[0]);
         const { lat, lng } = latlng;
         const loc = await addAddress({address, lat, lng})
-        console.log('.......', loc)
-        setLocationId(loc.id)
+        const locationId = loc.location.id
         const resource = await dispatch(createresource({
             name,
             description,
@@ -75,8 +73,8 @@ const CreateResource = () =>{
             display: "flex",
             flexDirection:"column",
             alignItems:"center",
-            
-            
+
+
         }}>
             <h2>Create a Resource</h2>
             {errors.map((error, index) => (

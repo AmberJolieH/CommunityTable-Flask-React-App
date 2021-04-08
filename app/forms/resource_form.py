@@ -13,7 +13,4 @@ class ResourceForm(FlaskForm):
     catName = StringField('Category', validators=[DataRequired()])
     startsAt = DateField('Starts At', validators=[DataRequired()])
     endsAt = DateField('Ends At', validators=[DataRequired()])
-    locationId = SelectField('Location', choices=[
-        1, 2, 3, 4
-    ])
- 
+    locationId = IntegerField('Location', validators=[DataRequired()])

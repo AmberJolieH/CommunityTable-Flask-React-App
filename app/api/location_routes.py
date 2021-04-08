@@ -16,7 +16,7 @@ def add_location():
         latitude=decoded['lat'],
         longitude=decoded['lng']
     )
-    print(location.to_dict(), '...........................============')
     db.session.add(location)
     db.session.commit()
+    print(location.to_dict(), '...........................============')
     return {"location": location.to_dict()}

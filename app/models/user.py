@@ -55,12 +55,13 @@ class Location(db.Model):
     def to_dict(self):
         return {
             "name": self.name,
+            "id": self.id,
             "address": self.address,
-            # "state": self.state,
-            # "city": self.city,
             "lat": str(self.latitude),
             "long": str(self.longitude)
         }
+    # "state": self.state,
+    # "city": self.city,
 
 
 class Resource(db.Model):

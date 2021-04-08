@@ -54,8 +54,9 @@ def categories(id):
 def create_resource():
     form = ResourceForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("before validation----------------------", type(form.data["locationId"]))
     if form.validate_on_submit():
-        print('after form validation-------------------------------------------------------')
+        print("after validation----------------------", form.data["locationId"])
         if 'image' not in request.files:
             componentMap = {
                 'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
@@ -83,7 +84,7 @@ def create_resource():
                 upload['url'] = {'error': 'file failed to upload, try again'}
             url = upload['url']
         resource = Resource(
-            posterId=current_user,
+            posterId=current_user.id,
             name=form.data['name'],
             description=form.data['description'],
             image=url,
