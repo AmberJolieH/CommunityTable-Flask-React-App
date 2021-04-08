@@ -40,6 +40,7 @@ def get_claimed_resources(userId):
 
     for claim in claims:
         new = Resource.query.get(claim.claimedResourceId)
+        new.quantity = claim.quantity
         claimed_resources.append(new)
 
     return {"claimed_resources": [resource.to_dict()
