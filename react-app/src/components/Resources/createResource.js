@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import { jsx } from "@emotion/react";
 import { createresource, addAddress } from "../../store/resources";
 import { useDispatch } from "react-redux";
-import { Redirect, useHistory } from 'react-router-dom';
+import {  useHistory } from 'react-router-dom';
 import PlacesAutocomplete from "../SplashPage/usePlacesAutoComplete";
 import { getLatLng, getGeocode } from "use-places-autocomplete";
 
@@ -60,12 +60,6 @@ const CreateResource = () =>{
         'Other'
     ]
     const [catName, setCatName] = useState(categories[0])
-    const locations = [
-        'Goodwill',
-        'Bethel Church of Houston',
-        'University of Houston',
-        'DownTown Houston'
-    ]
 
     return (
         <div
@@ -146,8 +140,11 @@ const CreateResource = () =>{
                     value={endsAt}
                     onChange={e => setEndsAt(e.target.value)}
                 />
-                <label>Add a location: </label>
-                <PlacesAutocomplete setAddress={setAddress}/>
+                <label>Pick-up location: </label>
+                <PlacesAutocomplete setAddress={setAddress} style={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}/>
                 {/* <select
                     name="locationId"
                     type=""

@@ -44,7 +44,8 @@
 .input__card,
 
 .standard-card textarea,
-.standard-card select {
+.standard-card select,
+.standard-card input {
 	border: .5px solid rgba(83, 81, 81, 0.336);
 	border-radius: .5rem;
 	padding: .5em;
@@ -53,9 +54,7 @@
 	width: 60%;
 
 }
-.standard-card input {
-	max-width: 30%;
-}
+
 .signupButton {
 	display: block;
 	margin: 12px auto 0;
@@ -105,12 +104,13 @@ form {
 	cursor: pointer;
 	background-color: white;
 }
-.standard-card input{
-	width: 100%;
+/* .standard-card input{
+	width: 60%;
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-}
+	margin-bottom: 1rem;
+} */
 .standard-card label{
 	flex-direction: column;
     align-items:center;
