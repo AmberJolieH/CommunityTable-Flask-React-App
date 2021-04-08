@@ -104,8 +104,22 @@ def create_resource():
 @resource_routes.route('/<int:id>', methods=['PUT'])
 # updates a resource
 def update(id):
+    # form = ResourceForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
     resource = Resource.query.get(id)
-    print(request.to_dict(), '........................')
+
+    resource.posterId = current_user.id,
+    resource.name = form.data['name'],
+    resource.description = form.data['description'],
+    # resource.image = url,
+    resource.quantity = form.data['quantity'],
+    resource.catName = form.data['catName'],
+    resource.startsAt = form.data['startsAt'],
+    resource.endsAt = form.data['endsAt'],
+    resource.locationId = form.data['locationId'],
+    # # decoded = json.loads(request.data.decode("UTF-8"))
+    # db.session.commit()
+    return resource.to_dict()
 
 
 @resource_routes.route('/claim', methods=['POST'])
