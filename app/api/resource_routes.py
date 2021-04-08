@@ -54,8 +54,9 @@ def categories(id):
 def create_resource():
     form = ResourceForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("before validation----------------------", type(form.data["locationId"]))
     if form.validate_on_submit():
-        print('after form validation-------------------------------------------------------')
+        print("after validation----------------------", form.data["locationId"])
         if 'image' not in request.files:
             componentMap = {
                 'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
@@ -100,6 +101,13 @@ def create_resource():
     return {'errors': form.errors}
 
 
+@resource_routes.route('/<int:id>', methods=['PUT'])
+# updates a resource
+def update(id):
+    resource = Resource.query.get(id)
+    print(request.to_dict(), '........................')
+
+
 @resource_routes.route('/claim', methods=['POST'])
 def claim_resource():
     user = User.query.get(current_user.id)
@@ -108,6 +116,7 @@ def claim_resource():
     quantity = decoded['quantity']
     resource = Resource.query.get(resourceId)
     resource.quantity = resource.quantity - quantity
+    db.session.commit()
     return({"Success": "Resources have been claimed."})
 
 
