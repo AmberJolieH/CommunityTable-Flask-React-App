@@ -105,7 +105,15 @@ def create_resource():
 # updates a resource
 def update(id):
     resource = Resource.query.get(id)
-    print(request.to_dict(), '........................')
+    resource.name = request.form['name']
+    resource.description = request.form['description']
+    resource.quantity = request.form['quantity']
+    resource.catName = request.form['catName']
+    resource.startsAt = request.form['startsAt']
+    resource.endsAt = request.form['endsAt']
+    resource.locationId = request.form['locationId']
+    db.session.commit()
+    return resource.to_dict()
 
 
 @resource_routes.route('/claim', methods=['POST'])

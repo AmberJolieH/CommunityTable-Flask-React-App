@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import {
   Combobox,
@@ -10,7 +10,7 @@ import {
 
 import "@reach/combobox/styles.css";
 
-const PlacesAutocomplete = ({setAddress}) => {
+const PlacesAutocomplete = ({setAddress, address}) => {
   const {
     ready,
     value,
@@ -27,6 +27,13 @@ const PlacesAutocomplete = ({setAddress}) => {
     setValue(e.target.value);
     setAddress(e.target.value)
   };
+
+  useEffect(()=>{
+    if(address){
+      setValue(address)
+    }
+
+  },[])
 
   const handleSelect = (val) => {
     setValue(val, false);
