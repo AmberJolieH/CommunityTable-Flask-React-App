@@ -22,7 +22,6 @@ const SearchBar = ({ resources, setFilteredResources, setLat, setLng, setAddress
         setLng(lng)
         setAddressAlert(false)
     } catch(error){
-        console.log("error", error)
         setAddressAlert(true)
     }
     filterResource(resourceTypeQuery);
