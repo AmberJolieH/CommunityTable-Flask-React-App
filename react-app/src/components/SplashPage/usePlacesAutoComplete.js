@@ -33,7 +33,7 @@ const PlacesAutocomplete = ({setAddress, address}) => {
       setValue(address)
     }
 
-  },[])
+  },[setValue])
 
   const handleSelect = (val) => {
     setValue(val, false);

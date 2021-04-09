@@ -32,14 +32,14 @@ const ResourceDetail = () => {
   }
 
   const realDate = date => {
-    console.log(date, '......', date.split(' '))
+
     let newDate = date.split(' ')
-    return `${newDate[2]} ${newDate[1]} ${newDate[3]}` 
+    return `${newDate[2]} ${newDate[1]} ${newDate[3]}`
   }
   if(!resource){
       return 'loading...'
   }
-  
+
   const handleIncrement = (type) => {
     if (type === "add") {
       if (claimQuant < resource.quantity) {
@@ -57,7 +57,6 @@ const ResourceDetail = () => {
     e.preventDefault();
     const res = await dispatch(claimResource(resource.id, claimQuant));
     if(!res.error){
-      console.log("success")
       history.push('/my_resources')
     }
   };
@@ -152,7 +151,7 @@ const ResourceDetail = () => {
       </div>
     );
   };
-   
+
     return (
       <div>
         {content}

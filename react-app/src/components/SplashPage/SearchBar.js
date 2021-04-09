@@ -19,14 +19,12 @@ const SearchBar = ({ resources, setFilteredResources, setLat, setLng }) => {
     const latlng = await getLatLng(geocodedAddress[0]);
     const { lat, lng } = latlng;
     setLat(lat);
-    setLng(lng);
-    console.log("converted address", { lat, lng });
-    // filterResource(resourceTypeQuery);
+    setLng(lng)
+    filterResource(resourceTypeQuery);
   };
 
   const filterResource = async (type) => {
     let resourceRes;
-    console.log("type", type);
     if (type === "all") {
       resourceRes = resources;
     } else {

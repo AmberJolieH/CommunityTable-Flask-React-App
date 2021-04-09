@@ -104,8 +104,6 @@ export const getCategories = (id) => async dispatch => {
 }
 
 export const claimResource = (resourceId, quantity) => async dispatch => {
-    console.log("in thunk resourceId", resourceId);
-    console.log("in thunk quantity", quantity)
     const response = await fetch(`/api/resources/claim`, {
         method: 'POST',
         body: JSON.stringify({ quantity, resourceId }),
