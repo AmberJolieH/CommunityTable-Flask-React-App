@@ -23,14 +23,12 @@ const ClaimedResources = () => {
     };
 
     return (
-        <div>
-            <h1>Your Claimed Resources:</h1>
+        <div style={{marginBottom: "10rem"}}>
+            <h1 style={{textAlign: "center"}}>Your Claimed Resources:</h1>
             <div
                 css={{
                     display: 'grid',
                     gridTemplateColumns: '24% 24% 24% 24% ',
-
-
                 }}>
                 {resources.map(resource => {
                     return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{

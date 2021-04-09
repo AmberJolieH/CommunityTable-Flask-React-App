@@ -38,16 +38,14 @@ const PostedResources = () => {
             <div>Loading...</div>
         )
     }
-   
+
     return (
-        <div>
-            <h1>Your Posted Resources:</h1>
+        <div style={{marginBottom: "10rem"}}>
+            <h1 style={{textAlign: "center"}}>Your Posted Resources:</h1>
             <div
                 css={{
                     display: 'grid',
                     gridTemplateColumns: '24% 24% 24% 24% ',
-
-
                 }}
             >
                 {resources.map(resource => {

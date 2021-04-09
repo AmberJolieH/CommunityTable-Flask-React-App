@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
-import * as sessionActions from "../../store/session"
+import { useDispatch } from "react-redux";
+import * as sessionActions from "../../store/session";
 import { jsx } from "@emotion/react";
-import { Link, Redirect } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
@@ -17,7 +17,9 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await dispatch(sessionActions.signUp(username, firstname, lastname, email, password));
+      const user = await dispatch(
+        sessionActions.signUp(username, firstname, lastname, email, password)
+      );
       if (!user.errors) {
         setAuthenticated(true);
       }
@@ -53,23 +55,38 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-    }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <div
         css={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          flexDirection: "column"
-        }}>
-        <h2 css={{
-          fontSize: "3rem",
-          fontWeight: "bolder",
-          margin: "1rem"
-        }}>JOIN THE COMM<span css={{ color: "rgb(149, 181, 60)", marginTop: "2rem" }}>UNITY</span></h2>
+          flexDirection: "column",
+        }}
+      >
+        <h2
+          css={{
+            fontSize: "3rem",
+            fontWeight: "bolder",
+            margin: "1rem",
+          }}
+        >
+          JOIN THE COMM
+          <span css={{ color: "rgb(149, 181, 60)", marginTop: "2rem" }}>
+            UNITY
+          </span>
+        </h2>
+      </div>
+      <div style={{marginBottom:"1rem", width: "50%", textAlign: "center"}}>
+        Community Table is an application designed for members of a community to
+        help one another by sharing what they can. Ask a neighbor for some help
+        or post some extra things you can share with those in need.
       </div>
       <form onSubmit={onSignUp} className="standard-card">
         {/* <h2 className="standard-card-header" style={{}}>Sign-Up:</h2> */}
@@ -134,12 +151,13 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
             required={true}
           ></input>
         </div>
-        <button className="signupButton" type="submit">Sign Up</button>
-        <p>
-          Already have an account?
-        </p>
+        <button className="signupButton" type="submit">
+          Sign Up
+        </button>
+        <p>Already have an account?</p>
         <div>
-          <Link to="/login"
+          <Link
+            to="/login"
             className="text-button"
             style={{
               textDecoration: "none",
@@ -151,18 +169,14 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
             }}
           >
             Login
-              </Link>
+          </Link>
         </div>
-
-
       </form>
     </div>
   );
 };
 
 export default SignUpForm;
-
-
 
 // firstname
 // lastname
