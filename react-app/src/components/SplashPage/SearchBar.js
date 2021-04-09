@@ -7,10 +7,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import PlacesAutocomplete from "./usePlacesAutoComplete";
 import { getLatLng, getGeocode } from "use-places-autocomplete";
 
-const SearchBar = ({ resources, setFilteredResources, setLat, setLng }) => {
+const SearchBar = ({ resources, setFilteredResources, setLat, setLng, setAddressAlert }) => {
   const [address, setAddress] = useState("");
   const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
-  const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     //all location data for search
@@ -21,8 +20,10 @@ const SearchBar = ({ resources, setFilteredResources, setLat, setLng }) => {
         const { lat, lng } = latlng;
         setLat(lat);
         setLng(lng)
+        setAddressAlert(false)
     } catch(error){
         console.log("error", error)
+        setAddressAlert(true)
     }
     filterResource(resourceTypeQuery);
   };
