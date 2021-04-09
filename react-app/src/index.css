@@ -110,9 +110,8 @@ form {
 	display: flex;
 	margin-left: 2rem;
 }
-.cardheader{
-	margin-Left: 42%;
-}
+
+
 input:focus, select:focus {
 	outline: none !important;
 	box-shadow: 2px 2px 6px black;
