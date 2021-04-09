@@ -103,7 +103,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
                 backgroundColor: "rgb(237, 237, 237)",
                 fontWeight: "bold",
               }}
-              className="button"
             >
               Demo User
             </button>

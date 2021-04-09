@@ -50,6 +50,9 @@ const SplashPage = () => {
         BRINGING <span css={{ color: "rgb(149, 181, 60)" }}>UNITY</span> TO THE
         TABLE
       </h2>
+      <div>
+        See what resources are around you.
+      </div>
       <SearchBar
         setAddressAlert={setAddressAlert}
         setLat={setLat}
