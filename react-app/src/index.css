@@ -52,7 +52,7 @@
 	margin: .5rem;
 	text-align: center;
 	width: 60%;
-
+	box-sizing: border-box;
 }
 
 .signupButton {
@@ -104,15 +104,22 @@ form {
 	cursor: pointer;
 	background-color: white;
 }
-.standard-card label{
+
+.standard-card .input-container{
 	flex-direction: column;
     align-items:center;
 	display: flex;
-	margin-left: 2rem;
+	width: 30%;
 }
-.cardheader{
-	margin-Left: 42%;
+
+.standard-card .input-container-create{
+	flex-direction: column;
+    align-items:center;
+	display: flex;
+	width: 45%;
 }
+
+
 input:focus, select:focus {
 	outline: none !important;
 	box-shadow: 2px 2px 6px black;

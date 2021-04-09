@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { jsx } from "@emotion/react";
 import { getClaimedResources } from "../../store/resources"
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ClaimedResources = () => {
     const userId = useSelector(state => state.session.user.id)

@@ -57,10 +57,8 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      marginTop: "5rem"
     }}>
-
-      <div className="splashPage__container"
+      <div
         css={{
           display: "flex",
           alignItems: "center",
@@ -72,58 +70,61 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           fontWeight: "bolder",
           margin: "1rem"
         }}>JOIN THE COMM<span css={{ color: "rgb(149, 181, 60)", marginTop: "2rem" }}>UNITY</span></h2>
-        <div css={{width: "55%", textAlign: "center", marginBottom: "2rem"}}>
-        </div>
       </div>
       <form onSubmit={onSignUp} className="standard-card">
         {/* <h2 className="standard-card-header" style={{}}>Sign-Up:</h2> */}
 
-        <div>
+        <div className="input-container">
           <label>User Name:</label>
           <input
             type="text"
             name="username"
             onChange={updateUsername}
             value={username}
+            required={true}
           ></input>
         </div>
-        <div>
+        <div className="input-container">
           <label>First Name:</label>
           <input
             type="text"
             name="firstname"
             onChange={updateFirstname}
             value={firstname}
+            required={true}
           ></input>
         </div>
-        <div>
+        <div className="input-container">
           <label>Last Name:</label>
           <input
             type="text"
             name="lastname"
             onChange={updateLastname}
             value={lastname}
+            required={true}
           ></input>
         </div>
-        <div>
+        <div className="input-container">
           <label>Email:</label>
           <input
             type="text"
             name="email"
             onChange={updateEmail}
             value={email}
+            required={true}
           ></input>
         </div>
-        <div>
+        <div className="input-container">
           <label>Password:</label>
           <input
             type="password"
             name="password"
             onChange={updatePassword}
             value={password}
+            required={true}
           ></input>
         </div>
-        <div>
+        <div className="input-container">
           <label>Repeat Password:</label>
           <input
             type="password"
@@ -133,8 +134,8 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
             required={true}
           ></input>
         </div>
-        <button className="signupButton" type="submit" style={{ marginLeft: "11.5rem" }}>Submit</button>
-        <p style={{ marginLeft: "3rem" }}>
+        <button className="signupButton" type="submit">Sign Up</button>
+        <p>
           Already have an account?
         </p>
         <div>
@@ -147,7 +148,6 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
               fontWeight: "bold",
               margin: "1rem",
               backgroundColor: "rgb(237, 237, 237)",
-              marginLeft: "3.5rem"
             }}
           >
             Login

@@ -13,7 +13,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
         css={{
           alignSelf: "flex-start",
           display: "flex",
-          flexFlow: "row wrap",
+          flexFlow: "nowrap",
           alignItems: "center",
           justifyContent: "space-between",
         }}
@@ -23,7 +23,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
         </NavLink>
         {authenticated && (
           <div
-            className="right__nav__flex"
+            className="center__nav__flex"
             css={{
               display: "flex",
               alignItems: "center",
@@ -42,8 +42,10 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                   textDecoration: "none",
                   color: "black",
                   fontWeight: "bold",
-                  padding: "0.75rem",
-                  margin: "1rem"
+                  padding: "0.75rem 0.3rem 0.75rem 0.3rem",
+                  margin: "0.25rem",
+                  textAlign: "center",
+                  display: "block",
                 }}
               >
                 Create A Resource
@@ -58,9 +60,11 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   textDecoration: "none",
                   color: "black",
-                  padding: "0.75rem",
+                  padding: "0.75rem 0.3rem 0.75rem 0.3rem",
                   fontWeight: "bold",
-                  margin: "1rem"
+                  margin: "0.25rem",
+                  textAlign: "center",
+                  display: "block",
                 }}
               >
                 All Resources
@@ -75,9 +79,11 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   textDecoration: "none",
                   color: "black",
-                  padding: "0.75rem",
+                  padding: "0.75rem 0.3rem 0.75rem 0.3rem",
                   fontWeight: "bold",
-                  margin: "1rem"
+                  margin: "1rem",
+                  textAlign: "center",
+                  display: "block",
                 }}
               >
                 My Claimed Resources
@@ -92,17 +98,30 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   textDecoration: "none",
                   color: "black",
-                  padding: "0.75rem",
+                  padding: "0.75rem 0.3rem 0.75rem 0.3rem",
                   fontWeight: "bold",
-                  margin: "1rem"
+                  margin: "0.25rem",
+                  textAlign: "center",
+                  display: "block",
                 }}
               >
                 My Posted Resources
               </NavLink>
             </div>
-            <div>
-              <LogoutButton setAuthenticated={setAuthenticated} />
-            </div>
+          </div>
+        )}
+        {authenticated && (
+          <div
+            className="right__nav__flex"
+            css={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "-2rem",
+              padding: "0.5rem",
+              textDecoration: "none",
+            }}
+          >
+            <LogoutButton setAuthenticated={setAuthenticated} />
           </div>
         )}
         {!authenticated && (
@@ -126,9 +145,10 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   textDecoration: "none",
                   color: "black",
-                  padding: "0.75rem",
+                  padding: "0.75rem 0.3rem 0.75rem 0.3rem",
                   fontWeight: "bold",
-                  margin: "1rem"
+                  margin: "0.75rem",
+                  textAlign: "center",
                 }}
               >
                 All Resources
@@ -143,33 +163,36 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 css={{
                   textDecoration: "none",
                   color: "black",
-                  padding: "0.75rem",
+                  padding: "0.75rem 0.3rem 0.75rem 0.3rem",
                   fontWeight: "bold",
-                  margin: "1rem"
+                  margin: "0.75rem",
+                  textAlign: "center",
                 }}
               >
                 Login
               </NavLink>
             </div>
-            <div className="signupButton" style={{ marginTop: "0rem" }} >
-              <NavLink
-                to="/sign-up"
-                exact={true}
-                activeClassName="active"
+            <NavLink
+              to="/sign-up"
+              exact={true}
+              activeClassName="active"
+              className="signupButton"
+              style={{ marginTop: "0rem", textDecoration: "none" }}
+            >
+              <div
                 style={{
                   backgroundColor: "rgb(149, 181, 60)",
                   borderRadius: "2rem",
                   padding: "0.02rem",
                   color: "white",
                   border: "0px",
-                  textDecoration: "none",
                   fontSize: "-1rem",
-                  marginLeft: ".5rem"
+                  marginLeft: ".5rem",
                 }}
               >
                 Sign Up
-              </NavLink>
-            </div>
+              </div>
+            </NavLink>
           </div>
         )}
       </div>
