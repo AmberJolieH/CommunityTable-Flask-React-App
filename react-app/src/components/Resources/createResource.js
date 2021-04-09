@@ -55,8 +55,23 @@ const CreateResource = ({ resource }) => {
 
   function validateForm() {
     let errors = [];
+    let currentDate = new Date()
+    let startsAtDate = new Date(startsAt)
+    let endsAtDate = new Date(endsAt)
     if(name.length < 1){
         errors.push("Please enter resource name.")
+    }
+    if(name.length > 40){
+        errors.push("Please enter a name under 40 characters")
+    }
+    if(quantity < 1){
+        errors.push("Please enter in a valid quantity")
+    }
+    if(startsAtDate < currentDate){
+        errors.push("Please enter a valid start date")
+    }
+    if(endsAtDate < currentDate || endsAtDate < startsAtDate){
+        errors.push("Please make sure end date is after start date")
     }
     return errors;
   }
@@ -66,7 +81,6 @@ const CreateResource = ({ resource }) => {
     let latitude;
     let longitude;
     const errs = validateForm();
-
     try {
       const geocodedAddress = await getGeocode({ address });
       const latlng = await getLatLng(geocodedAddress[0]);
