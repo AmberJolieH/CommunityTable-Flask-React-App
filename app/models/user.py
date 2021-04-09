@@ -79,11 +79,9 @@ class Resource(db.Model):
     locationId = db.Column(db.Integer, db.ForeignKey('locations.id'))
 
     user = db.relationship('User', lazy="joined", back_populates='resources')
-    location = db.relationship(
-        'Location', back_populates='resources'
-    )
+    location = db.relationship('Location', back_populates='resources')
     claimUser = db.relationship(
-        'ClaimStatus', back_populates='claimedResource')
+        'ClaimStatus', back_populates='claimedResource', cascade='all, delete')
 
     def to_dict(self):
         return {
@@ -109,8 +107,10 @@ class Resource(db.Model):
 
 class ClaimStatus(db.Model):
     __tablename__ = 'claimStatus'
-    claimUserId = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    claimedResourceId = db.Column(db.Integer, db.ForeignKey('resources.id'), primary_key=True)
+    claimUserId = db.Column(
+        db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    claimedResourceId = db.Column(
+        db.Integer, db.ForeignKey('resources.id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable=False)
 
     claimUser = db.relationship('User', back_populates="claimedResource")

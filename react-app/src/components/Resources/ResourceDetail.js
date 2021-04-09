@@ -5,7 +5,7 @@ import { jsx } from "@emotion/react";
 import { useHistory, useParams } from "react-router-dom";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import { claimResource } from "../../store/resources";
+import { claimResource, deleteOneResource } from "../../store/resources";
 import CreateResource from "./createResource";
 
 const ResourceDetail = () => {
@@ -27,8 +27,11 @@ const ResourceDetail = () => {
     setEditForm(true)
   }
 
-  const onDelete = (e) => {
+  const onDelete = async (e) => {
     e.preventDefault()
+    console.log(resource, '+++++++from component+++')
+    history.push('/posted_resources')
+    await dispatch(deleteOneResource(resource))
   }
 
   const realDate = date => {

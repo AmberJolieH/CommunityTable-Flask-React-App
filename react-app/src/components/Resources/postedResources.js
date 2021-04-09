@@ -17,6 +17,10 @@ const PostedResources = () => {
         dispatch(getPostedResources(userId))
     }, [dispatch, userId])
 
+    if (!resources) {
+        return "loading...";
+    }
+
     // const componentMap = {
     //     'Non-Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/cans.svg",
     //     'Perishable Food': "https://resourceimage.s3-us-west-2.amazonaws.com/parishable.svg",
@@ -51,23 +55,26 @@ const PostedResources = () => {
                 }}
             >
                 {resources.map(resource => {
-                    return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        margin: '2rem 2rem 2rem',
-                        width: '90%',
-                        fontSize: '1.2rem',
-                        color: 'black',
-                        fontFamily: 'monospace',
-                        textDecoration: 'none',
-                        textAlign: 'center'
-                    }}>
+                    if(resource){
+
+                        return <Link to={`/resources/${resource.id}`} key={resource.id} className='standard-card' css={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            margin: '2rem 2rem 2rem',
+                            width: '90%',
+                            fontSize: '1.2rem',
+                            color: 'black',
+                            fontFamily: 'monospace',
+                            textDecoration: 'none',
+                            textAlign: 'center'
+                        }}>
                         <h2>{resource.name}</h2>
                         <img css={{ maxWidth: "80%" }} src={`${resource.image}`} alt={resource.catName} />
                         <p>{resource.description}</p>
                         <p>{resource.location.name}</p>
                         <p>{resource.quantity}</p>
                     </Link>
+                    }
                 })}
             </div>
         </div>

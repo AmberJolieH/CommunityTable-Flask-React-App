@@ -116,6 +116,15 @@ def update(id):
     return resource.to_dict()
 
 
+@resource_routes.route('/<int:id>', methods=['DELETE'])
+# deletes a resource
+def delete_resource(id):
+    deleted = Resource.query.get(id)
+    db.session.delete(deleted)
+    db.session.commit()
+    return deleted.to_dict()
+
+
 @resource_routes.route('/claim', methods=['POST'])
 def claim_resource():
     user = User.query.get(current_user.id)

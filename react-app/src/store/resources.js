@@ -2,6 +2,7 @@ const LOAD = 'resources/LOAD'
 const ONE = 'resources/ONE'
 const POSTED = 'resources/POSTED'
 const CLAIMED = 'resources/CLAIMED'
+const DELETE = 'resources/DELETE'
 
 const load = list => ({
     type: LOAD,
@@ -22,6 +23,26 @@ const claimed = list => ({
     type: CLAIMED,
     list
 })
+
+const deleteOne = resource => ({
+    type: DELETE,
+    resource
+})
+
+export const deleteOneResource = (resource) => async dispatch => {
+    console.log(resource, '....from store.....')
+    const response = await fetch(`/api/resources/${resource.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({resource})
+    });
+    const deleted = await response.json();
+    dispatch(deleteOne(deleted));
+    return deleted;
+}
+
 export const addAddress =  async ({address, lat, lng}) => {
     const response = await fetch('/api/locations', {
         method: 'POST',
@@ -177,6 +198,10 @@ const resourceReducer = (state = initialState, action) => {
             newState.claimedResources = claimedResources;
             return newState;
         }
+        case DELETE:
+            newState.list[action.resource.id] = null
+            newState.postedResources[action.resource.id] = null
+            return newState;
         default:
             return newState;
     }
