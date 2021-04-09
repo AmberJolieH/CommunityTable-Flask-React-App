@@ -10,16 +10,20 @@ import { getLatLng, getGeocode } from "use-places-autocomplete";
 const SearchBar = ({ resources, setFilteredResources, setLat, setLng }) => {
   const [address, setAddress] = useState("");
   const [resourceTypeQuery, setResourceTypeQuery] = useState("all");
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
-    //write function to use search thunk and return
     //all location data for search
-    e.preventDefault();
-    const geocodedAddress = await getGeocode({ address });
-    const latlng = await getLatLng(geocodedAddress[0]);
-    const { lat, lng } = latlng;
-    setLat(lat);
-    setLng(lng)
+    e.preventDefault()
+    try{
+        const geocodedAddress = await getGeocode({ address });
+        const latlng = await getLatLng(geocodedAddress[0]);
+        const { lat, lng } = latlng;
+        setLat(lat);
+        setLng(lng)
+    } catch(error){
+        console.log("error", error)
+    }
     filterResource(resourceTypeQuery);
   };
 

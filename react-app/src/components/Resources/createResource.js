@@ -18,8 +18,8 @@ const CreateResource = ({resource}) =>{
     let addressContent;
     let catContent;
 
-    
-    
+
+
     if(resource){
         nameContent = resource.name
         descriptionContent = resource.description
@@ -49,13 +49,21 @@ const CreateResource = ({resource}) =>{
     const [address, setAddress] = useState(addressContent)
     const [errors, setErrors] = useState([]);
     const history = useHistory();
-    
+
     const onSubmit = async (e)=>{
         e.preventDefault()
-        const geocodedAddress = await getGeocode({ address });
-        const latlng = await getLatLng(geocodedAddress[0]);
-        const { lat, lng } = latlng;
-        const loc = await addAddress({address, lat, lng})
+        let latitude;
+        let longitude;
+        try{
+            const geocodedAddress = await getGeocode({ address });
+            const latlng = await getLatLng(geocodedAddress[0]);
+            const { lat, lng } = latlng;
+            latitude = lat;
+            longitude = lng;
+        } catch(error){
+            console.log("error", error)
+        }
+        const loc = await addAddress({address, latitude, longitude})
         const locationId = loc.location.id
         const resource = await dispatch(createresource({
             name,
@@ -128,7 +136,7 @@ const CreateResource = ({resource}) =>{
     if(!resource){
         buttonContent = (
             <button
-            
+
                 css={{
                     backgroundColor: "rgb(149, 181, 60)",
                     borderRadius: "2rem",
