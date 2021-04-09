@@ -104,11 +104,12 @@ form {
 	cursor: pointer;
 	background-color: white;
 }
-.standard-card label{
+
+.standard-card .input-container{
 	flex-direction: column;
     align-items:center;
 	display: flex;
-	margin-left: 2rem;
+	width: 30%;
 }
 
 

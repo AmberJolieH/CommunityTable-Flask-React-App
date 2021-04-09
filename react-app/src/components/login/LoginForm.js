@@ -44,7 +44,12 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <>
-      <h1 style={{textAlign: "center"}} className="cardheader">Please Login</h1>
+      <h2 style={{
+          textAlign: "center",
+          fontSize: "3rem",
+          fontWeight: "bolder",
+          margin: "1rem"
+        }}>ENTER THE COMM<span style={{ color: "rgb(149, 181, 60)", marginTop: "2rem" }}>UNITY</span></h2>
       <div
         style={{
           display: "flex",
@@ -59,48 +64,50 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               <div key={index}>{error}</div>
             ))}
           </div>
-          <div>
-            <label htmlFor="email">Email</label>
+          <div className="input-container">
+            <label htmlFor="email">Email:</label>
             <input
               name="email"
               type="text"
               placeholder="Email"
               value={email}
               onChange={updateEmail}
+              required={true}
             />
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
+          <div className="input-container">
+            <label htmlFor="password">Password:</label>
             <input
               name="password"
               type="password"
               placeholder="Password"
               value={password}
               onChange={updatePassword}
+              required={true}
             />
             <button
-              style={{ marginLeft: "3.5rem", marginTop: "2rem" }}
+              style={{ marginTop: "1rem" }}
               className="signupButton"
               type="submit"
             >
               Login
             </button>
+            <button
+              type="button"
+              onClick={demoLogin}
+              className="button"
+              style={{
+                color: "black",
+                padding: "0.5rem",
+                margin: "1rem",
+                backgroundColor: "rgb(237, 237, 237)",
+                fontWeight: "bold",
+              }}
+              className="button"
+            >
+              Demo User
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={demoLogin}
-            style={{
-              textDecoration: "none",
-              color: "black",
-              padding: "0.5rem",
-              margin: "1rem",
-              backgroundColor: "rgb(237, 237, 237)",
-              marginLeft: "2.9rem",
-            }}
-            className="text-button"
-          >
-            Demo User
-          </button>
         </form>
       </div>
     </>
