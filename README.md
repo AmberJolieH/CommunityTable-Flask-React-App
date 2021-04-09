@@ -51,3 +51,16 @@ You can find our detailed instructions on setting up the project and getting it 
 (here in the root of the project directory).
 There are two files separated for the Backend and for the Frontend separately. If you're trying to set up this project yourself
 and run into any issues, you can reach out to us directly at [communitytable.dev@gmail.com](communitytable.dev@gmail.com).
+
+
+## Screenshots of the site
+
+![Community Table Homepage](https://drive.google.com/uc?export=view&id=1YJwGBCDkf2ja7lrpI5ZYzu3YY2hgWWqO)
+This is what our main page looks like. The map allows users to check all the resources in the area and is accessible
+without being logged in.
+
+![Community Table Resource Categories Page](https://drive.google.com/uc?export=view&id=1HeaqZfNumQyrKS8U4Ea6wJnsz2Qf5pSg)
+This is the Resource Categories Page. It allows users to find a list of all resources based on the category they choose.
+
+![Community Table New Resource Form](https://drive.google.com/uc?export=view&id=1ltr2xGcly7MdWUPHrorKD7PkY2ZxPLmO)
+The New Resource form allows a user to describe and post something they'd like to donate to someone in need.
