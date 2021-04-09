@@ -55,23 +55,23 @@ const CreateResource = ({ resource }) => {
 
   function validateForm() {
     let errors = [];
-    let currentDate = new Date()
-    let startsAtDate = new Date(startsAt)
-    let endsAtDate = new Date(endsAt)
-    if(name.length < 1){
-        errors.push("Please enter resource name.")
+    let currentDate = new Date();
+    let startsAtDate = new Date(startsAt);
+    let endsAtDate = new Date(endsAt);
+    if (name.length < 1) {
+      errors.push("Please enter resource name.");
     }
-    if(name.length > 40){
-        errors.push("Please enter a name under 40 characters")
+    if (name.length > 40) {
+      errors.push("Please enter a name under 40 characters");
     }
-    if(quantity < 1){
-        errors.push("Please enter in a valid quantity")
+    if (quantity < 1) {
+      errors.push("Please enter in a valid quantity");
     }
-    if(startsAtDate < currentDate){
-        errors.push("Please enter a valid start date")
+    if (startsAtDate < currentDate) {
+      errors.push("Please enter a valid start date");
     }
-    if(endsAtDate < currentDate || endsAtDate < startsAtDate){
-        errors.push("Please make sure end date is after start date")
+    if (endsAtDate < currentDate || endsAtDate < startsAtDate) {
+      errors.push("Please make sure end date is after start date");
     }
     return errors;
   }
@@ -88,11 +88,11 @@ const CreateResource = ({ resource }) => {
       latitude = lat;
       longitude = lng;
     } catch (error) {
-        errs.push("Please enter a valid address")
+      errs.push("Please enter a valid address");
     }
-    if(errs.length > 0){
-        setErrors(errs)
-        return
+    if (errs.length > 0) {
+      setErrors(errs);
+      return;
     }
     const loc = await addAddress({ address, latitude, longitude });
     const locationId = loc.location.id;
@@ -130,7 +130,6 @@ const CreateResource = ({ resource }) => {
     "Services (Barber, shower, etc)",
     "Other",
   ];
-
 
   const onEdit = async (e) => {
     e.preventDefault();
@@ -213,76 +212,92 @@ const CreateResource = ({ resource }) => {
       ))}
       <p>Community, helping community.</p>
       <form onSubmit={onSubmit} className="standard-card">
-        <label>Name of resource: </label>
-        <input
-          className="input__card"
-          name="name"
-          type="text"
-          placeholder="Name of resource"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label>Description: </label>
-        <textarea
-          name="description"
-          placeholder="Enter a description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <label>Picture</label>
-        {resource && (
-          <img
-            src={resource.image}
-            alt={resource.name}
-            style={{
-              maxWidth: "8rem",
-            }}
+        <div className="input-container-create">
+          <label>Name of resource: </label>
+          <input
+            className="input__card"
+            name="name"
+            type="text"
+            placeholder="Name of resource"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
-        )}
-        <input
-          name="image"
-          type="file"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
-        <label>Enter quantity: </label>
-        <input
-          name="quantity"
-          type="number"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-        <label>Select a category: </label>
-        <select
-          name="catName"
-          type=""
-          value={catName}
-          onChange={(e) => setCatName(e.target.value)}
-        >
-          {categories.map((cat, index) => {
-            return (
-              <option key={index} value={cat}>
-                {cat}
-              </option>
-            );
-          })}
-        </select>
-        <label>Resource Starts:</label>
-        <input
-          name="startsAt"
-          type="date"
-          value={startsAt}
-          onChange={(e) => setStartsAt(e.target.value)}
-        />
-        <label>Resource Ends:</label>
-        <input
-          name="endsAt"
-          type="date"
-          value={endsAt}
-          onChange={(e) => setEndsAt(e.target.value)}
-        />
-        <label>Pick-up location: </label>
-        <PlacesAutocomplete setAddress={setAddress} address={address} />
-        {buttonContent}
+        </div>
+        <div className="input-container-create">
+          <label>Description: </label>
+          <textarea
+            name="description"
+            placeholder="Enter a description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <div className="input-container-create">
+          <label>Picture</label>
+          {resource && (
+            <img
+              src={resource.image}
+              alt={resource.name}
+              style={{
+                maxWidth: "8rem",
+              }}
+            />
+          )}
+          <input
+            name="image"
+            type="file"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+        </div>
+        <div className="input-container-create">
+          <label>Enter quantity: </label>
+          <input
+            name="quantity"
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </div>
+        <div className="input-container-create">
+          <label>Select a category: </label>
+          <select
+            name="catName"
+            type=""
+            value={catName}
+            onChange={(e) => setCatName(e.target.value)}
+          >
+            {categories.map((cat, index) => {
+              return (
+                <option key={index} value={cat}>
+                  {cat}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className="input-container-create">
+          <label>Resource Starts:</label>
+          <input
+            name="startsAt"
+            type="date"
+            value={startsAt}
+            onChange={(e) => setStartsAt(e.target.value)}
+          />
+        </div>
+        <div className="input-container-create">
+          <label>Resource Ends:</label>
+          <input
+            name="endsAt"
+            type="date"
+            value={endsAt}
+            onChange={(e) => setEndsAt(e.target.value)}
+          />
+        </div>
+        <div className="input-container-create" style={{ width: "36%" }}>
+          <label>Pick-up location: </label>
+          <PlacesAutocomplete setAddress={setAddress} address={address} />
+          {buttonContent}
+        </div>
       </form>
     </div>
   );
